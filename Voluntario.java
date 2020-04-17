@@ -9,35 +9,35 @@ public class Voluntario
 {
     private String cod;
     private String nome;
-    private double lat;
-    private double lon;
+    private GPS gps;
     private double raio;
+    private boolean livre;
     
     public Voluntario()
     {
         this.cod = new String();
         this.nome = new String();
-        this.lat = 0;
-        this.lon = 0;
+        this.gps = new GPS();
         this.raio = 0;
+        this.livre = true;
     }
     
-    public Voluntario (String s, String n, double x, double y, double r)
+    public Voluntario (String s, String n, double x, double y, double r, boolean b)
     {
         this.cod = s;
         this.nome = n;
-        this.lat = x;
-        this.lon = y;
+        this.gps = new GPS (x,y);
         this.raio =r;
+        this.livre = b;
     }
     
     public Voluntario (Voluntario u)
     {
         this.cod = u.getCod();
         this.nome = u.getNome();
-        this.lat = u.getLat();
-        this.lon = u.getLon();
+        this.gps = new GPS(u.getGPS());
         this.raio = u.getRaio();
+        this.livre = u.getLivre();
     }
     
     public String getCod()
@@ -49,20 +49,20 @@ public class Voluntario
     {
         return this.nome;
     }
-    
-    public double getLat()
+
+    public GPS getGPS()
     {
-        return this.lat;
-    }
-    
-    public double getLon()
-    {
-        return this.lon;
+        return this.gps;
     }
     
     public double getRaio()
     {
         return this.raio;
+    }
+    
+    public boolean getLivre()
+    {
+        return this.livre;
     }
     
     public void setCod(String s)
@@ -74,26 +74,20 @@ public class Voluntario
     {
         this.nome = n;
     }
-    
-    public void setLat (double l)
-    {
-        this.lat =l;
-    }
-    
-    public void setLon (double l)
-    {
-        this.lon = l;
-    }
-    
+
     public void setGPS (double l, double lo)
     {
-        this.lat =l;
-        this.lon = lo;
+        this.gps.setGPS(l,lo);
     }
     
     public void setRaio (double r)
     {
         this.raio = r;
+    }
+    
+    public void setLivre(boolean b)
+    {
+        this.livre = b;
     }
     
     public Voluntario clone()
@@ -108,7 +102,8 @@ public class Voluntario
         Voluntario u = (Voluntario) o;
         return this.cod.equals(u.getCod()) &&
                this.nome.equals(u.getNome()) &&
-               this.lat == u.getLat() && this.lon == u.getLon() &&
-               this.raio == u.getRaio();
+               this.gps.equals(u.getGPS()) &&
+               this.raio == u.getRaio() &&
+               this.livre == u.getLivre();
     }
 }

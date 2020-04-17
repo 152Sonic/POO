@@ -9,43 +9,39 @@ public class Transportadora
 {
     private String cod;
     private String nome;
-    private double lat;
-    private double lon;
+    private GPS gps;
     private int nif;
     private double raio;
-    private double preço;
+    private double taxa;
     
     public Transportadora()
     {
         this.cod = new String();
         this.nome = new String();
-        this.lat = 0;
-        this.lon = 0;
+        this.gps = new GPS();
         this.nif = 0;
         this.raio = 0;
-        this.preço = 0;
+        this.taxa = 0;
     }
     
     public Transportadora (String s, String nome, double x, double y,int n, double r, double p)
     {
         this.cod = s;
         this.nome = nome;
-        this.lat = x;
-        this.lon = y;
+        this.gps = new GPS(x,y);
         this.nif = n;
         this.raio =r;
-        this.preço = p;
+        this.taxa = p;
     }
     
     public Transportadora (Transportadora u)
     {
         this.cod = u.getCod();
         this.nome = u.getNome();
-        this.lat = u.getLat();
-        this.lon = u.getLon();
+        this.gps = new GPS(u.getGPS());
         this.nif = u.getNif();
         this.raio = u.getRaio();
-        this.preço = u.getPreço();
+        this.taxa = u.getTaxa();
     }
     
     public String getCod()
@@ -58,14 +54,9 @@ public class Transportadora
         return this.nome;
     }
     
-    public double getLat()
+    public GPS getGPS()
     {
-        return this.lat;
-    }
-    
-    public double getLon()
-    {
-        return this.lon;
+        return this.gps;
     }
     
     public int getNif()
@@ -78,9 +69,9 @@ public class Transportadora
         return this.raio;
     }
     
-    public double getPreço()
+    public double getTaxa()
     {
-        return this.preço;
+        return this.taxa;
     }
     
     public void setCod(String s)
@@ -93,20 +84,9 @@ public class Transportadora
         this.nome = n;
     }
     
-    public void setLat (double l)
-    {
-        this.lat =l;
-    }
-    
-    public void setLon (double l)
-    {
-        this.lon = l;
-    }
-    
     public void setGPS (double l, double lo)
     {
-        this.lat =l;
-        this.lon = lo;
+        this.gps.setGPS(l,lo);
     }
     
     public void setNif (int n)
@@ -119,9 +99,9 @@ public class Transportadora
         this.raio = r;
     }
     
-    public void setPreço(double p)
+    public void setTaxa(double p)
     {
-        this.preço = p;
+        this.taxa = p;
     }
     
     public Transportadora clone()
@@ -136,8 +116,8 @@ public class Transportadora
         Transportadora t = (Transportadora) o;
         return this.cod.equals(t.getCod()) &&
                this.nome.equals(t.getNome()) &&
-               this.lat == t.getLat() && this.lon == t.getLon() &&
+               this.gps.equals(t.getGPS()) &&
                this.raio == t.getRaio() && this.nif == t.getNif() &&
-               this.preço == t.getPreço();
+               this.taxa == t.getTaxa();
     }
 }

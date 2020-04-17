@@ -12,31 +12,27 @@ public class Utilizador
 {
     private String cod;
     private String nome;
-    private double lat;
-    private double lon;
+    private GPS gps;
     
     public Utilizador()
     {
         this.cod = new String();
         this.nome = new String();
-        this.lat = 0;
-        this.lon = 0;
+        this.gps = new GPS();
     }
     
     public Utilizador (String s, String n, double x, double y)
     {
         this.cod = s;
         this.nome = n;
-        this.lat = x;
-        this.lon = y;
+        this.gps = new GPS(x,y);
     }
     
     public Utilizador (Utilizador u)
     {
         this.cod = u.getCod();
         this.nome = u.getNome();
-        this.lat = u.getLat();
-        this.lon = u.getLon();
+        this.gps = new GPS(u.getGPS());
     }
     
     public String getCod()
@@ -49,16 +45,11 @@ public class Utilizador
         return this.nome;
     }
     
-    public double getLat()
+    public GPS getGPS()
     {
-        return this.lat;
+        return this.gps;
     }
-    
-    public double getLon()
-    {
-        return this.lon;
-    }
-    
+        
     public void setCod(String s)
     {
         this.cod = s;
@@ -69,20 +60,9 @@ public class Utilizador
         this.nome = n;
     }
     
-    public void setLat (double l)
-    {
-        this.lat =l;
-    }
-    
-    public void setLon (double l)
-    {
-        this.lon = l;
-    }
-    
     public void setGPS (double l, double lo)
     {
-        this.lat =l;
-        this.lon = lo;
+        this.gps.setGPS(l,lo);
     }
     
     public Utilizador clone()
@@ -97,6 +77,6 @@ public class Utilizador
         Utilizador u = (Utilizador) o;
         return this.cod.equals(u.getCod()) &&
                this.nome.equals(u.getNome()) &&
-               this.lat == u.getLat() && this.lon == u.getLon();
+               this.gps.equals(u.getGPS());
     }
 }
