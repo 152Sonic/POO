@@ -1,4 +1,3 @@
-
 /**
  * Write a description of class GPS here.
  *
@@ -9,30 +8,30 @@ public class GPS
 {
     private double lat;
     private double lon;
-    
+
     public GPS()
     {
         this.lat = 0;
         this.lon = 0;
     }
-    
+
     public GPS (double x, double y)
     {
         this.lat = x;
         this.lon = y;
     }
-    
+
     public GPS (GPS u)
     {
         this.lat = u.getLat();
         this.lon = u.getLon();
     }
-    
+
     public double getLat()
     {
         return this.lat;
     }
-    
+
     public double getLon()
     {
         return this.lon;
@@ -42,23 +41,23 @@ public class GPS
     {
         this.lat =l;
     }
-    
+
     public void setLon (double l)
     {
         this.lon = l;
     }
-    
+
     public void setGPS (double l, double lo)
     {
         this.lat =l;
         this.lon = lo;
     }
-    
+
     public GPS clone()
     {
         return new GPS(this);
     }
-    
+
     public boolean equals (Object o)
     {
         if (o == this) return true;

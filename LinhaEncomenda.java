@@ -1,4 +1,3 @@
-
 /**
  * Write a description of class LinhaEncomenda here.
  *
@@ -11,7 +10,7 @@ public class LinhaEncomenda
     private String desc;
     private int quant;
     private double valor;
-    
+
     public LinhaEncomenda()
     {
         this.cod = new String();
@@ -19,7 +18,7 @@ public class LinhaEncomenda
         this.quant = 0;
         this.valor = 0;
     }
-    
+
     public LinhaEncomenda (String s, String n, int x, double y)
     {
         this.cod = s;
@@ -27,7 +26,7 @@ public class LinhaEncomenda
         this.quant = x;
         this.valor = y;
     }
-    
+
     public LinhaEncomenda (LinhaEncomenda u)
     {
         this.cod = u.getCod();
@@ -35,52 +34,52 @@ public class LinhaEncomenda
         this.quant = u.getQuant();
         this.valor = u.getValor();
     }
-    
+
     public String getCod()
     {
         return this.cod;
     }
-    
+
     public String getDesc()
     {
         return this.desc;
     }
-    
+
     public int getQuant()
     {
         return this.quant;
     }
-    
+
     public double getValor()
     {
         return this.valor;
     }
-    
+
     public void setCod(String s)
     {
         this.cod = s;
     }
-    
+
     public void setDesc(String n)
     {
         this.desc = n;
     }
-    
+
     public void setQuant (int l)
     {
         this.quant =l;
     }
-    
+
     public void setValor (double l)
     {
         this.valor = l;
     }
-    
+
     public LinhaEncomenda clone()
     {
         return new LinhaEncomenda(this);
     }
-    
+
     public boolean equals (Object o)
     {
         if (o == this) return true;

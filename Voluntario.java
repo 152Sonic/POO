@@ -1,3 +1,4 @@
+import java.util.List;
 
 /**
  * Write a description of class Voluntario here.
@@ -12,7 +13,8 @@ public class Voluntario
     private GPS gps;
     private double raio;
     private boolean livre;
-    
+    private List<Encomenda> listenc;
+
     public Voluntario()
     {
         this.cod = new String();
@@ -21,7 +23,7 @@ public class Voluntario
         this.raio = 0;
         this.livre = true;
     }
-    
+
     public Voluntario (String s, String n, double x, double y, double r, boolean b)
     {
         this.cod = s;
@@ -30,7 +32,7 @@ public class Voluntario
         this.raio =r;
         this.livre = b;
     }
-    
+
     public Voluntario (Voluntario u)
     {
         this.cod = u.getCod();
@@ -39,12 +41,12 @@ public class Voluntario
         this.raio = u.getRaio();
         this.livre = u.getLivre();
     }
-    
+
     public String getCod()
     {
         return this.cod;
     }
-    
+
     public String getNome()
     {
         return this.nome;
@@ -54,22 +56,22 @@ public class Voluntario
     {
         return this.gps;
     }
-    
+
     public double getRaio()
     {
         return this.raio;
     }
-    
+
     public boolean getLivre()
     {
         return this.livre;
     }
-    
+
     public void setCod(String s)
     {
         this.cod = s;
     }
-    
+
     public void setNome(String n)
     {
         this.nome = n;
@@ -79,22 +81,22 @@ public class Voluntario
     {
         this.gps.setGPS(l,lo);
     }
-    
+
     public void setRaio (double r)
     {
         this.raio = r;
     }
-    
+
     public void setLivre(boolean b)
     {
         this.livre = b;
     }
-    
+
     public Voluntario clone()
     {
         return new Voluntario(this);
     }
-    
+
     public boolean equals (Object o)
     {
         if (o == this) return true;
