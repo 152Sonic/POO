@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,13 +22,15 @@ public class Utilizador
         this.cod = new String();
         this.nome = new String();
         this.gps = new GPS();
+        this.entregues = new ArrayList<>();
     }
 
-    public Utilizador (String s, String n, double x, double y)
+    public Utilizador (String s, String n, double x, double y, ArrayList<Encomenda> lista)
     {
         this.cod = s;
         this.nome = n;
         this.gps = new GPS(x,y);
+        this.setEntregues(lista);
     }
 
     public Utilizador (Utilizador u)
@@ -35,6 +38,7 @@ public class Utilizador
         this.cod = u.getCod();
         this.nome = u.getNome();
         this.gps = new GPS(u.getGPS());
+        this.setEntregues(u.getEntregues());
     }
 
     public String getCod()
@@ -50,6 +54,20 @@ public class Utilizador
     public GPS getGPS()
     {
         return this.gps;
+    }
+
+     public ArrayList<Encomenda> getEntregues() {
+        ArrayList<Encomenda> aux = new ArrayList<>();
+        for (Encomenda l : this.entregues)
+            aux.add(l);
+        return aux;
+    }
+
+    public void setEntregues (ArrayList<Encomenda> l)
+    {
+        this.entregues = new ArrayList<>();
+        for(Encomenda li : l)
+            this.entregues.add(li);
     }
 
     public void setCod(String s)

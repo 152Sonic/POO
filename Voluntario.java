@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -22,15 +23,18 @@ public class Voluntario
         this.gps = new GPS();
         this.raio = 0;
         this.livre = true;
+        this.listenc = new ArrayList<>();
     }
 
-    public Voluntario (String s, String n, double x, double y, double r, boolean b)
+    public Voluntario (String s, String n, double x, double y, double r, boolean b, ArrayList<Encomenda> lista)
     {
         this.cod = s;
         this.nome = n;
         this.gps = new GPS (x,y);
         this.raio =r;
         this.livre = b;
+        this.setList(lista);
+
     }
 
     public Voluntario (Voluntario u)
@@ -40,6 +44,7 @@ public class Voluntario
         this.gps = new GPS(u.getGPS());
         this.raio = u.getRaio();
         this.livre = u.getLivre();
+        this.setList(u.getList());
     }
 
     public String getCod()
@@ -65,6 +70,20 @@ public class Voluntario
     public boolean getLivre()
     {
         return this.livre;
+    }
+
+    public ArrayList<Encomenda> getList() {
+        ArrayList<Encomenda> aux = new ArrayList<>();
+        for (Encomenda l : this.listenc)
+            aux.add(l);
+        return aux;
+    }
+
+    public void setList (ArrayList<Encomenda> l)
+    {
+        this.listenc = new ArrayList<>();
+        for(Encomenda li : l)
+            this.listenc.add(li);
     }
 
     public void setCod(String s)

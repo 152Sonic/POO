@@ -1,3 +1,6 @@
+import org.ietf.jgss.GSSContext;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,13 +21,16 @@ public class Loja
         this.cod = new String();
         this.nome = new String();
         this.gps = new GPS();
+        this.listaEnc = new ArrayList<>();
+
     }
 
-    public Loja (String s, String n)
+    public Loja (String s, String n, double x, double y, ArrayList<Encomenda> li)
     {
         this.cod = s;
         this.nome = n;
-        this.gps = new GPS();
+        this.gps = new GPS(x,y);
+        this.setListaEnc(li);
     }
 
     public Loja (Loja u)
@@ -32,6 +38,22 @@ public class Loja
         this.cod = u.getCod();
         this.nome = u.getNome();
         this.gps = new GPS(u.getGPS());
+        this.setListaEnc(u.getListaEnc());
+    }
+
+
+    public ArrayList<Encomenda> getListaEnc() {
+        ArrayList<Encomenda> aux = new ArrayList<>();
+        for (Encomenda l : this.listaEnc)
+            aux.add(l);
+        return aux;
+    }
+
+    public void setListaEnc (ArrayList<Encomenda> l)
+    {
+        this.listaEnc = new ArrayList<>();
+        for(Encomenda li : l)
+            this.listaEnc.add(li);
     }
 
     public String getCod()

@@ -1,3 +1,6 @@
+import static java.lang.Math.pow;
+import static java.lang.Math.sqrt;
+
 /**
  * Write a description of class GPS here.
  *
@@ -65,4 +68,17 @@ public class GPS
         GPS u = (GPS) o;
         return this.lat == u.getLat() && this.lon == u.getLon();
     }
+    public double distancia( GPS gps)
+    {
+        return sqrt(pow((this.lat - gps.getLat()),2) + pow((this.lon - gps.getLon()),2));
+    }
+
+    public boolean isNear(GPS gps, double r)
+    {
+        return (this.distancia(gps)<=r);
+    }
+
+
+
+
 }

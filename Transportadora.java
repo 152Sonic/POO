@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -24,9 +25,10 @@ public class Transportadora
         this.nif = 0;
         this.raio = 0;
         this.taxa = 0;
+        this.listenc = new ArrayList<>();
     }
 
-    public Transportadora (String s, String nome, double x, double y,int n, double r, double p)
+    public Transportadora (String s, String nome, double x, double y,int n, double r, double p, ArrayList<Encomenda> lista )
     {
         this.cod = s;
         this.nome = nome;
@@ -34,6 +36,8 @@ public class Transportadora
         this.nif = n;
         this.raio =r;
         this.taxa = p;
+        this.setList(lista);
+
     }
 
     public Transportadora (Transportadora u)
@@ -44,6 +48,7 @@ public class Transportadora
         this.nif = u.getNif();
         this.raio = u.getRaio();
         this.taxa = u.getTaxa();
+        this.setList(u.getList());
     }
 
     public String getCod()
@@ -74,6 +79,20 @@ public class Transportadora
     public double getTaxa()
     {
         return this.taxa;
+    }
+
+    public ArrayList<Encomenda> getList() {
+        ArrayList<Encomenda> aux = new ArrayList<>();
+        for (Encomenda l : this.listenc)
+            aux.add(l);
+        return aux;
+    }
+
+    public void setList (ArrayList<Encomenda> l)
+    {
+        this.listenc = new ArrayList<>();
+        for(Encomenda li : l)
+            this.listenc.add(li);
     }
 
     public void setCod(String s)
