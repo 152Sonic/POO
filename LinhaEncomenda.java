@@ -89,4 +89,9 @@ public class LinhaEncomenda
                this.desc.equals(u.getDesc()) &&
                this.quant == u.getQuant() && this.valor == u.getValor();
     }
+
+    public double getPreço()
+    {
+        return quant * valor;
+    }
 }

@@ -127,4 +127,6 @@ public class Voluntario
                this.raio == u.getRaio() &&
                this.livre == u.getLivre();
     }
+
+
 }

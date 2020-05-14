@@ -141,4 +141,11 @@ public class Transportadora
                this.raio == t.getRaio() && this.nif == t.getNif() &&
                this.taxa == t.getTaxa();
     }
+
+    public double getPreço(GPS loja, GPS user){
+        double d1 = this.gps.distancia(loja);
+        double d2 = loja.distancia(user);
+        return taxa * (d1 + d2);
+
+    }
 }

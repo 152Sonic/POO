@@ -126,4 +126,11 @@ public class Encomenda
                this.peso == u.getPeso() &&
                this.linha.equals(u.getLinha());
     }
+
+    public double getPreço()
+    {
+        return this.linha.stream()
+                         .mapToDouble(a -> a.getPreço())
+                         .sum();
+    }
 }

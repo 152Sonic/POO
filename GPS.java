@@ -70,7 +70,19 @@ public class GPS
     }
     public double distancia( GPS gps)
     {
-        return sqrt(pow((this.lat - gps.getLat()),2) + pow((this.lon - gps.getLon()),2));
+        // Conversão de graus pra radianos das latitudes
+        double firstLatToRad = Math.toRadians(this.lat);
+        double secondLatToRad = Math.toRadians(gps.getLat());
+
+        // Diferença das longitudes
+        double deltaLongitudeInRad = Math.toRadians(gps.getLon()
+                - this.lon);
+
+        // Cálcula da distância entre os pontos
+        return Math.acos(Math.cos(firstLatToRad) * Math.cos(secondLatToRad)
+                * Math.cos(deltaLongitudeInRad) + Math.sin(firstLatToRad)
+                * Math.sin(secondLatToRad))
+                * 6378.137;
     }
 
     public boolean isNear(GPS gps, double r)

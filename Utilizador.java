@@ -99,4 +99,6 @@ public class Utilizador
                this.nome.equals(u.getNome()) &&
                this.gps.equals(u.getGPS());
     }
+
+
 }
