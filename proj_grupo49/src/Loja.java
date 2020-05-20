@@ -25,11 +25,11 @@ public class Loja
 
     }
 
-    public Loja (String s, String n, double x, double y, ArrayList<Encomenda> li)
+    public Loja (String s, String n, GPS gps, ArrayList<Encomenda> li)
     {
         this.cod = s;
         this.nome = n;
-        this.gps = new GPS(x,y);
+        this.gps = gps.clone();
         this.setListaEnc(li);
     }
 
@@ -89,6 +89,17 @@ public class Loja
     public Loja clone()
     {
         return new Loja(this);
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Loja{");
+        sb.append("cod='").append(cod).append('\'');
+        sb.append(", nome='").append(nome).append('\'');
+        sb.append(", gps=").append(gps);
+        sb.append(", listaEnc=").append(listaEnc);
+        sb.append('}');
+        return sb.toString();
     }
 
     public boolean equals (Object o)

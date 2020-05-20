@@ -105,6 +105,23 @@ public class Encomenda {
                 this.linha.equals(u.getLinha());
     }
 
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Encomenda{");
+        sb.append("codenc='").append(codenc).append('\'');
+        sb.append(", coduser='").append(coduser).append('\'');
+        sb.append(", codloja='").append(codloja).append('\'');
+        sb.append(", peso=").append(peso);
+        sb.append(", aceites=").append(aceites);
+        sb.append(", linha=").append(linha);
+        sb.append('}');
+        return sb.toString();
+    }
+
+    public int compareTo(Encomenda e1){
+        return this.getCodenc().compareTo(e1.getCodenc());
+    }
+
     public double getPreco() {
         return this.linha.stream().mapToDouble(LinhaEncomenda::getPreco).sum();
     }

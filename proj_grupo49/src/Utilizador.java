@@ -25,11 +25,11 @@ public class Utilizador
         this.entregues = new ArrayList<>();
     }
 
-    public Utilizador (String s, String n, double x, double y, ArrayList<Encomenda> lista)
+    public Utilizador (String s, String n, GPS gps, ArrayList<Encomenda> lista)
     {
         this.cod = s;
         this.nome = n;
-        this.gps = new GPS(x,y);
+        this.gps = gps.clone();
         this.setEntregues(lista);
     }
 
@@ -100,5 +100,14 @@ public class Utilizador
                this.gps.equals(u.getGPS());
     }
 
-
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Utilizador{");
+        sb.append("cod='").append(cod).append('\'');
+        sb.append(", nome='").append(nome).append('\'');
+        sb.append(", gps=").append(gps);
+        sb.append(", entregues=").append(entregues);
+        sb.append('}');
+        return sb.toString();
+    }
 }

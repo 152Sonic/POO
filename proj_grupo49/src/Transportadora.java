@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Write a description of class Transportadora here.
@@ -15,6 +16,8 @@ public class Transportadora
     private int nif;
     private double raio;
     private double taxa;
+    private double taxaPeso;
+    private int pesoLimite;
     private List<Encomenda> listenc;
 
     public Transportadora()
@@ -25,17 +28,21 @@ public class Transportadora
         this.nif = 0;
         this.raio = 0;
         this.taxa = 0;
+        this.taxaPeso = 0;
+        this.pesoLimite = 100;
         this.listenc = new ArrayList<>();
     }
 
-    public Transportadora (String s, String nome, double x, double y,int n, double r, double p, ArrayList<Encomenda> lista )
+    public Transportadora (String s, String nome, GPS gps,int n, double r, double p,double tp, int peso, ArrayList<Encomenda> lista )
     {
         this.cod = s;
         this.nome = nome;
-        this.gps = new GPS(x,y);
+        this.gps = gps.clone();
         this.nif = n;
         this.raio =r;
         this.taxa = p;
+        this.taxaPeso = tp;
+        this.pesoLimite = peso;
         this.setList(lista);
 
     }
@@ -48,6 +55,8 @@ public class Transportadora
         this.nif = u.getNif();
         this.raio = u.getRaio();
         this.taxa = u.getTaxa();
+        this.taxaPeso = u.getTaxaPeso();
+        this.pesoLimite = u.getPesoLimite();
         this.setList(u.getList());
     }
 
@@ -79,6 +88,22 @@ public class Transportadora
     public double getTaxa()
     {
         return this.taxa;
+    }
+
+    public double getTaxaPeso() {
+        return taxaPeso;
+    }
+
+    public void setTaxaPeso(double taxaPeso) {
+        this.taxaPeso = taxaPeso;
+    }
+
+    public int getPesoLimite() {
+        return pesoLimite;
+    }
+
+    public void setPesoLimite(int pesoLimite) {
+        this.pesoLimite = pesoLimite;
     }
 
     public ArrayList<Encomenda> getList() {
@@ -130,22 +155,43 @@ public class Transportadora
         return new Transportadora(this);
     }
 
-    public boolean equals (Object o)
-    {
-        if (o == this) return true;
-        if (o == null || o.getClass() != this.getClass()) return false;
-        Transportadora t = (Transportadora) o;
-        return this.cod.equals(t.getCod()) &&
-               this.nome.equals(t.getNome()) &&
-               this.gps.equals(t.getGPS()) &&
-               this.raio == t.getRaio() && this.nif == t.getNif() &&
-               this.taxa == t.getTaxa();
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Transportadora{");
+        sb.append("cod='").append(cod).append('\'');
+        sb.append(", nome='").append(nome).append('\'');
+        sb.append(", gps=").append(gps);
+        sb.append(", nif=").append(nif);
+        sb.append(", raio=").append(raio);
+        sb.append(", taxa=").append(taxa);
+        sb.append(", taxaPeso=").append(taxaPeso);
+        sb.append(", pesoLimite=").append(pesoLimite);
+        sb.append(", listenc=").append(listenc);
+        sb.append('}');
+        return sb.toString();
     }
 
-    public double getPreço(GPS loja, GPS user){
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Transportadora)) return false;
+        Transportadora that = (Transportadora) o;
+        return nif == that.nif &&
+                Double.compare(that.raio, raio) == 0 &&
+                Double.compare(that.taxa, taxa) == 0 &&
+                Double.compare(that.taxaPeso, taxaPeso) == 0 &&
+                pesoLimite == that.pesoLimite &&
+                Objects.equals(cod, that.cod) &&
+                Objects.equals(nome, that.nome) &&
+                Objects.equals(gps, that.gps) &&
+                Objects.equals(listenc, that.listenc);
+    }
+
+
+    public double getPreço(GPS loja, GPS user, Encomenda e){
         double d1 = this.gps.distancia(loja);
         double d2 = loja.distancia(user);
-        return taxa * (d1 + d2);
+        return taxa * (d1 + d2) + (taxaPeso * e.getPeso()) ;
 
     }
+
 }

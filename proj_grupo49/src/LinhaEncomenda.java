@@ -7,7 +7,7 @@
 public class LinhaEncomenda {
     private String cod;
     private String desc;
-    private int quant;
+    private double quant;
     private double valor;
 
     public LinhaEncomenda() {
@@ -17,7 +17,7 @@ public class LinhaEncomenda {
         this.valor = 0;
     }
 
-    public LinhaEncomenda(String s, String n, int x, double y) {
+    public LinhaEncomenda(String s, String n, double x, double y) {
         this.cod = s;
         this.desc = n;
         this.quant = x;
@@ -39,7 +39,7 @@ public class LinhaEncomenda {
         return this.desc;
     }
 
-    public int getQuant() {
+    public double getQuant() {
         return this.quant;
     }
 
@@ -74,6 +74,17 @@ public class LinhaEncomenda {
         return this.cod.equals(u.getCod()) &&
                 this.desc.equals(u.getDesc()) &&
                 this.quant == u.getQuant() && this.valor == u.getValor();
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("LinhaEncomenda{");
+        sb.append("cod='").append(cod).append('\'');
+        sb.append(", desc='").append(desc).append('\'');
+        sb.append(", quant=").append(quant);
+        sb.append(", valor=").append(valor);
+        sb.append('}');
+        return sb.toString();
     }
 
     public double getPreco() {

@@ -26,11 +26,11 @@ public class Voluntario
         this.listenc = new ArrayList<>();
     }
 
-    public Voluntario (String s, String n, double x, double y, double r, boolean b, ArrayList<Encomenda> lista)
+    public Voluntario (String s, String n, GPS gps, double r, boolean b, ArrayList<Encomenda> lista)
     {
         this.cod = s;
         this.nome = n;
-        this.gps = new GPS (x,y);
+        this.gps = gps.clone();
         this.raio =r;
         this.livre = b;
         this.setList(lista);
@@ -128,5 +128,16 @@ public class Voluntario
                this.livre == u.getLivre();
     }
 
-
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Voluntario{");
+        sb.append("cod='").append(cod).append('\'');
+        sb.append(", nome='").append(nome).append('\'');
+        sb.append(", gps=").append(gps);
+        sb.append(", raio=").append(raio);
+        sb.append(", livre=").append(livre);
+        sb.append(", listenc=").append(listenc);
+        sb.append('}');
+        return sb.toString();
+    }
 }
