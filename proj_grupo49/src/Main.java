@@ -6,7 +6,8 @@ import java.util.*;
 
 public class Main {
 
-    public static void parse(String filename){
+
+    public static void parse(String filename, Lojas lojas, Utilizadores users, Voluntarios voluntarios, Transportadoras transp){
         List<String> linhas = lerFicheiro(filename); //alterar nome do ficheiro
         String[] linhaPartida;
         Map<String,Encomenda> enc = new TreeMap<>();
@@ -15,14 +16,17 @@ public class Main {
                 switch(linhaPartida[0]){
                 case "Utilizador":
                         Utilizador u = parseUtilizador(linhaPartida[1]); // criar um Utilizador
+                        users.addUtilizador(u);
                         System.out.println(u.toString()); //enviar para o ecrÃ¡n apenas para teste
                         break;
                 case "Loja":
                         Loja l = parseLoja(linhaPartida[1]);
+                        lojas.addLoja(l);
                         System.out.println(l.toString());
                         break;
                 case "Transportadora":
                         Transportadora t = parseTransportadora(linhaPartida[1]);
+                        transp.addTransportadora(t);
                         System.out.println(t.toString());
                         break;
                 case "Encomenda":
@@ -32,6 +36,7 @@ public class Main {
                         break;
                 case "Voluntario":
                         Voluntario v = parseVoluntario(linhaPartida[1]);
+                        voluntarios.addVoluntario(v);
                         System.out.println(v.toString());
                         break;
                 case "Aceite":
@@ -133,17 +138,14 @@ public class Main {
 
 
     public static void main(String[] args) {
-        GPS g1 = new GPS(-81.554855, 84.01756);
-        GPS g2 = new GPS(-81.89932, 81.5264);
-        double r = 80;
+        Lojas l = new Lojas();
+        Voluntarios v = new Voluntarios();
+        Utilizadores u = new Utilizadores();
+        Transportadoras t = new Transportadoras();
 
-        double d = g1.distancia(g2);
-        boolean v = g1.isNear(g2, r);
 
-        System.out.println(d);
-        System.out.println(v);
 
-        parse("logs2.txt");
+        parse("logs2.txt",l,u,v,t);
 
 
 
