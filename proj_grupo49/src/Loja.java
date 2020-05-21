@@ -1,6 +1,8 @@
 import org.ietf.jgss.GSSContext;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 /**
@@ -16,6 +18,7 @@ public class Loja
     private String nome;
     private GPS gps;
     private List<Encomenda> listaEnc;
+    private HashMap<String,Produto> stock;
 
     public Loja()
     {
@@ -24,6 +27,7 @@ public class Loja
         this.nome = new String();
         this.gps = new GPS();
         this.listaEnc = new ArrayList<>();
+
 
     }
 
@@ -34,6 +38,16 @@ public class Loja
         this.nome = n;
         this.gps = gps.clone();
         this.setListaEnc(li);
+    }
+
+    public Loja (String p, String s, String n, GPS gps)
+    {
+        this.pass = p;
+        this.cod = s;
+        this.nome = n;
+        this.gps = gps.clone();
+        this.listaEnc = new ArrayList<>();
+        this.stock = new HashMap<>();
     }
 
     public Loja (Loja u)
@@ -117,5 +131,25 @@ public class Loja
         return this.cod.equals(u.getCod()) &&
                this.nome.equals(u.getNome()) &&
                this.gps.equals(u.getGPS());
+    }
+
+    public void addEncomenda(String e, String u, String[]ps, int []qts){
+        ArrayList<LinhaEncomenda> linhas = new ArrayList<>();
+        double p=0;
+        for(int i=0;i<ps.length;i++){
+            if(stock.containsKey(ps[i])){
+                LinhaEncomenda linha = new LinhaEncomenda(stock.get(ps[i]).getCod(), ps[i], qts[i],qts[i] * stock.get(ps[i]).getPeso(), stock.get(ps[i]).getPreçouni() * qts[i]);
+                linhas.add(linha);
+            }
+            for(LinhaEncomenda li : linhas) {
+                p += li.getPeso();
+            }
+            Encomenda enc = new Encomenda (e,this.cod,u,p,linhas);
+            this.listaEnc.add(enc);
+
+        }
+    }
+    public boolean validaPass(String p){
+        return this.pass.equals(p);
     }
 }

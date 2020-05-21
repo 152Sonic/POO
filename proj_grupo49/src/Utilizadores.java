@@ -37,4 +37,10 @@ public class Utilizadores {
         this.utilizadores.remove(l.getCod());
     }
 
+    public boolean verificaLogin(String s, String p){
+        if(utilizadores.containsKey(s))
+            return utilizadores.get(s).validaPass(p);
+        else return false;
+    }
+
 }

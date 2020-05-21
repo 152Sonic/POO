@@ -37,4 +37,9 @@ public class Voluntarios {
         this.voluntarios.remove(l.getCod());
     }
 
+    public boolean verificaLogin(String s, String p){
+        if(voluntarios.containsKey(s))
+            return voluntarios.get(s).validaPass(p);
+        else return false;
+    }
 }

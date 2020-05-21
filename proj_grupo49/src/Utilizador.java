@@ -18,6 +18,7 @@ public class Utilizador
     private GPS gps;
     private List<Encomenda> entregues;
 
+
     public Utilizador()
     {
         this.pass = new String();
@@ -34,6 +35,14 @@ public class Utilizador
         this.nome = n;
         this.gps = gps.clone();
         this.setEntregues(lista);
+    }
+    public Utilizador (String p,String s, String n, GPS gps)
+    {
+        this.pass = p;
+        this.cod = s;
+        this.nome = n;
+        this.gps = gps.clone();
+        this.entregues = new ArrayList<>();
     }
 
     public Utilizador (Utilizador u)
@@ -116,5 +125,9 @@ public class Utilizador
         sb.append(", entregues=").append(entregues);
         sb.append('}');
         return sb.toString();
+    }
+
+    public boolean validaPass(String p){
+        return this.pass.equals(p);
     }
 }

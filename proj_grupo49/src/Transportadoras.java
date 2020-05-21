@@ -37,4 +37,10 @@ public class Transportadoras {
         this.transp.remove(l.getCod());
     }
 
+    public boolean verificaLogin(String s, String p){
+        if(transp.containsKey(s))
+            return transp.get(s).validaPass(p);
+        else return false;
+    }
+
 }

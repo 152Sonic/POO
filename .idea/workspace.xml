@@ -2,9 +2,25 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6033b161-af32-4abb-9906-154c8440547d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/proj_grupo49/src/ControladorLogInLoja.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/proj_grupo49/src/ControladorLogInTransp.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/proj_grupo49/src/ControladorLogInUser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/proj_grupo49/src/ControladorLogInVoluntarios.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/proj_grupo49/src/ControladorUser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/proj_grupo49/src/Input.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/proj_grupo49/src/LojaFila.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/proj_grupo49/src/Produto.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/proj_grupo49/src/ControladorLoja.java" beforeDir="false" afterPath="$PROJECT_DIR$/proj_grupo49/src/ControladorLoja.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/proj_grupo49/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/proj_grupo49/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proj_grupo49/src/LinhaEncomenda.java" beforeDir="false" afterPath="$PROJECT_DIR$/proj_grupo49/src/LinhaEncomenda.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proj_grupo49/src/Loja.java" beforeDir="false" afterPath="$PROJECT_DIR$/proj_grupo49/src/Loja.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proj_grupo49/src/Lojas.java" beforeDir="false" afterPath="$PROJECT_DIR$/proj_grupo49/src/Lojas.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proj_grupo49/src/Transportadora.java" beforeDir="false" afterPath="$PROJECT_DIR$/proj_grupo49/src/Transportadora.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proj_grupo49/src/Transportadoras.java" beforeDir="false" afterPath="$PROJECT_DIR$/proj_grupo49/src/Transportadoras.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proj_grupo49/src/Utilizador.java" beforeDir="false" afterPath="$PROJECT_DIR$/proj_grupo49/src/Utilizador.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proj_grupo49/src/Utilizadores.java" beforeDir="false" afterPath="$PROJECT_DIR$/proj_grupo49/src/Utilizadores.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proj_grupo49/src/ViewLoja.java" beforeDir="false" afterPath="$PROJECT_DIR$/proj_grupo49/src/ViewLoja.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proj_grupo49/src/Voluntario.java" beforeDir="false" afterPath="$PROJECT_DIR$/proj_grupo49/src/Voluntario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proj_grupo49/src/Voluntarios.java" beforeDir="false" afterPath="$PROJECT_DIR$/proj_grupo49/src/Voluntarios.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,7 +59,9 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1590012511078</updated>
-      <workItem from="1590012512566" duration="5004000" />
+      <workItem from="1590012512566" duration="5108000" />
+      <workItem from="1590073715672" duration="2422000" />
+      <workItem from="1590076286579" duration="7162000" />
     </task>
     <task id="LOCAL-00001" summary="criaçao de lojas, transportadoras, users, e voluntarios">
       <created>1590021207693</created>
@@ -52,7 +70,14 @@
       <option name="project" value="LOCAL" />
       <updated>1590021207693</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="controlador lojas">
+      <created>1590022558169</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1590022558169</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -60,12 +85,21 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="criaçao de lojas, transportadoras, users, e voluntarios" />
-    <option name="LAST_COMMIT_MESSAGE" value="criaçao de lojas, transportadoras, users, e voluntarios" />
+    <MESSAGE value="controlador lojas" />
+    <option name="LAST_COMMIT_MESSAGE" value="controlador lojas" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="558" y="149" width="860" height="807" key="CommitChangelistDialog2" timestamp="1590021207532">
+    <state x="801" y="271" width="374" height="562" key="#com.intellij.ide.util.MemberChooser" timestamp="1590079405543">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="558" y="149" width="860" height="807" key="CommitChangelistDialog2/67.27.1853.1053@67.27.1853.1053" timestamp="1590021207532" />
+    <state x="801" y="271" width="374" height="562" key="#com.intellij.ide.util.MemberChooser/67.27.1853.1053@67.27.1853.1053" timestamp="1590079405543" />
+    <state x="558" y="149" width="860" height="807" key="CommitChangelistDialog2" timestamp="1590022558081">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="558" y="149" width="860" height="807" key="CommitChangelistDialog2/67.27.1853.1053@67.27.1853.1053" timestamp="1590022558081" />
+    <state x="776" y="310" width="424" height="484" key="FileChooserDialogImpl" timestamp="1590022649100">
+      <screen x="67" y="27" width="1853" height="1053" />
+    </state>
+    <state x="776" y="310" width="424" height="484" key="FileChooserDialogImpl/67.27.1853.1053@67.27.1853.1053" timestamp="1590022649100" />
   </component>
 </project>

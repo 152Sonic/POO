@@ -37,5 +37,14 @@ public class Lojas {
         this.lojas.remove(l.getCod());
     }
 
+    public void addEncomenda(String s, String l, String u, String[]ps, int []qt){
+        this.lojas.get(l).addEncomenda(s,u,ps,qt);
+    }
+
+    public boolean verificaLogin(String s, String p){
+        if(lojas.containsKey(s))
+            return lojas.get(s).validaPass(p);
+        else return false;
+    }
 
 }

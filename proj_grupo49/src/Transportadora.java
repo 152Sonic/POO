@@ -50,6 +50,21 @@ public class Transportadora
 
     }
 
+    public Transportadora (String pass, String s, String nome, GPS gps,int n, double r, double p,double tp, int peso)
+    {
+        this.pass = pass;
+        this.cod = s;
+        this.nome = nome;
+        this.gps = gps.clone();
+        this.nif = n;
+        this.raio =r;
+        this.taxa = p;
+        this.taxaPeso = tp;
+        this.pesoLimite = peso;
+        this.listenc = new ArrayList<>();
+
+    }
+
     public Transportadora (Transportadora u)
     {
         this.pass = u.getPass();
@@ -199,6 +214,9 @@ public class Transportadora
         double d2 = loja.distancia(user);
         return taxa * (d1 + d2) + (taxaPeso * e.getPeso()) ;
 
+    }
+    public boolean validaPass(String p){
+        return this.pass.equals(p);
     }
 
 }

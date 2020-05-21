@@ -39,6 +39,17 @@ public class Voluntario
         this.setList(lista);
 
     }
+    public Voluntario (String p, String s, String n, GPS gps, double r)
+    {
+        this.pass = s;
+        this.cod = s;
+        this.nome = n;
+        this.gps = gps.clone();
+        this.raio =r;
+        this.livre = true;
+        this.listenc = new ArrayList<>();
+
+    }
 
     public Voluntario (Voluntario u)
     {
@@ -146,5 +157,8 @@ public class Voluntario
         sb.append(", listenc=").append(listenc);
         sb.append('}');
         return sb.toString();
+    }
+    public boolean validaPass(String p){
+        return this.pass.equals(p);
     }
 }

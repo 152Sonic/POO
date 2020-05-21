@@ -8,18 +8,21 @@ public class LinhaEncomenda {
     private String cod;
     private String desc;
     private double quant;
+    private double peso;
     private double valor;
 
     public LinhaEncomenda() {
         this.cod = new String();
         this.desc = new String();
+        this.peso =0;
         this.quant = 0;
         this.valor = 0;
     }
 
-    public LinhaEncomenda(String s, String n, double x, double y) {
+    public LinhaEncomenda(String s, String n, double x,double p, double y) {
         this.cod = s;
         this.desc = n;
+        this.peso = p;
         this.quant = x;
         this.valor = y;
     }
@@ -27,8 +30,13 @@ public class LinhaEncomenda {
     public LinhaEncomenda(LinhaEncomenda u) {
         this.cod = u.getCod();
         this.desc = u.getDesc();
+        this.peso = u.getPeso();
         this.quant = u.getQuant();
         this.valor = u.getValor();
+    }
+
+    public double getPeso(){
+        return this.peso;
     }
 
     public String getCod() {
