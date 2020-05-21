@@ -23,6 +23,6 @@ public class ControladorLogInVoluntarios {
     }
 
     public boolean verificaLogin(String u, String p){
-        return v.verificaLogin(u,p);
+        return m.verificaLogin(u,p,2);
     }
 }

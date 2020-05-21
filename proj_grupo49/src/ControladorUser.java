@@ -1,8 +1,9 @@
 public class ControladorUser {
-    private Lojas l;
-    private Utilizador u;
+    private Modelo m;
+    private String user;
 
-    public void run(){
+    public void run(String r){
+        this.user = r;
         int o;
         do{
             o = Input.lerInt();
@@ -10,7 +11,7 @@ public class ControladorUser {
                 case 1:
                     String e = Input.lerString();
                     String l = Input.lerString();
-                    String u = this.u.getCod();
+                    String u = this.user;
                     int quantos = Input.lerInt();
                     String[] ps = new String[quantos];
                     int[] qts = new int[quantos];
@@ -20,7 +21,7 @@ public class ControladorUser {
                         ps[quantos-1] = p;
                         qts[quantos-1] = q;
                     }
-                    this.l.addEncomenda( e, l, u, ps, qts);
+                    m.addEncomendaLoja( e, l, u, ps, qts);
                 case 2:
 
 
@@ -28,6 +29,6 @@ public class ControladorUser {
                     System.out.println("Opçao invalida!");
             }
 
-        }while()
+        }while(o!=0);
     }
 }

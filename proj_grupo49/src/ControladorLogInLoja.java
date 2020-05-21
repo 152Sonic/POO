@@ -1,5 +1,5 @@
 public class ControladorLogInLoja {
-    private Lojas lojas;
+    private Modelo m;
 
     public void run() {
         int o = Input.lerInt();
@@ -17,12 +17,12 @@ public class ControladorLogInLoja {
             double y = Input.lerDouble();
             GPS gps = new GPS(x,y);
             Loja novo = new Loja(p,c,n,gps);
-            lojas.addLoja(novo);
+            m.addLoja(novo);
         }
     }
 
     public boolean verificaLogin(String u, String p){
-        return lojas.verificaLogin(u,p);
+        return m.verificaLogin(u,p,0);
     }
 
 }
