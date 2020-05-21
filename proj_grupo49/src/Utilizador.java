@@ -12,6 +12,7 @@ import java.util.List;
 
 public class Utilizador
 {
+    private String pass;
     private String cod;
     private String nome;
     private GPS gps;
@@ -19,6 +20,7 @@ public class Utilizador
 
     public Utilizador()
     {
+        this.pass = new String();
         this.cod = new String();
         this.nome = new String();
         this.gps = new GPS();
@@ -27,6 +29,7 @@ public class Utilizador
 
     public Utilizador (String s, String n, GPS gps, ArrayList<Encomenda> lista)
     {
+        this.pass = s;
         this.cod = s;
         this.nome = n;
         this.gps = gps.clone();
@@ -35,11 +38,16 @@ public class Utilizador
 
     public Utilizador (Utilizador u)
     {
+        this.pass = u.getPass();
         this.cod = u.getCod();
         this.nome = u.getNome();
         this.gps = new GPS(u.getGPS());
         this.setEntregues(u.getEntregues());
     }
+
+    public void setPass(String p){this.pass = p;}
+
+    public String getPass(){return this.pass;}
 
     public String getCod()
     {
@@ -62,7 +70,6 @@ public class Utilizador
             aux.add(l);
         return aux;
     }
-
     public void setEntregues (ArrayList<Encomenda> l)
     {
         this.entregues = new ArrayList<>();

@@ -9,6 +9,7 @@ import java.util.List;
  */
 public class Voluntario
 {
+    private String pass;
     private String cod;
     private String nome;
     private GPS gps;
@@ -18,6 +19,7 @@ public class Voluntario
 
     public Voluntario()
     {
+        this.pass = new String();
         this.cod = new String();
         this.nome = new String();
         this.gps = new GPS();
@@ -28,6 +30,7 @@ public class Voluntario
 
     public Voluntario (String s, String n, GPS gps, double r, boolean b, ArrayList<Encomenda> lista)
     {
+        this.pass = s;
         this.cod = s;
         this.nome = n;
         this.gps = gps.clone();
@@ -39,6 +42,7 @@ public class Voluntario
 
     public Voluntario (Voluntario u)
     {
+        this.pass = u.getPass();
         this.cod = u.getCod();
         this.nome = u.getNome();
         this.gps = new GPS(u.getGPS());
@@ -46,6 +50,9 @@ public class Voluntario
         this.livre = u.getLivre();
         this.setList(u.getList());
     }
+    public void setPass(String p){this.pass = p;}
+
+    public String getPass(){return this.pass;}
 
     public String getCod()
     {

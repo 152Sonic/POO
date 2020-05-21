@@ -10,6 +10,7 @@ import java.util.Objects;
  */
 public class Transportadora
 {
+    private String pass;
     private String cod;
     private String nome;
     private GPS gps;
@@ -22,6 +23,7 @@ public class Transportadora
 
     public Transportadora()
     {
+        this.pass = new String();
         this.cod = new String();
         this.nome = new String();
         this.gps = new GPS();
@@ -35,6 +37,7 @@ public class Transportadora
 
     public Transportadora (String s, String nome, GPS gps,int n, double r, double p,double tp, int peso, ArrayList<Encomenda> lista )
     {
+        this.pass = s;
         this.cod = s;
         this.nome = nome;
         this.gps = gps.clone();
@@ -49,6 +52,7 @@ public class Transportadora
 
     public Transportadora (Transportadora u)
     {
+        this.pass = u.getPass();
         this.cod = u.getCod();
         this.nome = u.getNome();
         this.gps = new GPS(u.getGPS());
@@ -59,6 +63,9 @@ public class Transportadora
         this.pesoLimite = u.getPesoLimite();
         this.setList(u.getList());
     }
+    public void setPass(String p){this.pass = p;}
+
+    public String getPass(){return this.pass;}
 
     public String getCod()
     {

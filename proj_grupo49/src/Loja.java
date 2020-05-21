@@ -11,6 +11,7 @@ import java.util.List;
  */
 public class Loja
 {
+    private String pass;
     private String cod;
     private String nome;
     private GPS gps;
@@ -18,6 +19,7 @@ public class Loja
 
     public Loja()
     {
+        this.pass = new String();
         this.cod = new String();
         this.nome = new String();
         this.gps = new GPS();
@@ -27,6 +29,7 @@ public class Loja
 
     public Loja (String s, String n, GPS gps, ArrayList<Encomenda> li)
     {
+        this.pass = s;
         this.cod = s;
         this.nome = n;
         this.gps = gps.clone();
@@ -35,6 +38,7 @@ public class Loja
 
     public Loja (Loja u)
     {
+        this.pass = u.getPass();
         this.cod = u.getCod();
         this.nome = u.getNome();
         this.gps = new GPS(u.getGPS());
@@ -55,6 +59,9 @@ public class Loja
         for(Encomenda li : l)
             this.listaEnc.add(li);
     }
+    public void setPass(String p){this.pass = p;}
+
+    public String getPass(){return this.pass;}
 
     public String getCod()
     {
