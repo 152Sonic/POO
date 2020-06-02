@@ -44,14 +44,19 @@ public class Modelo {
         switch (param){
             case 0:
                 ret = lojas.verificaLogin(u,p);
+                break;
             case 1:
                 ret = transportadoras.verificaLogin(u,p);
+                break;
             case 2:
                 ret = voluntarios.verificaLogin(u,p);
+                break;
             case 3:
                 ret = utilizadores.verificaLogin(u,p);
+                break;
             default:
                 ret=false;
+                break;
         }
         return ret;
     }

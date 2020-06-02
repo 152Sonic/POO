@@ -18,7 +18,7 @@ public class ControladorLogInTransp {
                     String u = Input.lerString();
                     v.pass();
                     String p = Input.lerString();
-                    if (m.verificaLogin(u,p,3)){
+                    if (m.verificaLogin(u,p,1)){
                         v.loginAccep();
                         transp.run();
                     }

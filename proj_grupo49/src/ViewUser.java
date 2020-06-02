@@ -35,6 +35,30 @@ public class ViewUser {
         System.out.print("Por favor tente outra vez: ");
     }
 
+    public void codEnc(){
+        System.out.println("Introduza o código da sua encomenda:");
+    }
+
+    public void codloja(){
+        System.out.println("Introduza o código da loja que pretende fazer a encomenda:");
+    }
+
+    public void quant(){
+        System.out.println("Quantos produtos diferentes pretende pedir?");
+    }
+
+    public void codProd(){
+        System.out.println("Introduza o código de produto:");
+    }
+
+    public void quantp(){
+        System.out.println("Qual a quantidade do produto?");
+    }
+
+    public void succes(){
+        System.out.println("Encomenda bem sucedida!");
+    }
+
 
 
 

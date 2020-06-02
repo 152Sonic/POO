@@ -7,6 +7,7 @@ public class ControladorLoja {
         int o;
         do{
             ViewLoja v = new ViewLoja();
+            v.menuLoja();
             o = Input.lerInt();
                 switch (o){
                     case 1:

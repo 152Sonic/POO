@@ -12,7 +12,7 @@ public class ControladorLogInUser {
         this.m = m;
     }
     public void run() {
-        ControladorUser user = new ControladorUser();
+        ControladorUser user = new ControladorUser(m);
         ViewLogin v = new ViewLogin();
         int o;
         do {
@@ -25,7 +25,7 @@ public class ControladorLogInUser {
                     String u = Input.lerString();
                     v.pass();
                     String p = Input.lerString();
-                    if (m.verificaLogin(u, p,1)){
+                    if (m.verificaLogin(u, p,3)){
                         v.loginAccep();
                         user.run(u);
                     }

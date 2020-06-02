@@ -5,6 +5,8 @@ public class ControladorVoluntario {
     public void run(){
         int o;
         do{
+            ViewVoluntario v = new ViewVoluntario();
+            v.menuVol();
             o = Input.lerInt();
             switch (o){
                 case 1:

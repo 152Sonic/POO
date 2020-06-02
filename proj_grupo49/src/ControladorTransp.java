@@ -5,6 +5,8 @@ public class ControladorTransp {
     public void run(){
         int o;
         do{
+            ViewTransp v = new ViewTransp();
+            v.menuTransp();
             o = Input.lerInt();
             switch (o){
                 case 1:
