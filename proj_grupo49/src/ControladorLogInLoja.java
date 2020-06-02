@@ -8,7 +8,7 @@ public class ControladorLogInLoja {
     public void run() {
         ControladorLoja loja = new ControladorLoja();
         ViewLogin v = new ViewLogin();
-        int o;
+        int o, o2;
         do {
             v.menuLogin();
             v.Op();
@@ -24,6 +24,10 @@ public class ControladorLogInLoja {
                         loja.run();
                     }
                     else v.LoginDeny();
+
+                    v.continuar();
+                    o2 = Input.lerInt();
+                    continuar(loja, o2);
                     break;
                 case 2:
                     v.ID();
@@ -43,6 +47,10 @@ public class ControladorLogInLoja {
                     Loja novo = new Loja(pi,c,n,gps);
                     m.addLoja(novo);
                     v.siginA();
+
+                    v.continuar();
+                    o2 = Input.lerInt();
+                    continuar(loja, o2);
                     break;
                 default:
                     v.printError();
@@ -55,4 +63,14 @@ public class ControladorLogInLoja {
         return m.verificaLogin(u,p,0);
     }
 
+
+
+    public void continuar(ControladorLoja l, int o) {
+        ViewLogin v = new ViewLogin();
+        if (o == 1) {
+            v.pressioneEnter();
+            v.flush();
+            l.run();
+        }
+    }
 }

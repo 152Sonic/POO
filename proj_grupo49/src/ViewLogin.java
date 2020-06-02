@@ -84,4 +84,8 @@ public class ViewLogin {
     public void taxapeso(){
         System.out.println("Insira a taxa sobre o peso:");
     }
+
+    public void continuar(){
+        System.out.println("Deseja prosseguir (1), Caso contrário (0):");
+    }
 }
