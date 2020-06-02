@@ -78,38 +78,36 @@ public class Modelo {
         String[] linhaPartida;
         for (String linha : linhas) {
             linhaPartida = linha.split(":", 2);
-            System.out.println(linhaPartida[0]);
             switch (linhaPartida[0]) {
                 case "Utilizador":
-                    System.out.println(linhaPartida);
                     Utilizador u = parseUtilizador(linhaPartida[1]); // criar um Utilizador
                     utilizadores.addUtilizador(u);
-                    System.out.println(u.toString()); //enviar para o ecrÃ¡n apenas para teste
+                   // System.out.println(u.toString()); //enviar para o ecrÃ¡n apenas para teste
                     break;
                 case "Loja":
                     Loja l = parseLoja(linhaPartida[1]);
                     lojas.addLoja(l);
-                    System.out.println(l.toString());
+                  //  System.out.println(l.toString());
                     break;
                 case "Transportadora":
                     Transportadora t = parseTransportadora(linhaPartida[1]);
                     transportadoras.addTransportadora(t);
-                    System.out.println(t.toString());
+                   // System.out.println(t.toString());
                     break;
                 case "Encomenda":
                     Encomenda e = parseEncomenda(linhaPartida[1]);
                     encomendas.put(e.getCodenc(), e);
-                    System.out.println(e.toString());
+                   // System.out.println(e.toString());
                     break;
                 case "Voluntario":
                     Voluntario v = parseVoluntario(linhaPartida[1]);
                     voluntarios.addVoluntario(v);
-                    System.out.println(v.toString());
+                   // System.out.println(v.toString());
                     break;
                 case "Aceite":
                     String aux = parseAceite(linhaPartida[1]);
                     if (encomendas.containsKey(aux)) encomendas.get(aux).setAceites(true);
-                    System.out.println("Aceites: " + aux);
+                   // System.out.println("Aceites: " + aux);
                     break;
                 default:
                     System.out.println("Linha invÃ¡lida.");
@@ -118,14 +116,14 @@ public class Modelo {
         }
         System.out.println("done!");
         System.out.println("\n\n\n\n");
-        System.out.println(encomendas.toString());
+        //System.out.println(encomendas.toString());
     }
 
 
     public static Utilizador parseUtilizador(String input) {
         String[] campos = input.split(",");
-        String nome = campos[0];
-        String codUtilizador = campos[1];
+        String nome = campos[1];
+        String codUtilizador = campos[0];
         double gpsx = Double.parseDouble(campos[2]);
         double gpsy = Double.parseDouble(campos[3]);
         return new Utilizador(codUtilizador, nome, new GPS(gpsx, gpsy), new ArrayList<Encomenda>());
@@ -202,9 +200,8 @@ public class Modelo {
         try {
             lines = Files.readAllLines(Paths.get(nomeFich), StandardCharsets.UTF_8);
         } catch (IOException exc) {
-            System.out.println(exc.getMessage());
+            System.out.println(exc);
         }
-        System.out.println(lines.get(0));
         return lines;
     }
 

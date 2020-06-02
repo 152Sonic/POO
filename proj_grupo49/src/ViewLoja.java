@@ -10,7 +10,7 @@ public class ViewLoja {
         System.out.println("|3  -> Ver quantas e quais encomendas já foram entregues                                     |");
         System.out.println("|4  -> Ver encomendas a entregar                                                             |");
         System.out.println("|5  -> Consultar stock de um produto                                                         |");
-        System.out.println("|6  -> Aletrar dados pessoais                                                                |");
+        System.out.println("|6  -> Alterar dados pessoais                                                                |");
         System.out.println("|0  -> Exit Program                                                                          |");
         System.out.println("|____________________________________________________________________________________________|");
     }

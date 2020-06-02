@@ -16,7 +16,7 @@ public class Main {
          Set<Produto> produtos;
 
          Modelo m = new Modelo(lojas,transportadoras,voluntarios,utilizadors,encomendas);
-         m.parse("logs2.txt");
+         m.parse("./proj_grupo49/src/logs");
 
 
         ControladorGeral g = new ControladorGeral(m);

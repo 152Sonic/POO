@@ -14,7 +14,7 @@ public class ControladorLogInUser {
     public void run() {
         ControladorUser user = new ControladorUser(m);
         ViewLogin v = new ViewLogin();
-        int o;
+        int o,o2;
         do {
             v.menuLogin();
             v.Op();
@@ -49,6 +49,13 @@ public class ControladorLogInUser {
                     Utilizador novo = new Utilizador(pa,c,n,gps);
                     m.addUtilizador(novo);
                     v.siginA();
+
+                    v.continuar();
+                    o2 = Input.lerInt();
+                    continuar(user,c, o2);
+                    break;
+                default:
+                    v.printError();
                     break;
             }
         } while (o != 0);
@@ -57,6 +64,15 @@ public class ControladorLogInUser {
 
     public boolean verificaLogin(String u, String p){
         return m.verificaLogin(u,p,3);
+    }
+
+    public void continuar(ControladorUser t,String u, int o) {
+        ViewLogin v = new ViewLogin();
+        if (o == 1) {
+            v.pressioneEnter();
+            v.flush();
+            t.run(u);
+        }
     }
 
 

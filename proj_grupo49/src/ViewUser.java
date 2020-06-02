@@ -59,6 +59,8 @@ public class ViewUser {
         System.out.println("Encomenda bem sucedida!");
     }
 
+    public void lojaInv(){ System.out.println("Esta loja não existe, por favor insira uma loja válida!");}
+
 
 
 

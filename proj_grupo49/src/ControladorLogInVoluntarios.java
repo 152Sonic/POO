@@ -8,7 +8,7 @@ public class ControladorLogInVoluntarios {
     public void run() {
         ControladorVoluntario vol = new ControladorVoluntario();
         ViewLogin v = new ViewLogin();
-        int o;
+        int o,o2;
         do {
             v.menuLogin();
             v.Op();
@@ -45,6 +45,13 @@ public class ControladorLogInVoluntarios {
                     Voluntario novo = new Voluntario(pa,c,n,gps,r);
                     m.addVoluntario(novo);
                     v.siginA();
+
+                    v.continuar();
+                    o2 = Input.lerInt();
+                    continuar(vol, o2);
+                    break;
+                default:
+                    v.printError();
                     break;
             }
         } while (o != 0);
@@ -52,5 +59,14 @@ public class ControladorLogInVoluntarios {
 
     public boolean verificaLogin(String u, String p){
         return m.verificaLogin(u,p,2);
+    }
+
+    public void continuar(ControladorVoluntario t, int o) {
+        ViewLogin v = new ViewLogin();
+        if (o == 1) {
+            v.pressioneEnter();
+            v.flush();
+            t.run();
+        }
     }
 }

@@ -24,10 +24,6 @@ public class ControladorLogInLoja {
                         loja.run();
                     }
                     else v.LoginDeny();
-
-                    v.continuar();
-                    o2 = Input.lerInt();
-                    continuar(loja, o2);
                     break;
                 case 2:
                     v.ID();
