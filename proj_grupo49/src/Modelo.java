@@ -78,8 +78,10 @@ public class Modelo {
         String[] linhaPartida;
         for (String linha : linhas) {
             linhaPartida = linha.split(":", 2);
+            System.out.println(linhaPartida[0]);
             switch (linhaPartida[0]) {
                 case "Utilizador":
+                    System.out.println(linhaPartida);
                     Utilizador u = parseUtilizador(linhaPartida[1]); // criar um Utilizador
                     utilizadores.addUtilizador(u);
                     System.out.println(u.toString()); //enviar para o ecrÃ¡n apenas para teste
@@ -202,6 +204,7 @@ public class Modelo {
         } catch (IOException exc) {
             System.out.println(exc.getMessage());
         }
+        System.out.println(lines.get(0));
         return lines;
     }
 
