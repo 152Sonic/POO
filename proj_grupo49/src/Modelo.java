@@ -8,7 +8,7 @@ public class Modelo {
     private Lojas lojas;
     private Transportadoras transportadoras;
     private Voluntarios voluntarios;
-    private Utilizadores utilizadors;
+    private Utilizadores utilizadores;
     private Map<String, Encomenda> encomendas;
     private Set<Produto> produtos;
 
@@ -19,7 +19,7 @@ public class Modelo {
         this.lojas = lojas;
         this.transportadoras = transportadoras;
         this.voluntarios = voluntarios;
-        this.utilizadors = utilizadors;
+        this.utilizadores = utilizadores;
         this.encomendas = encomendas;
         this.produtos = new TreeSet<>();
     }
@@ -28,6 +28,9 @@ public class Modelo {
     public void addLoja(Loja l){
         this.lojas.addLoja(l);
     }
+    public void addUtilizador(Utilizador u){ this.utilizadores.addUtilizador(u);}
+    public void addVoluntario(Voluntario v) { this.voluntarios.addVoluntario(v);}
+    public void addTransportadora(Transportadora t) { this.transportadoras.addTransportadora(t);}
 
     public boolean verificaLogin(String u ,String p, int param){
         boolean ret = false;
@@ -39,7 +42,7 @@ public class Modelo {
             case 2:
                 ret = voluntarios.verificaLogin(u,p);
             case 3:
-                ret = utilizadors.verificaLogin(u,p);
+                ret = utilizadores.verificaLogin(u,p);
             default:
                 ret=false;
         }
@@ -66,7 +69,7 @@ public class Modelo {
             switch (linhaPartida[0]) {
                 case "Utilizador":
                     Utilizador u = parseUtilizador(linhaPartida[1]); // criar um Utilizador
-                    utilizadors.addUtilizador(u);
+                    utilizadores.addUtilizador(u);
                     System.out.println(u.toString()); //enviar para o ecrÃ¡n apenas para teste
                     break;
                 case "Loja":

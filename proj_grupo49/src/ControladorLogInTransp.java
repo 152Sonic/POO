@@ -1,5 +1,5 @@
 public class ControladorLogInTransp {
-    private Transportadoras t;
+    private Modelo m;
 
     public void run() {
         int o = Input.lerInt();
@@ -22,10 +22,9 @@ public class ControladorLogInTransp {
             int pesol = Input.lerInt();
             GPS gps = new GPS(x,y);
             Transportadora novo = new Transportadora(p,c,n,gps,nif,r,taxa,taxapeso,pesol);
-            t.addTransportadora(novo);
+            m.addTransportadora(novo);
         }
     }
 
-    public boolean verificaLogin(String u, String p){
-        return t.verificaLogin(u,p);
+    public boolean verificaLogin(String u, String p){ return m.verificaLogin(u,p,1);}
 }

@@ -6,7 +6,7 @@ import static java.lang.System.in;
 import static java.lang.System.out;
 
 public class ControladorLogInUser {
-    private ControladorUser user;
+    private Modelo m;
 
     public void run() {
         int o = Input.lerInt();
@@ -24,12 +24,12 @@ public class ControladorLogInUser {
             double y = Input.lerDouble();
             GPS gps = new GPS(x,y);
             Utilizador novo = new Utilizador(p,c,n,gps);
-            .addUtilizador(novo);
+            m.addUtilizador(novo);
         }
     }
 
     public boolean verificaLogin(String u, String p){
-        return m.verificaLogin(u,p,2);
+        return m.verificaLogin(u,p,3);
     }
 
 

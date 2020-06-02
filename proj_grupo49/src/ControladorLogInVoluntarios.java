@@ -1,5 +1,5 @@
 public class ControladorLogInVoluntarios {
-    private Voluntarios v;
+    private Modelo m;
 
     public void run() {
         int o = Input.lerInt();
@@ -18,7 +18,7 @@ public class ControladorLogInVoluntarios {
             int r = Input.lerInt();
             GPS gps = new GPS(x,y);
             Voluntario novo = new Voluntario(p,c,n,gps,r);
-            v.addVoluntario(novo);
+            m.addVoluntario(novo);
         }
     }
 
