@@ -25,6 +25,7 @@ public class ControladorUser {
                 case 2:
 
 
+
                 default:
                     System.out.println("Opçao invalida!");
             }
