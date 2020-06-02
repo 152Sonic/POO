@@ -60,5 +60,8 @@ public class Lojas {
         return this.lojas.get(c).getEncomenda(e);
     }
 
+    public boolean existeLoja(String c){
+        return this.lojas.containsKey(c);
+    }
 
 }

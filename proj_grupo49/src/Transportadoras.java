@@ -43,4 +43,6 @@ public class Transportadoras {
         else return false;
     }
 
+    public boolean existeTransp(String t){ return this.transp.containsKey(t);}
+
 }

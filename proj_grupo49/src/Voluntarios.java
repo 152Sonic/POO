@@ -42,4 +42,6 @@ public class Voluntarios {
             return voluntarios.get(s).validaPass(p);
         else return false;
     }
+
+    public boolean existeVol(String c){ return this.voluntarios.containsKey(c);}
 }

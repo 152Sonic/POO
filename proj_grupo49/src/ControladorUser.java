@@ -9,6 +9,7 @@ public class ControladorUser {
             o = Input.lerInt();
             switch (o){
                 case 1:
+                    //
                     String e = Input.lerString();
                     String l = Input.lerString();
                     String u = this.user;

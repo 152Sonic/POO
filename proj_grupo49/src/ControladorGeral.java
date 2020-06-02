@@ -1,14 +1,20 @@
 public class ControladorGeral {
+    private Modelo modelo;
+
+    public ControladorGeral(Modelo m){
+        this.modelo  = m;
+    }
 
     public void run() {
         Input i = new Input();
         ViewGeral v = new ViewGeral();
-        ControladorLogInTransp t = new ControladorLogInTransp();
-        ControladorLogInVoluntarios vol = new ControladorLogInVoluntarios();
-        ControladorLogInLoja l = new ControladorLogInLoja();
-        ControladorLogInUser u = new ControladorLogInUser();
+        ControladorLogInTransp t = new ControladorLogInTransp(modelo);
+        ControladorLogInVoluntarios vol = new ControladorLogInVoluntarios(modelo);
+        ControladorLogInLoja l = new ControladorLogInLoja(modelo);
+        ControladorLogInUser u = new ControladorLogInUser(modelo);
         int op;
         v.printHeader();
+
         do {
             v.menuInicial();
             System.out.println("\nEscolha a instrução: ");

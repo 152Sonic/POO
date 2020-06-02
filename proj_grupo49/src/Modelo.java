@@ -15,7 +15,7 @@ public class Modelo {
 
 
 
-    public Modelo(Lojas lojas, Transportadoras transportadoras, Voluntarios voluntarios, Utilizadores utilizadors, Map<String, Encomenda> encomendas) {
+    public Modelo(Lojas lojas, Transportadoras transportadoras, Voluntarios voluntarios, Utilizadores utilizadores, Map<String, Encomenda> encomendas) {
         this.lojas = lojas;
         this.transportadoras = transportadoras;
         this.voluntarios = voluntarios;
@@ -32,6 +32,11 @@ public class Modelo {
     public void addVoluntario(Voluntario v) { this.voluntarios.addVoluntario(v);}
     public void addTransportadora(Transportadora t) { this.transportadoras.addTransportadora(t);}
     public Encomenda getEncomenda(String e) { return this.encomendas.get(e);}
+
+    public boolean existeLoja(String c){ return this.lojas.existeLoja(c);}
+    public boolean existeTransp(String c){ return this.transportadoras.existeTransp(c);}
+    public boolean existeUser(String c){ return this.utilizadores.existeUser(c);}
+    public boolean existeVol(String c){ return this.voluntarios.existeVol(c);}
 
 
     public boolean verificaLogin(String u ,String p, int param){

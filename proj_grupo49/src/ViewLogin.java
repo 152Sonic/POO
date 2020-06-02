@@ -50,4 +50,38 @@ public class ViewLogin {
     public void Op(){
         System.out.println("Escolha uma opção:");
     }
+
+    public void ID(){
+            System.out.println("Insira o seu ID:");
+    }
+
+    public void pass(){
+            System.out.println("Insira a palavra-passe:");
+    }
+
+    public void raio(){
+            System.out.println("Insira o seu raio de ação em Km:");
+    }
+
+    public void GPS(){
+            System.out.println("Insira a sua Latidude e Longitude:");
+    }
+
+    public void nome(){
+            System.out.println("Insira o seu nome:");
+    }
+
+    public void nif(){
+            System.out.println("Insira o seu nif:");
+    }
+    public void pesol(){
+        System.out.println("Insira o peso limite dos carregamentos:");
+    }
+    public void taxa(){
+        System.out.println("Insira a taxa sobre encomenda:");
+    }
+
+    public void taxapeso(){
+        System.out.println("Insira a taxa sobre o peso:");
+    }
 }
