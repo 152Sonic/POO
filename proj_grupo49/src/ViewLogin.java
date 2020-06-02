@@ -1,12 +1,10 @@
-package View;
-
 public class ViewLogin {
 
         public void menuLogin(){
         System.out.println("_____________________________________________________________________________________________");
         System.out.println("|Escolha uma opção:                                                                          |");
-        System.out.println("|1  -> SIGN UP                                                                                  |");
-        System.out.println("|2  -> SIGN IN                                                                            |");
+        System.out.println("|1  -> SIGN UP                                                                               |");
+        System.out.println("|2  -> SIGN IN                                                                               |");
         System.out.println("|0  -> Exit Program                                                                          |");
         System.out.println("|____________________________________________________________________________________________|");
     }
@@ -48,4 +46,8 @@ public class ViewLogin {
         System.out.println("Conta criada com sucesso!");
     }
 
+
+    public void Op(){
+        System.out.println("Escolha uma opção:");
+    }
 }

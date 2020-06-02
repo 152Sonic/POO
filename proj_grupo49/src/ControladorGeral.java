@@ -1,27 +1,37 @@
 public class ControladorGeral {
 
     public void run() {
+        Input i = new Input();
         ViewGeral v = new ViewGeral();
         ControladorLogInTransp t = new ControladorLogInTransp();
         ControladorLogInVoluntarios vol = new ControladorLogInVoluntarios();
         ControladorLogInLoja l = new ControladorLogInLoja();
         ControladorLogInUser u = new ControladorLogInUser();
-        v.menuInicial();
-        int o;
+        int op;
+        v.printHeader();
         do {
-            o = Input.lerInt();
-            switch (o) {
+            v.menuInicial();
+            System.out.println("\nEscolha a instrução: ");
+            op = Input.lerInt();
+            switch (op) {
                 case 1:
+                    v.pressioneEnter();
+                    v.flush();
                     l.run();
+                    break;
                 case 2:
                     u.run();
+                    break;
                 case 3:
                     vol.run();
+                    break;
                 case 4:
                     t.run();
+                    break;
                 default:
                     System.out.println("Opção invalida");
+                    break;
             }
-        } while (o != 0);
+        } while (op != 0);
     }
 }

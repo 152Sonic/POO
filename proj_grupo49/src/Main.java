@@ -19,7 +19,8 @@ public class Main {
          m.parse("logs2.txt");
 
 
-
+        ControladorGeral g = new ControladorGeral();
+        g.run();
 
         //ler logs
 

@@ -1,5 +1,3 @@
-package View;
-
 public class ViewGeral {
 
     public void printHeader(){
@@ -11,7 +9,7 @@ public class ViewGeral {
 
     public void menuInicial(){
         System.out.println("_____________________________________________________________________________________________");
-        System.out.println("|Sign in / Sign up as:                                                           |");
+        System.out.println("|Sign in / Sign up as:                                                                       |");
         System.out.println("|1  -> Loja                                                                                  |");
         System.out.println("|2  -> Utilizador                                                                            |");
         System.out.println("|3  -> Voluntário                                                                            |");
