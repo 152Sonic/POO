@@ -2,11 +2,12 @@ public class ControladorLogInTransp {
     private Modelo m;
 
     public void run() {
+        ControladorTransp transp = new ControladorTransp();
         int o = Input.lerInt();
         if(o==1){
             String u = Input.lerString();
             String p = Input.lerString();
-            if(verificaLogin(u,p)) ControladorTransp.run();
+            if(verificaLogin(u,p)) transp.run();
             else System.out.println("Login errado");
         }
         else{

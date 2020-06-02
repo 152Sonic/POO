@@ -1,5 +1,4 @@
-public class ControladorLoja {
-    private String c;
+public class ControladorTransp {
     private Lojas l;
     private Utilizadores u;
 
@@ -9,10 +8,7 @@ public class ControladorLoja {
             o = Input.lerInt();
             switch (o){
                 case 1:
-                   String e = Input.lerString();
-                   Encomenda enc = l.getEncomenda(e,c);
-                   l.addEncPronta(enc,c);
-                   l.rmEncPronta(enc,c);
+
                 case 2:
 
                 default:
@@ -22,7 +18,3 @@ public class ControladorLoja {
         }while(o!=0);
     }
 }
-
-
-
-

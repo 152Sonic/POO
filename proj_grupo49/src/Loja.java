@@ -1,9 +1,6 @@
 import org.ietf.jgss.GSSContext;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
+import java.util.*;
 
 /**
  * Write a description of class Loja here.
@@ -18,6 +15,7 @@ public class Loja
     private String nome;
     private GPS gps;
     private List<Encomenda> listaEnc;
+    private List<Encomenda> prontas;
     private HashMap<String,Produto> stock;
 
     public Loja()
@@ -27,17 +25,19 @@ public class Loja
         this.nome = new String();
         this.gps = new GPS();
         this.listaEnc = new ArrayList<>();
+        this.prontas = new ArrayList<>();
 
 
     }
 
-    public Loja (String s, String n, GPS gps, ArrayList<Encomenda> li)
+    public Loja (String s, String n, GPS gps, ArrayList<Encomenda> li, ArrayList<Encomenda> prontas)
     {
         this.pass = s;
         this.cod = s;
         this.nome = n;
         this.gps = gps.clone();
         this.setListaEnc(li);
+        this.setProntas(prontas);
     }
 
     public Loja (String p, String s, String n, GPS gps)
@@ -47,6 +47,7 @@ public class Loja
         this.nome = n;
         this.gps = gps.clone();
         this.listaEnc = new ArrayList<>();
+        this.prontas = new ArrayList<>();
         this.stock = new HashMap<>();
     }
 
@@ -57,6 +58,7 @@ public class Loja
         this.nome = u.getNome();
         this.gps = new GPS(u.getGPS());
         this.setListaEnc(u.getListaEnc());
+        this.setProntas(u.getProntas());
     }
 
 
@@ -67,12 +69,28 @@ public class Loja
         return aux;
     }
 
+    public ArrayList<Encomenda> getProntas() {
+        ArrayList<Encomenda> aux = new ArrayList<>();
+        for (Encomenda l : this.prontas)
+            aux.add(l);
+        return aux;
+    }
+
     public void setListaEnc (ArrayList<Encomenda> l)
     {
         this.listaEnc = new ArrayList<>();
         for(Encomenda li : l)
             this.listaEnc.add(li);
     }
+
+    public void setProntas (ArrayList<Encomenda> l)
+    {
+        this.prontas = new ArrayList<>();
+        for(Encomenda li : l)
+            this.prontas.add(li);
+    }
+
+
     public void setPass(String p){this.pass = p;}
 
     public String getPass(){return this.pass;}
@@ -151,5 +169,27 @@ public class Loja
     }
     public boolean validaPass(String p){
         return this.pass.equals(p);
+    }
+
+    public Encomenda getEncomenda(String e) {
+        Encomenda enc = new Encomenda();
+        Iterator<Encomenda> it = listaEnc.iterator();
+        boolean found = false;
+        while(it.hasNext() && !found){
+            Encomenda en = it.next();
+            if(en.getCodenc() == e){
+                found = true;
+                enc = en.clone();
+            }
+
+        }
+        return enc;
+    }
+
+    public void addEncPronta(Encomenda e){
+        this.prontas.add(e);
+    }
+    public void rmEncPronta(Encomenda e){
+        this.listaEnc.remove(e);
     }
 }

@@ -8,8 +8,8 @@ public class LojaFila extends Loja {
         this.fila =0;
     }
 
-    public LojaFila(String s, String n, GPS gps, ArrayList<Encomenda> l, int f ){
-        super(s,n,gps,l);
+    public LojaFila(String s, String n, GPS gps, ArrayList<Encomenda> l, ArrayList <Encomenda> p, int f ){
+        super(s,n,gps,l,p);
         this.fila = f;
     }
 

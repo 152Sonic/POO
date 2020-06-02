@@ -31,6 +31,8 @@ public class Modelo {
     public void addUtilizador(Utilizador u){ this.utilizadores.addUtilizador(u);}
     public void addVoluntario(Voluntario v) { this.voluntarios.addVoluntario(v);}
     public void addTransportadora(Transportadora t) { this.transportadoras.addTransportadora(t);}
+    public Encomenda getEncomenda(String e) { return this.encomendas.get(e);}
+
 
     public boolean verificaLogin(String u ,String p, int param){
         boolean ret = false;
@@ -125,7 +127,7 @@ public class Modelo {
         String nomeLoja = campos[1];
         double gpsx = Double.parseDouble(campos[2]);
         double gpsy = Double.parseDouble(campos[3]);
-        return new Loja(codLoja, nomeLoja, new GPS(gpsx, gpsy), new ArrayList<Encomenda>());
+        return new Loja(codLoja, nomeLoja, new GPS(gpsx, gpsy), new ArrayList<Encomenda>(), new ArrayList<Encomenda>());
     }
 
     public static Transportadora parseTransportadora(String input) {

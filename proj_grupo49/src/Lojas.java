@@ -41,10 +41,24 @@ public class Lojas {
         this.lojas.get(l).addEncomenda(s,u,ps,qt);
     }
 
+    public void addEncPronta(Encomenda e, String c){
+        this.lojas.get(c).addEncPronta( e);
+    }
+
+    public void rmEncPronta(Encomenda e, String c){
+
+        this.lojas.get(c).rmEncPronta(e);
+    }
+
     public boolean verificaLogin(String s, String p){
         if(lojas.containsKey(s))
             return lojas.get(s).validaPass(p);
         else return false;
     }
+
+    public Encomenda getEncomenda(String e, String c) {
+        return this.lojas.get(c).getEncomenda(e);
+    }
+
 
 }

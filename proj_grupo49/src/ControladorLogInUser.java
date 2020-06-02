@@ -9,11 +9,12 @@ public class ControladorLogInUser {
     private Modelo m;
 
     public void run() {
+        ControladorUser user = new ControladorUser();
         int o = Input.lerInt();
         if(o==1){
             String u = Input.lerString();
             String p = Input.lerString();
-            if(verificaLogin(u,p)) ControladorUser.run(u);
+            if(verificaLogin(u,p)) user.run(u);
             else System.out.println("Login errado");
         }
         else{

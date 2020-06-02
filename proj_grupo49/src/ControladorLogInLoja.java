@@ -2,11 +2,12 @@ public class ControladorLogInLoja {
     private Modelo m;
 
     public void run() {
+        ControladorLoja loja = new ControladorLoja();
         int o = Input.lerInt();
         if(o==1){
             String u = Input.lerString();
             String p = Input.lerString();
-            if(verificaLogin(u,p)) ControladorLoja.run();
+            if(verificaLogin(u,p)) loja.run();
             else System.out.println("Login errado");
         }
         else{

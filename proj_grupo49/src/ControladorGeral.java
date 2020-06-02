@@ -1,19 +1,24 @@
 public class ControladorGeral {
 
     public void run() {
-        ViewGeral.MenuInicial();
+        ViewGeral v = new ViewGeral();
+        ControladorLogInTransp t = new ControladorLogInTransp();
+        ControladorLogInVoluntarios vol = new ControladorLogInVoluntarios();
+        ControladorLogInLoja l = new ControladorLogInLoja();
+        ControladorLogInUser u = new ControladorLogInUser();
+        v.menuInicial();
         int o;
         do {
             o = Input.lerInt();
             switch (o) {
                 case 1:
-                    ControladorLogInUser.run();
+                    l.run();
                 case 2:
-                    ControladorLogInLoja.run();
+                    u.run();
                 case 3:
-                    ControladorLogInVoluntarios.run();
+                    vol.run();
                 case 4:
-                    ControladorLogInTransp.run();
+                    t.run();
                 default:
                     System.out.println("Opção invalida");
             }
