@@ -1,5 +1,6 @@
 import java.util.Map;
 import java.util.TreeMap;
+import java.util.TreeSet;
 
 public class Lojas {
     private Map<String,Loja> lojas;
@@ -29,6 +30,10 @@ public class Lojas {
             this.lojas.put(l.getKey(),l.getValue().clone());
     }
 
+    public Loja getLoja(String codL){
+        return lojas.get(codL);
+    }
+
     public void addLoja(Loja l){
         this.lojas.putIfAbsent(l.getCod(),l.clone());
     }
@@ -39,6 +44,10 @@ public class Lojas {
 
     public void addEncomenda(String s, String l, String u, String[]ps, int []qt){
         this.lojas.get(l).addEncomenda(s,u,ps,qt);
+    }
+
+    public void addEncomendaParse(String l, Encomenda e, boolean ac){
+        this.lojas.get(l).addEncomendaParse(e,ac);
     }
 
     public void addEncPronta(Encomenda e, String c){
@@ -62,6 +71,10 @@ public class Lojas {
 
     public boolean existeLoja(String c){
         return this.lojas.containsKey(c);
+    }
+
+    public void addProdutosLoja(String cod, TreeSet<Produto> p){
+        lojas.get(cod).addProdutos(p);
     }
 
 }

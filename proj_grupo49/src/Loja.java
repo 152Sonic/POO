@@ -16,7 +16,7 @@ public class Loja
     private GPS gps;
     private List<Encomenda> listaEnc;
     private List<Encomenda> prontas;
-    private HashMap<String,Produto> stock;
+    private Set<Produto> stock;
 
     public Loja()
     {
@@ -26,7 +26,7 @@ public class Loja
         this.gps = new GPS();
         this.listaEnc = new ArrayList<>();
         this.prontas = new ArrayList<>();
-
+        this.stock = new TreeSet<>();
 
     }
 
@@ -38,6 +38,7 @@ public class Loja
         this.gps = gps.clone();
         this.setListaEnc(li);
         this.setProntas(prontas);
+        this.stock = new TreeSet<>();
     }
 
     public Loja (String p, String s, String n, GPS gps)
@@ -48,7 +49,7 @@ public class Loja
         this.gps = gps.clone();
         this.listaEnc = new ArrayList<>();
         this.prontas = new ArrayList<>();
-        this.stock = new HashMap<>();
+        this.stock = new TreeSet<>();
     }
 
     public Loja (Loja u)
@@ -59,6 +60,7 @@ public class Loja
         this.gps = new GPS(u.getGPS());
         this.setListaEnc(u.getListaEnc());
         this.setProntas(u.getProntas());
+        this.setStock(u.getStock());
     }
 
 
@@ -76,12 +78,25 @@ public class Loja
         return aux;
     }
 
+    public TreeSet<Produto> getStock(){
+        return new TreeSet<>(stock);
+    }
+
+    public void setStock(TreeSet<Produto> p){
+        this.stock = new TreeSet<>();
+        for (Produto pi: p){
+            stock.add(pi);
+        }
+    }
+
     public void setListaEnc (ArrayList<Encomenda> l)
     {
         this.listaEnc = new ArrayList<>();
         for(Encomenda li : l)
             this.listaEnc.add(li);
     }
+
+
 
     public void setProntas (ArrayList<Encomenda> l)
     {
@@ -155,10 +170,10 @@ public class Loja
         ArrayList<LinhaEncomenda> linhas = new ArrayList<>();
         double p=0;
         for(int i=0;i<ps.length;i++){
-            if(stock.containsKey(ps[i])){
-                LinhaEncomenda linha = new LinhaEncomenda(stock.get(ps[i]).getCod(), ps[i], qts[i],qts[i] * stock.get(ps[i]).getPeso(), stock.get(ps[i]).getPreçouni() * qts[i]);
-                linhas.add(linha);
-            }
+//            if(stock.contains(ps[i])){
+//                LinhaEncomenda linha = new LinhaEncomenda(stock.get(ps[i]).getCod(), ps[i], qts[i],qts[i] * stock.get(ps[i]).getPeso(), stock.get(ps[i]).getPreçouni() * qts[i]);
+//                linhas.add(linha);
+//            }
             for(LinhaEncomenda li : linhas) {
                 p += li.getPeso();
             }
@@ -167,6 +182,18 @@ public class Loja
 
         }
     }
+
+    public void addEncomendaParse(Encomenda e, boolean ac) {
+        if (ac) {
+            if (!prontas.contains(e)) {
+                prontas.add(e);
+            }
+        }
+        if (!listaEnc.contains(e)) {
+            listaEnc.add(e);
+        }
+    }
+
     public boolean validaPass(String p){
         return this.pass.equals(p);
     }
@@ -192,4 +219,9 @@ public class Loja
     public void rmEncPronta(Encomenda e){
         this.listaEnc.remove(e);
     }
+
+    public void addProdutos(TreeSet<Produto> p){
+        stock.addAll(p);
+    }
+
 }

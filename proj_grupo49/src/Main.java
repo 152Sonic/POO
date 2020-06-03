@@ -1,7 +1,3 @@
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.*;
 
 public class Main {
@@ -15,8 +11,10 @@ public class Main {
          Map<String, Encomenda> encomendas = new TreeMap<>();
          Set<Produto> produtos;
 
+
          Modelo m = new Modelo(lojas,transportadoras,voluntarios,utilizadors,encomendas);
-         m.parse("./proj_grupo49/src/logs");
+         m.parse("logs2.txt");
+
 
 
         ControladorGeral g = new ControladorGeral(m);

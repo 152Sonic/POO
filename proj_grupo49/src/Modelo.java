@@ -24,6 +24,59 @@ public class Modelo {
         this.produtos = new TreeSet<>();
     }
 
+    public Lojas getLojas() {
+        return lojas;
+    }
+
+    public Modelo setLojas(Lojas lojas) {
+        this.lojas = lojas;
+        return this;
+    }
+
+    public Transportadoras getTransportadoras() {
+        return transportadoras;
+    }
+
+    public Modelo setTransportadoras(Transportadoras transportadoras) {
+        this.transportadoras = transportadoras;
+        return this;
+    }
+
+    public Voluntarios getVoluntarios() {
+        return voluntarios;
+    }
+
+    public Modelo setVoluntarios(Voluntarios voluntarios) {
+        this.voluntarios = voluntarios;
+        return this;
+    }
+
+    public Utilizadores getUtilizadores() {
+        return utilizadores;
+    }
+
+    public Modelo setUtilizadores(Utilizadores utilizadores) {
+        this.utilizadores = utilizadores;
+        return this;
+    }
+
+    public Map<String, Encomenda> getEncomendas() {
+        return encomendas;
+    }
+
+    public Modelo setEncomendas(Map<String, Encomenda> encomendas) {
+        this.encomendas = encomendas;
+        return this;
+    }
+
+    public Set<Produto> getProdutos() {
+        return produtos;
+    }
+
+    public Modelo setProdutos(Set<Produto> produtos) {
+        this.produtos = produtos;
+        return this;
+    }
 
     public void addLoja(Loja l){
         this.lojas.addLoja(l);
@@ -97,6 +150,7 @@ public class Modelo {
                 case "Encomenda":
                     Encomenda e = parseEncomenda(linhaPartida[1]);
                     encomendas.put(e.getCodenc(), e);
+
                    // System.out.println(e.toString());
                     break;
                 case "Voluntario":
@@ -112,6 +166,14 @@ public class Modelo {
                 default:
                     System.out.println("Linha invÃ¡lida.");
                     break;
+            }
+            for (Map.Entry<String,Encomenda> e : this.encomendas.entrySet()){
+                //if (e.getValue().getAceites()){
+                    lojas.addEncomendaParse(e.getValue().getCodloja(), e.getValue(), e.getValue().getAceites());
+                //}
+            }
+            for (Map.Entry<String,Loja> l: lojas.getLojas().entrySet()){
+                lojas.addProdutosLoja(l.getKey(), (TreeSet<Produto>) produtos);
             }
         }
         System.out.println("done!");
@@ -152,7 +214,7 @@ public class Modelo {
         return new Transportadora(cod, nome, new GPS(gpsx, gpsy), nif, rai, taxa, 0.1, 100, new ArrayList<Encomenda>());
     }
 
-    public static Encomenda parseEncomenda(String input) {
+    public Encomenda parseEncomenda(String input) {
         String[] campos = input.split(",");
         String cod = campos[0];
         String codUser = campos[1];
@@ -163,7 +225,7 @@ public class Modelo {
         double q;
         double preco;
         int i = 4;
-        ArrayList<LinhaEncomenda> res = new ArrayList<>();
+        List<LinhaEncomenda> res = new ArrayList<>();
         while (i + 3 <= campos.length) {
             codL = campos[i];
             desc = campos[i + 1];
@@ -172,11 +234,15 @@ public class Modelo {
             i += 4;
             LinhaEncomenda a = new LinhaEncomenda(codL, desc, q, 0, preco);
             res.add(a);
+            produtos.add(new Produto(codL,desc,q,preco));
         }
-        return new Encomenda(cod, codUser, codLoja, peso, res);
+        Encomenda enc =new Encomenda(cod, codUser, codLoja, peso, res);
+        //lojas.addEncomendaParse(codLoja, enc);
+
+        return enc;
     }
 
-    public static Voluntario parseVoluntario(String input) {
+    public Voluntario parseVoluntario(String input) {
         String[] campos = input.split(",");
         String cod = campos[0];
         String nome = campos[1];
@@ -186,9 +252,10 @@ public class Modelo {
         return new Voluntario(cod, nome, new GPS(gpsx, gpsy), raio, true, new ArrayList<>());
     }
 
-    public static String parseAceite(String input) {
+    public String parseAceite(String input) {
         String[] campos = input.split(",");
         String cod = campos[0];
+        //encomendas.get(cod).setAceites(true);
         return cod;
 
 

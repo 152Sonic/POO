@@ -1,4 +1,4 @@
-public class Produto {
+public class Produto implements Comparable<Produto> {
     private String cod;
     private String nome;
     private double peso;
@@ -48,5 +48,9 @@ public class Produto {
 
     public void setPreçouni(double preçouni) {
         this.preçouni = preçouni;
+    }
+
+    public int compareTo(Produto p1){
+        return cod.compareTo(p1.getCod());
     }
 }

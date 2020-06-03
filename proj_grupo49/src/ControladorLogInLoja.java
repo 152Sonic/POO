@@ -15,17 +15,24 @@ public class ControladorLogInLoja {
             o = Input.lerInt();
             switch (o){
                 case 1:
+                    v.flush();
+                    v.pressioneEnter();
                     v.ID();
                     String u = Input.lerString();
                     v.pass();
                     String p = Input.lerString();
                     if(m.verificaLogin(u,p,0)){
                         v.loginAccep();
+                        loja.setC(u);
+                        loja.setL(m.getLojas());
+                        loja.setU(m.getUtilizadores());
                         loja.run();
                     }
                     else v.LoginDeny();
                     break;
                 case 2:
+                    v.pressioneEnter();
+                    v.flush();
                     v.ID();
                     String c = Input.lerString();
                     if(m.existeLoja(c)){

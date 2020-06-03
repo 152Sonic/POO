@@ -20,7 +20,7 @@ public class Encomenda {
 
     }
 
-    public Encomenda(String e, String u, String l, double y, ArrayList<LinhaEncomenda> li) {
+    public Encomenda(String e, String u, String l, double y,List<LinhaEncomenda> li) {
         this.codenc = e;
         this.coduser = u;
         this.codloja = l;
@@ -52,8 +52,8 @@ public class Encomenda {
         return this.peso;
     }
 
-    public ArrayList<LinhaEncomenda> getLinha() {
-        ArrayList<LinhaEncomenda> aux = new ArrayList<>();
+    public List<LinhaEncomenda> getLinha() {
+        List<LinhaEncomenda> aux = new ArrayList<>();
         for (LinhaEncomenda l : this.linha)
             aux.add(l);
         return aux;
@@ -75,7 +75,7 @@ public class Encomenda {
         this.peso = l;
     }
 
-    public void setLinha(ArrayList<LinhaEncomenda> l) {
+    public void setLinha(List<LinhaEncomenda> l) {
         this.linha = new ArrayList<>();
         for (LinhaEncomenda li : l)
             this.linha.add(li);

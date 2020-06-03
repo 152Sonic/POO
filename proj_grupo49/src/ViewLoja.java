@@ -35,6 +35,10 @@ public class ViewLoja {
         System.out.print("Por favor tente outra vez: ");
     }
 
+    public void inst(){
+        System.out.println("\nEscolha a instrução: ");
+    }
+
 
     public void encSine(){
         System.out.println("O codigo de encomenda a sinalizar:");
@@ -47,7 +51,7 @@ public class ViewLoja {
     public void opc3(List<Encomenda> e){
         System.out.println("Codigo");
         for (Encomenda es : e){
-            if (es.getAceites()) System.out.println(es.getCodenc());
+            System.out.println(es.getCodenc());
         }
     }
 
@@ -70,6 +74,29 @@ public class ViewLoja {
         System.out.printf("Existem %d unidades do produto:\n", p);
     }
 
+
+    public void op1(){
+        System.out.println("Insira a encomenda a sinalizar para entrega:");
+    }
+
+    public void op1Error(){
+        System.out.println("A encomenda inserida não existe ou não é válida");
+    }
+
+
+    public void op2(){
+        System.out.println("Insira o Codigo do produto a adicionar:");
+    }
+    public void op2_2(){
+        System.out.println("Insira a descrição do produto:");
+    }
+
+    public void op2_3(){
+        System.out.println("Insira o peso de uma unidade do produto:");
+    }
+    public void op2_4(){
+        System.out.println("Insira o preço unitário de um produto:");
+    }
 
 
 
