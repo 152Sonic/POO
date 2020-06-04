@@ -44,4 +44,6 @@ public class Voluntarios {
     }
 
     public boolean existeVol(String c){ return this.voluntarios.containsKey(c);}
+
+    public Voluntario getVoluntario(String c){ return this.voluntarios.get(c);}
 }

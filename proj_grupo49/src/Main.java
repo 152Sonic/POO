@@ -13,7 +13,7 @@ public class Main {
 
 
          Modelo m = new Modelo(lojas,transportadoras,voluntarios,utilizadors,encomendas);
-         m.parse("logs2.txt");
+         m.parse("proj_grupo49/logs");
 
 
 

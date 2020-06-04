@@ -15,6 +15,7 @@ public class Voluntario
     private GPS gps;
     private double raio;
     private boolean livre;
+    private List<Encomenda> pedidos;
     private List<Encomenda> listenc;
 
     public Voluntario()
@@ -25,6 +26,7 @@ public class Voluntario
         this.gps = new GPS();
         this.raio = 0;
         this.livre = true;
+        this.pedidos = new ArrayList<>();
         this.listenc = new ArrayList<>();
     }
 
@@ -36,9 +38,17 @@ public class Voluntario
         this.gps = gps.clone();
         this.raio =r;
         this.livre = b;
+        this.pedidos = new ArrayList<>();
+        this.pedidos.add(e);
+        this.pedidos.add(e1);
+        this.pedidos.add(e2);
         this.setList(lista);
 
     }
+    List<LinhaEncomenda> linha = new ArrayList<>();
+    Encomenda e = new Encomenda ("e44", "u34", "l89", 89, linha);
+    Encomenda e1 = new Encomenda ("e784", "u34", "l89", 89, linha);
+    Encomenda e2 = new Encomenda ("e823", "u34", "l89", 89, linha);
     public Voluntario (String p, String s, String n, GPS gps, double r)
     {
         this.pass = s;
@@ -47,6 +57,7 @@ public class Voluntario
         this.gps = gps.clone();
         this.raio =r;
         this.livre = true;
+        this.pedidos = new ArrayList<>();
         this.listenc = new ArrayList<>();
 
     }
@@ -59,6 +70,7 @@ public class Voluntario
         this.gps = new GPS(u.getGPS());
         this.raio = u.getRaio();
         this.livre = u.getLivre();
+        this.setPedidos(u.getPedidos());
         this.setList(u.getList());
     }
     public void setPass(String p){this.pass = p;}
@@ -97,6 +109,13 @@ public class Voluntario
         return aux;
     }
 
+    public ArrayList<Encomenda> getPedidos() {
+        ArrayList<Encomenda> aux = new ArrayList<>();
+        for (Encomenda l : this.pedidos)
+            aux.add(l);
+        return aux;
+    }
+
     public void setList (ArrayList<Encomenda> l)
     {
         this.listenc = new ArrayList<>();
@@ -104,6 +123,12 @@ public class Voluntario
             this.listenc.add(li);
     }
 
+    public void setPedidos (ArrayList<Encomenda> l)
+    {
+        this.pedidos = new ArrayList<>();
+        for(Encomenda li : l)
+            this.pedidos.add(li);
+    }
     public void setCod(String s)
     {
         this.cod = s;
@@ -143,6 +168,7 @@ public class Voluntario
                this.nome.equals(u.getNome()) &&
                this.gps.equals(u.getGPS()) &&
                this.raio == u.getRaio() &&
+               this.pedidos == u.getPedidos() &&
                this.livre == u.getLivre();
     }
 
@@ -161,4 +187,25 @@ public class Voluntario
     public boolean validaPass(String p){
         return this.pass.equals(p);
     }
+
+    public void aceitaPedido(Encomenda e){
+        this.pedidos.remove(e);
+        this.listenc.add(e);
+    }
+
+    public void rejeitaPedido(Encomenda e){
+        this.pedidos.remove(e);
+    }
+
+//    public void aceitaTodos(){
+//        for(Encomenda e:this.pedidos){
+//            this.listenc.add(e.clone());
+//            this.pedidos.remove(e);
+//        }
+//    }
+//
+//    public void rejeitaTodos(){
+//        for(Encomenda e: this.pedidos)
+//            this.pedidos.remove(e);
+//    }
 }

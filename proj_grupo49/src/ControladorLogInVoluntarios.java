@@ -6,7 +6,6 @@ public class ControladorLogInVoluntarios {
     }
 
     public void run() {
-        ControladorVoluntario vol = new ControladorVoluntario();
         ViewLogin v = new ViewLogin();
         int o,o2;
         do {
@@ -21,6 +20,7 @@ public class ControladorLogInVoluntarios {
                     String p = Input.lerString();
                     if (m.verificaLogin(u, p,2)){
                         v.loginAccep();
+                        ControladorVoluntario vol = new ControladorVoluntario(u,m.getVoluntarios().getVoluntario(u),m.getUtilizadores());
                         vol.run();
                     }
                     else v.LoginDeny();
@@ -48,7 +48,7 @@ public class ControladorLogInVoluntarios {
 
                     v.continuar();
                     o2 = Input.lerInt();
-                    continuar(vol, o2);
+                    continuar(c,m.getVoluntarios().getVoluntario(c), m.getUtilizadores(), o2);
                     break;
                 default:
                     v.printError();
@@ -61,12 +61,13 @@ public class ControladorLogInVoluntarios {
         return m.verificaLogin(u,p,2);
     }
 
-    public void continuar(ControladorVoluntario t, int o) {
+    public void continuar(String u, Voluntario vo, Utilizadores us, int o) {
         ViewLogin v = new ViewLogin();
         if (o == 1) {
+            ControladorVoluntario vol = new ControladorVoluntario(u,m.getVoluntarios().getVoluntario(u),m.getUtilizadores());
             v.pressioneEnter();
             v.flush();
-            t.run();
+            vol.run();
         }
     }
 }
