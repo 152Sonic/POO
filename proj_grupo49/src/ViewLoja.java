@@ -1,4 +1,6 @@
+import java.util.ArrayList;
 import java.util.List;
+import java.util.TreeSet;
 
 public class ViewLoja {
 
@@ -7,11 +9,12 @@ public class ViewLoja {
         System.out.println("|Escolha uma opção:                                                                          |");
         System.out.println("|1  -> Sinalizar uma Encomenda pronta para Transporte                                        |");
         System.out.println("|2  -> Adicionar produto                                                                     |");
-        System.out.println("|3  -> Ver quantas e quais encomendas já foram entregues                                     |");
-        System.out.println("|4  -> Ver encomendas a entregar                                                             |");
-        System.out.println("|5  -> Consultar stock de um produto                                                         |");
-        System.out.println("|6  -> Alterar dados pessoais                                                                |");
-        System.out.println("|0  -> Exit Program                                                                          |");
+        System.out.println("|3  -> Ver quantas e quais encomendas estão sinalizadas                                      |");
+        System.out.println("|4  -> Ver encomendas não sinalizadas                                                        |");
+        System.out.println("|5  -> Ver lista total de encomendas                                                         |");
+        System.out.println("|6  -> Consultar stock de produtos                                                           |");
+        System.out.println("|7  -> Alterar dados pessoais                                                                |");
+        System.out.println("|8  -> Exit Program                                                                          |");
         System.out.println("|____________________________________________________________________________________________|");
     }
 
@@ -38,41 +41,66 @@ public class ViewLoja {
     public void inst(){
         System.out.println("\nEscolha a instrução: ");
     }
-
-
-    public void encSine(){
-        System.out.println("O codigo de encomenda a sinalizar:");
+    
+    public void instExec(){
+        System.out.println("\nInstrução executada com sucesso! ");
     }
 
-        public void encSineError(){
-        System.out.println("O codigo inserido não existe:");
-    }
+
 
     public void opc3(List<Encomenda> e){
-        System.out.println("Codigo");
-        for (Encomenda es : e){
-            System.out.println(es.getCodenc());
+        if (e == null){
+            System.out.println("A lista está vazia!");
+        }
+        else {
+            System.out.println("Codigo");
+            for (Encomenda es : e) {
+                System.out.println(es.getCodenc());
+            }
         }
     }
 
     public void opc4(List<Encomenda> e){
-        System.out.println("Codigo");
-        for (Encomenda es : e){
-            if (!es.getAceites()) System.out.println(es.getCodenc());
+        if (e == null){
+            System.out.println("A lista está vazia!");
+        }
+        else {
+            List<Encomenda> aux = new ArrayList<>();
+            for (Encomenda em :e) {
+                if (!em.getAceites()) aux.add(em.clone());
+            }
+            if (aux == null) {
+                System.out.println("Codigo");
+                for (Encomenda es : aux) {
+                    System.out.println(es.getCodenc());
+                }
+            }
+        }
+    }
+
+    public void opc5(List<Encomenda> e){
+        if (e == null){
+            System.out.println("A lista está vazia!");
+        }
+        else {
+            System.out.println("Codigo");
+            for (Encomenda es : e) {
+                System.out.println(es.getCodenc());
+            }
         }
     }
 
     public void cunsultaStock(){
-        System.out.println("Deseja consultar o stock do produto :");
+        System.out.println("Deseja consultar o stock de produtos :");
     }
 
     public void cunsultaError(){
         System.out.println("O produto inserido não existe:");
     }
 
-    public void consultaResult(int p){
-        System.out.printf("Existem %d unidades do produto:\n", p);
-    }
+//    public void consultaResult(int p){
+//        System.out.printf("Existem %d unidades do produto:\n", p);
+//    }
 
 
     public void op1(){
@@ -80,24 +108,86 @@ public class ViewLoja {
     }
 
     public void op1Error(){
-        System.out.println("A encomenda inserida não existe ou não é válida");
+        System.out.println("A encomenda inserida não existe ou já foi sinalizada");
     }
 
 
-    public void op2(){
-        System.out.println("Insira o Codigo do produto a adicionar:");
+
+    
+    public void addCP(){
+        System.out.println("Insira o código do produto a adicionar:");
     }
-    public void op2_2(){
-        System.out.println("Insira a descrição do produto:");
+    
+    public void addDesP(){
+        System.out.println("Insira a descrição do produto a adicionar:");
+    }
+    
+    public void addPeso(){
+        System.out.println("Insira o peso unitário do produto a adicionar:");
     }
 
-    public void op2_3(){
-        System.out.println("Insira o peso de uma unidade do produto:");
+    public void addQP(){
+        System.out.println("Insira o preço unitário do produto a adicionar:");
     }
-    public void op2_4(){
-        System.out.println("Insira o preço unitário de um produto:");
+
+    public void addPError() {
+        System.out.println("O código do produto inserido já existe!");
     }
 
 
+
+    public void printProd(TreeSet<Produto> produtos){
+        if (produtos == null){
+            System.out.println("A lista está vazia!");
+        }
+        else{
+            System.out.println("Produtos da loja:");
+            for (Produto p : produtos){
+                System.out.println("\nCodigo: "+ p.getCod());
+                System.out.println("Descrição: "+ p.getNome());
+                System.out.println("Peso uni: "+ p.getPeso());
+                System.out.println("Preço uni: "+ p.getPreçouni());
+            }
+        }
+    }
+
+
+
+    // ===================== Alterar dados ==============================================
+
+
+    public void printMenuDados(){
+        System.out.println("_____________________________________________________________________________________________");
+        System.out.println("|Escolha uma opção:                                                                          |");
+        System.out.println("|1  -> Alterar Nome                                                                          |");
+        System.out.println("|2  -> Alterar Password                                                                      |");
+        System.out.println("|3  -> Alterar Localização                                                                   |");
+        System.out.println("|0  -> Voltar ao menu Loja                                                                   |");
+        System.out.println("|____________________________________________________________________________________________|");
+    }
+
+    public void altNome(){
+        System.out.println("Insira o nome novo:");
+    }
+
+    public void passordAntiga(){
+        System.out.println("Insira a password atual:");
+    }
+
+    public void passError(){
+        System.out.println("Palavra pass incorreta");
+    }
+
+    public void passordNova(){
+        System.out.println("Insira a password nova:");
+    }
+
+    public void altloc(){
+        System.out.println("Insira a nova latitude:");
+    }
+
+    public void altloclon(){
+        System.out.println("Insira a nova longitude:");
+    }
 
 }

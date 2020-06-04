@@ -223,5 +223,20 @@ public class Loja
     public void addProdutos(TreeSet<Produto> p){
         stock.addAll(p);
     }
+    
+    public void addProduto(Produto p){stock.add(p);}
+
+    public boolean existeProd(String cod){
+        Iterator<Produto> it = stock.iterator();
+        boolean r = false;
+        while (it.hasNext() && !r){
+            Produto aux = it.next();
+            if (aux.getCod().equals(cod)){
+                r = true;
+            }
+        }
+        return r;
+    }
+
 
 }

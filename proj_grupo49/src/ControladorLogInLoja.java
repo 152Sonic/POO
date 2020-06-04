@@ -6,7 +6,7 @@ public class ControladorLogInLoja {
     }
 
     public void run() {
-        ControladorLoja loja = new ControladorLoja();
+//        ControladorLoja loja = new ControladorLoja();
         ViewLogin v = new ViewLogin();
         int o, o2;
         do {
@@ -23,9 +23,10 @@ public class ControladorLogInLoja {
                     String p = Input.lerString();
                     if(m.verificaLogin(u,p,0)){
                         v.loginAccep();
-                        loja.setC(u);
-                        loja.setL(m.getLojas());
-                        loja.setU(m.getUtilizadores());
+                        ControladorLoja loja = new ControladorLoja(u,m.getLojas().getLoja(u),m.getUtilizadores());
+//                        loja.setC(u);
+//                        loja.setL(m.getLojas());
+//                        loja.setU(m.getUtilizadores());
                         loja.run();
                     }
                     else v.LoginDeny();
@@ -53,7 +54,7 @@ public class ControladorLogInLoja {
 
                     v.continuar();
                     o2 = Input.lerInt();
-                    continuar(loja, o2);
+                    continuar(c , novo,m.getUtilizadores(), o2);
                     break;
                 default:
                     v.printError();
@@ -68,9 +69,10 @@ public class ControladorLogInLoja {
 
 
 
-    public void continuar(ControladorLoja l, int o) {
+    public void continuar(String u, Loja lj, Utilizadores users,  int o) {
         ViewLogin v = new ViewLogin();
         if (o == 1) {
+            ControladorLoja l = new ControladorLoja(u,lj,users);
             v.pressioneEnter();
             v.flush();
             l.run();
