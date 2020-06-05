@@ -12,7 +12,6 @@ public class ControladorLogInUser {
         this.m = m;
     }
     public void run() {
-        ControladorUser user = new ControladorUser(m);
         ViewLogin v = new ViewLogin();
         int o,o2;
         do {
@@ -29,7 +28,8 @@ public class ControladorLogInUser {
                     String p = Input.lerString();
                     if (m.verificaLogin(u, p,3)){
                         v.loginAccep();
-                        user.run(u);
+                        ControladorUser user = new ControladorUser(m,u);
+                        user.run();
                     }
                     else v.LoginDeny();
                     break;
@@ -54,7 +54,7 @@ public class ControladorLogInUser {
 
                     v.continuar();
                     o2 = Input.lerInt();
-                    continuar(user,c, o2);
+                    continuar(m,c, o2);
                     break;
                 default:
                     v.printError();
@@ -68,12 +68,13 @@ public class ControladorLogInUser {
         return m.verificaLogin(u,p,3);
     }
 
-    public void continuar(ControladorUser t,String u, int o) {
+    public void continuar(Modelo m,String u, int o) {
         ViewLogin v = new ViewLogin();
         if (o == 1) {
             v.pressioneEnter();
             v.flush();
-            t.run(u);
+            ControladorUser user = new ControladorUser(m,u);
+            user.run();
         }
     }
 

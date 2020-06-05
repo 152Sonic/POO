@@ -16,6 +16,7 @@ public class Utilizador
     private String cod;
     private String nome;
     private GPS gps;
+    private List<Encomenda> pedidos;
     private List<Encomenda> entregues;
 
 
@@ -25,6 +26,7 @@ public class Utilizador
         this.cod = new String();
         this.nome = new String();
         this.gps = new GPS();
+        this.pedidos = new ArrayList<>();
         this.entregues = new ArrayList<>();
     }
 
@@ -34,6 +36,7 @@ public class Utilizador
         this.cod = s;
         this.nome = n;
         this.gps = gps.clone();
+        this.pedidos = new ArrayList<>();
         this.setEntregues(lista);
     }
     public Utilizador (String p,String s, String n, GPS gps)
@@ -42,6 +45,7 @@ public class Utilizador
         this.cod = s;
         this.nome = n;
         this.gps = gps.clone();
+        this.pedidos = new ArrayList<>();
         this.entregues = new ArrayList<>();
     }
 
@@ -51,6 +55,7 @@ public class Utilizador
         this.cod = u.getCod();
         this.nome = u.getNome();
         this.gps = new GPS(u.getGPS());
+        this.pedidos = new ArrayList<>();
         this.setEntregues(u.getEntregues());
     }
 
@@ -84,6 +89,19 @@ public class Utilizador
         this.entregues = new ArrayList<>();
         for(Encomenda li : l)
             this.entregues.add(li);
+    }
+
+    public ArrayList<Encomenda> getPedidos() {
+        ArrayList<Encomenda> aux = new ArrayList<>();
+        for (Encomenda l : this.pedidos)
+            aux.add(l);
+        return aux;
+    }
+    public void setPedidos (ArrayList<Encomenda> l)
+    {
+        this.pedidos = new ArrayList<>();
+        for(Encomenda li : l)
+            this.pedidos.add(li);
     }
 
     public void setCod(String s)

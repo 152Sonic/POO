@@ -2,12 +2,12 @@ public class ControladorUser {
     private Modelo m;
     private String user;
 
-    public ControladorUser(Modelo m){
+    public ControladorUser(Modelo m, String r){
         this.m = m;
+        this.user = r;
     }
 
-    public void run(String r){
-        this.user = r;
+    public void run(){
         int o;
         do{
             ViewUser v = new ViewUser();
