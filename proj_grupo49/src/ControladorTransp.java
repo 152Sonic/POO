@@ -56,8 +56,16 @@ public class ControladorTransp {
                         op3(v, op);
                     }
                     break;
+                case 4:
+                    v.printEntregue();
+                    String e = Input.lerString();
+                    if(transp.getEntregue(e)){
+                        Encomenda enc = transp.getEncomenda(e);
+                        enc.setEntregue(true);
+                        break;
+                    }
                 default:
-                    System.out.println("Opçao invalida!");
+                    v.printError();
             }
 
         }while(o!=0);

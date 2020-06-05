@@ -46,8 +46,8 @@ public class Lojas {
         this.lojas.get(l).addEncomenda(s,u,ps,qt);
     }
 
-    public void addEncomendaParse(String l, Encomenda e, boolean ac){
-        this.lojas.get(l).addEncomendaParse(e,ac);
+    public void addEncomendaParse(String l, Encomenda e){
+        this.lojas.get(l).addEncomendaParse(e);
     }
 
     public void addEncPronta(Encomenda e, String c){

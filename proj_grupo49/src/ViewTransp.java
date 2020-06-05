@@ -8,6 +8,7 @@ public class ViewTransp {
         System.out.println("|1  -> Aceitar Entrega                                                                       |");
         System.out.println("|2  -> Ver historico de encomendas  entregues                                                |");
         System.out.println("|3  -> Alterar dados pessoais                                                                |");
+        System.out.println("|4  -> Encomenda entregue                                                                    |");
         System.out.println("|0  -> Exit Program                                                                          |");
         System.out.println("|____________________________________________________________________________________________|");
     }
@@ -37,6 +38,8 @@ public class ViewTransp {
         System.out.println("\nNão escreveu nenhuma das duas opções válidas!");
         System.out.print("Por favor tente outra vez: ");
     }
+
+    public void printEntregue(){System.out.println("Insira o código da encomenda que entregou:");}
 
     public void aceitar(){
         System.out.println("Deseja aceitar entregar a encomenda:");

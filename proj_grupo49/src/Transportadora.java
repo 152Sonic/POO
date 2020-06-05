@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collector;
 
 /**
@@ -268,4 +265,52 @@ public class Transportadora
         double t = this.listenc.stream().filter(Encomenda::getAceites).count();
         return tc / t;
     }
+
+    public boolean existeEnc(String cod){
+        Iterator<Encomenda> it = listenc.iterator();
+        boolean r = false;
+        while (it.hasNext() && !r){
+            Encomenda aux = it.next();
+            if (aux.getCodenc().equals(cod)){
+                r = true;
+            }
+        }
+        return r;
+    }
+
+    public boolean getEntregue(String cod){
+        Iterator<Encomenda> it = listenc.iterator();
+        boolean r = false;
+        while (it.hasNext() && !r){
+            Encomenda aux = it.next();
+            if (aux.getCodenc().equals(cod) && aux.getEntregue()){
+                r = true;
+            }
+        }
+        return r;
+    }
+
+    public Encomenda getEncomenda(String e) {
+        Encomenda enc = new Encomenda();
+        Iterator<Encomenda> it = listenc.iterator();
+        boolean found = false;
+        while(it.hasNext() && !found){
+            Encomenda en = it.next();
+            if(en.getCodenc() == e){
+                found = true;
+                enc = en;
+            }
+
+        }
+        return enc;
+    }
+
+    public void addPedido(Encomenda e){
+        this.pedidos.add(e);
+    }
+
+    public void rmPedido(Encomenda e){
+        this.pedidos.remove(e);
+    }
+
 }

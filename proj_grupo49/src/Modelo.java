@@ -169,7 +169,7 @@ public class Modelo {
             }
             for (Map.Entry<String,Encomenda> e : this.encomendas.entrySet()){
                 //if (e.getValue().getAceites()){
-                    lojas.addEncomendaParse(e.getValue().getCodloja(), e.getValue(), e.getValue().getAceites());
+                    lojas.addEncomendaParse(e.getValue().getCodloja(), e.getValue());
                 //}
             }
             for (Map.Entry<String,Loja> l: lojas.getLojas().entrySet()){
@@ -272,5 +272,67 @@ public class Modelo {
         return lines;
     }
 
+    public Map<String,List<String>> getPossiveisEntregadores(Encomenda e){
+        Map<String,List<String>> aux = new HashMap<>();
+        Loja l = this.lojas.getLoja(e.getCodloja());
+        Utilizador u = this.utilizadores.getUtilizador(e.getCoduser());
+        GPS cordl = l.getGPS().clone();
+        GPS cordu = u.getGPS().clone();
+        aux.put("T",new ArrayList<>());
+        aux.put("V", new ArrayList<>());
+        for(Map.Entry<String,Transportadora> t : this.transportadoras.getTransportadoras().entrySet()) {
+            if (t.getValue().getGPS().isNear(cordl, t.getValue().getRaio()) && t.getValue().getGPS().isNear(cordu, t.getValue().getRaio())) {
+                aux.get("T").add(t.getValue().getCod());
+                t.getValue().addPedido(e);
+            }
+        }
+        for(Map.Entry<String,Voluntario> v : this.voluntarios.getVoluntarios().entrySet()) {
+            if (v.getValue().getGPS().isNear(cordl, v.getValue().getRaio()) && v.getValue().getGPS().isNear(cordu, v.getValue().getRaio())) {
+                aux.get("V").add(v.getValue().getCod());
+                v.getValue().addPedido(e);
+            }
+        }
+        return aux;
+    }
 
+    public void rejeitaOutraTransp(Map<String,List<String>> map, String codt, Encomenda e){
+        for(String t : map.get("T")){
+            if(!t.equals(codt)) this.transportadoras.getTransportadora(t).rmPedido(e);
+        }
+        for(String v : map.get("V")){
+            if(!v.equals(codt)) this.voluntarios.getVoluntario(v).rmPedido(e);
+        }
+        this.lojas.getLoja(e.getCodloja()).rmEncPronta(e);
+        e.setAceites(true);
+    }
+
+
+    public int op1Loja(String e, String l){
+        int r = 0;
+        if(this.encomendas.containsKey(e)) {
+            Encomenda enc = this.encomendas.get(e);
+            if (this.lojas.getLoja(l).getListaEnc().contains(enc) && !enc.getAceites()){
+                this.lojas.getLoja(l).addEncPronta(enc);
+                getPossiveisEntregadores(enc);
+                r=1;
+            }
+        }
+        return r;
+    }
+
+    public void op2Loja(Produto p, String c){
+        lojas.getLoja(c).addProduto(p);
+    }
+
+    public void op7LojaNome(String nome, String c){
+        lojas.getLoja(c).setNome(nome);
+    }
+
+    public void op7LojaPass (String pass, String c){
+        lojas.getLoja(c).setPass(pass);
+    }
+
+    public void op7LojaGPS(double x, double y, String c){
+        lojas.getLoja(c).setGPS(x,y);
+    }
 }

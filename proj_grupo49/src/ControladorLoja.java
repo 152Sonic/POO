@@ -1,12 +1,10 @@
 public class ControladorLoja {
     private String c;   // cod loja
-    private Loja l;    // lojas
-    private Utilizadores u;
+    private Modelo m;
 
-    public ControladorLoja(String c, Loja l, Utilizadores u) {
+    public ControladorLoja(String c, Modelo m) {
         this.c = c;
-        this.l = l;
-        this.u = u;
+        this.m = m;
     }
 
     public void run(){
@@ -24,12 +22,7 @@ public class ControladorLoja {
                         v.flush();
                         v.op1();
                         String e = Input.lerString();
-                        if (l.getListaEnc().contains(e) && !l.getProntas().contains(e)) {
-                            Encomenda enc = l.getEncomenda(e).clone();
-                            l.addEncPronta(enc);
-                            //l.rmEncPronta(enc);
-                            v.instExec();
-                        }
+                        if(m.op1Loja(e,c) == 1) v.instExec();
                         else v.op1Error();
                         break;
                     case 2:
@@ -37,7 +30,7 @@ public class ControladorLoja {
                         v.flush();
                         v.addCP();
                         String p = Input.lerString();
-                        if (!l.existeProd(p)) {
+                        if (!m.getLojas().getLoja(c).existeProd(p)) {
                             v.addDesP();
                             String des = Input.lerString();
                             v.addPeso();
@@ -45,29 +38,29 @@ public class ControladorLoja {
                             v.addQP();
                             double q = Input.lerDouble();
                             Produto produto = new Produto(p, des, pr, q);
-                            l.addProduto(produto);
+                            m.op2Loja(produto,c);
                         }
                         else v.addPError();
                         break;
                     case 3:
                         v.pressioneEnter();
                         v.flush();
-                        v.opc3(l.getProntas());
+                        v.opc3(m.getLojas().getLoja(c).getProntas());
                         break;
                     case 4:
                         v.pressioneEnter();
                         v.flush();
-                        v.opc4(l.getListaEnc());
+                        v.opc4(m.getLojas().getLoja(c).getListaEnc());
                         break;
                     case 5:
                         v.pressioneEnter();
                         v.flush();
-                        v.opc5(l.getListaEnc());
+                        v.opc5(m.getLojas().getLoja(c).getListaEnc());
                         break;
                     case 6:
                         v.pressioneEnter();
                         v.flush();
-                        v.printProd(l.getStock());
+                        v.printProd(m.getLojas().getLoja(c).getStock());
                         break;
                     case 7:
                         int op = -1;
@@ -95,24 +88,11 @@ public class ControladorLoja {
         this.c = c;
     }
 
-    public Loja getL() {
-        return l;
-    }
+    public Modelo getM(){return this.m;}
 
-    public void setL(Loja l) {
-        this.l = l;
-    }
-
-    public Utilizadores getU() {
-        return u;
-    }
-
-    public void setU(Utilizadores u) {
-        this.u = u;
-    }
 
     public void op7(ViewLoja v, int op){
-
+        v.printDadosAtuais(m.getLojas().getLoja(c));
         switch (op){
             case 0:
                 break;
@@ -121,17 +101,17 @@ public class ControladorLoja {
 //                v.pressioneEnter();
                 v.altNome();
                 String nome = Input.lerString();
-                l.setNome(nome);
+                m.op7LojaNome(nome, c);
                 break;
             case 2:
 //                v.flush();
 //                v.pressioneEnter();
                 v.passordAntiga();
                 String passAnt = Input.lerString();
-                if (passAnt.equals(l.getPass())){
+                if (passAnt.equals(m.getLojas().getLoja(c).getPass())){
                     v.passordNova();
                     String nova = Input.lerString();
-                    l.setPass(nova);
+                    m.op7LojaPass(nova,c);
                 }
                 else v.passError();
                 break;
@@ -142,7 +122,7 @@ public class ControladorLoja {
                 double lat = Input.lerDouble();
                 v.altloclon();
                 double lon = Input.lerDouble();
-                l.setGPS(lat, lon);
+                m.op7LojaGPS(lat,lon,c);
                 break;
             default:
                 v.printError();

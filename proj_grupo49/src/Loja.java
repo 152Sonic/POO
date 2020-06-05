@@ -183,12 +183,7 @@ public class Loja
         }
     }
 
-    public void addEncomendaParse(Encomenda e, boolean ac) {
-        if (ac) {
-            if (!prontas.contains(e)) {
-                prontas.add(e);
-            }
-        }
+    public void addEncomendaParse(Encomenda e) {
         if (!listaEnc.contains(e)) {
             listaEnc.add(e);
         }

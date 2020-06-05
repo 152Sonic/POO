@@ -49,7 +49,7 @@ public class ViewLoja {
 
 
     public void opc3(List<Encomenda> e){
-        if (e == null){
+        if (e.size() <=0){
             System.out.println("A lista está vazia!");
         }
         else {
@@ -61,15 +61,15 @@ public class ViewLoja {
     }
 
     public void opc4(List<Encomenda> e){
-        if (e == null){
+        if (e.size() <=0){
             System.out.println("A lista está vazia!");
         }
         else {
             List<Encomenda> aux = new ArrayList<>();
             for (Encomenda em :e) {
-                if (!em.getAceites()) aux.add(em.clone());
+                 aux.add(em.clone());
             }
-            if (aux == null) {
+            if (aux.size() > 0) {
                 System.out.println("Codigo");
                 for (Encomenda es : aux) {
                     System.out.println(es.getCodenc());
@@ -79,13 +79,15 @@ public class ViewLoja {
     }
 
     public void opc5(List<Encomenda> e){
-        if (e == null){
+        if (e.size() <=0){
             System.out.println("A lista está vazia!");
         }
         else {
-            System.out.println("Codigo");
+          System.out.println("Todas as encomendas:");
             for (Encomenda es : e) {
-                System.out.println(es.getCodenc());
+                System.out.println("\nEncomenda: " + es.getCodenc());
+                System.out.println("Aceite " + es.getAceites());
+                System.out.println("Entregue " + es.getEntregue());
             }
         }
     }
@@ -153,6 +155,7 @@ public class ViewLoja {
 
 
 
+
     // ===================== Alterar dados ==============================================
 
 
@@ -188,6 +191,13 @@ public class ViewLoja {
 
     public void altloclon(){
         System.out.println("Insira a nova longitude:");
+    }
+
+    public void printDadosAtuais(Loja l){
+        System.out.println("\nOs seus dados atuais: ");
+        System.out.println("Nome:" + l.getNome());
+        System.out.println("Codigo:"  + l.getCod());
+        System.out.println("Localização:" + l.getGPS() + "\n");
     }
 
 }

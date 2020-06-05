@@ -16,11 +16,15 @@ public class Utilizadores {
         this.setUtilizadores(l.getUtilizadores());
     }
 
-    public Map<String,Utilizador> getUtilizadores(){
-        Map<String,Utilizador> aux = new TreeMap<>();
-        for(Map.Entry<String,Utilizador> l : this.utilizadores.entrySet())
-            aux.put(l.getKey(),l.getValue());
+    public Map<String,Utilizador> getUtilizadores() {
+        Map<String, Utilizador> aux = new TreeMap<>();
+        for (Map.Entry<String, Utilizador> l : this.utilizadores.entrySet())
+            aux.put(l.getKey(), l.getValue());
         return aux;
+    }
+
+    public Utilizador getUtilizador(String cod){
+        return this.utilizadores.get(cod);
     }
 
     public void setUtilizadores(Map<String,Utilizador> utilizadores){

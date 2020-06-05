@@ -203,6 +203,10 @@ public class Voluntario
         return tc / t;
     }
 
+    public void addPedido(Encomenda e){ this.pedidos.add(e);}
+
+    public void rmPedido(Encomenda e){ this.pedidos.remove(e);}
+
 //    public void aceitaTodos(){
 //        for(Encomenda e:this.pedidos){
 //            this.listenc.add(e.clone());
