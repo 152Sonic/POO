@@ -18,7 +18,7 @@ public class ControladorVoluntario {
                 case 0:
                     break;
                 case 1:
-                    if (m.getVoluntarios().getVoluntario(cod).getPedidos().isEmpty()){
+                    if (m.getVoluntarios().getVoluntario(cod).getPedidos().isEmpty() || !m.getVoluntario(cod).getLivre()){
                         v.printVazia();
                         break;
                     }
@@ -32,6 +32,7 @@ public class ControladorVoluntario {
                             if (op == 1) {
                                 m.op1Voluntario_1(cod,e);
                                 v.aceite();
+                                break;
                             }
                             else if (op == 2) {
                                 m.op1Voluntario_2(cod,e);

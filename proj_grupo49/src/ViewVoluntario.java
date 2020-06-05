@@ -32,7 +32,7 @@ public class ViewVoluntario {
         System.out.println("\nObrigado por usar GestVendasApp!");
     }
 
-    public void printVazia(){System.out.println("Nao existem pedidos de momento.");}
+    public void printVazia(){System.out.println("Nao existem pedidos de momento ou tem entregas pendentes!");}
 
     public void printError(){
         System.out.println("\nNão escreveu nenhuma das duas opções válidas!");

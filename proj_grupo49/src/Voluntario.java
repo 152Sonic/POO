@@ -200,15 +200,4 @@ public class Voluntario
 
     public void rmPedido(Encomenda e){ this.pedidos.remove(e);}
 
-//    public void aceitaTodos(){
-//        for(Encomenda e:this.pedidos){
-//            this.listenc.add(e.clone());
-//            this.pedidos.remove(e);
-//        }
-//    }
-//
-//    public void rejeitaTodos(){
-//        for(Encomenda e: this.pedidos)
-//            this.pedidos.remove(e);
-//    }
 }

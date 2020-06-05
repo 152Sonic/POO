@@ -409,6 +409,7 @@ public class Modelo {
             Encomenda enc = this.encomendas.get(e);
             if(this.voluntarios.getVoluntario(cod).getList().contains(enc)){
                 this.encomendas.get(e).setEntregue(true);
+                this.getVoluntario(cod).setLivre(true);
                 this.lojas.getLoja(enc.getCodloja()).setEntregue(enc);
                 r=1;
             }

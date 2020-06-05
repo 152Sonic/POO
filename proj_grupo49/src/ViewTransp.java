@@ -87,8 +87,7 @@ public class ViewTransp {
         System.out.println("|____________________________________________________________________________________________|");
     }
 
-    public void altNome(){
-        System.out.println("Insira o nome novo:");
+    public void altNome(){ System.out.println("Insira o nome novo:");
     }
 
     public void passordAntiga(){
@@ -118,6 +117,16 @@ public class ViewTransp {
     public void altT(){System.out.println("Insira a nova taxa:");}
 
     public void altTP(){System.out.println("Insira a nova taxa de peso:");}
+
+    public void printDadosAtuais(Transportadora t){
+        System.out.println("\nOs seus dados atuais: ");
+        System.out.println("Nome:" + t.getNome());
+        System.out.println("Codigo:"  + t.getCod());
+        System.out.println("Raio de ação:" + t.getRaio());
+        System.out.println("Localização:\n    " + t.getGPS().toString() + "\n");
+        System.out.println("Taxa:" + t.getTaxa());
+        System.out.println("Taxa de Peso:" + t.getTaxaPeso());
+    }
 
 
 }
