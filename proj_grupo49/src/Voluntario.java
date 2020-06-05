@@ -197,6 +197,12 @@ public class Voluntario
         this.pedidos.remove(e);
     }
 
+    public double getMedia() {
+        double tc = this.listenc.stream().filter(Encomenda::getAceites).mapToDouble(Encomenda::getClassificacao).sum();
+        double t = this.listenc.stream().filter(Encomenda::getAceites).count();
+        return tc / t;
+    }
+
 //    public void aceitaTodos(){
 //        for(Encomenda e:this.pedidos){
 //            this.listenc.add(e.clone());

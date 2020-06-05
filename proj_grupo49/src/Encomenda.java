@@ -8,6 +8,8 @@ public class Encomenda {
     private String codloja;
     private double peso;
     private boolean aceites;
+    private double classificacao;
+    private boolean entregue;
     private List<LinhaEncomenda> linha;
 
 
@@ -16,6 +18,8 @@ public class Encomenda {
         this.coduser = new String();
         this.codloja = new String();
         this.peso = 0;
+        this.entregue = false;
+        this.classificacao = 0.0;
         this.linha = new ArrayList<>();
 
     }
@@ -25,6 +29,8 @@ public class Encomenda {
         this.coduser = u;
         this.codloja = l;
         this.peso = y;
+        this.entregue = false;
+        this.classificacao = 0.0;
         this.setLinha(li);
     }
 
@@ -33,12 +39,18 @@ public class Encomenda {
         this.coduser = e.getCoduser();
         this.codloja = e.getCodloja();
         this.peso = e.getPeso();
+        this.entregue = e.getEntregue();
+        this.classificacao = e.getClassificacao();
         this.setLinha(e.getLinha());
     }
 
     public String getCodenc() {
         return this.codenc;
     }
+
+    public boolean getEntregue(){return this.entregue;}
+
+    public double getClassificacao(){ return this.classificacao;}
 
     public String getCoduser() {
         return this.coduser;
@@ -67,6 +79,10 @@ public class Encomenda {
         this.coduser = n;
     }
 
+    public void setEntregue(boolean b){ this.entregue = b;}
+
+    public void setClassificacao(double c){ this.classificacao = c;}
+
     public void setCodloja(String l) {
         this.codloja = l;
     }
@@ -80,7 +96,6 @@ public class Encomenda {
         for (LinhaEncomenda li : l)
             this.linha.add(li);
     }
-
 
     public boolean getAceites() {
         return this.aceites;

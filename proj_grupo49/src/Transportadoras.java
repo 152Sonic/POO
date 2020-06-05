@@ -45,4 +45,8 @@ public class Transportadoras {
 
     public boolean existeTransp(String t){ return this.transp.containsKey(t);}
 
+    public Transportadora getTransportadora(String cod){
+        return transp.get(cod);
+    }
+
 }

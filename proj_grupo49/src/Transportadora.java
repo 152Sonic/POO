@@ -1,6 +1,8 @@
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collector;
 
 /**
  * Write a description of class Transportadora here.
@@ -20,6 +22,8 @@ public class Transportadora
     private double taxaPeso;
     private int pesoLimite;
     private List<Encomenda> listenc;
+    private List<Encomenda> pedidos;
+    private List<Encomenda> espera;
 
     public Transportadora()
     {
@@ -33,6 +37,8 @@ public class Transportadora
         this.taxaPeso = 0;
         this.pesoLimite = 100;
         this.listenc = new ArrayList<>();
+        this.pedidos = new ArrayList<>();
+        this.espera = new ArrayList<>();
     }
 
     public Transportadora (String s, String nome, GPS gps,int n, double r, double p,double tp, int peso, ArrayList<Encomenda> lista )
@@ -47,6 +53,8 @@ public class Transportadora
         this.taxaPeso = tp;
         this.pesoLimite = peso;
         this.setList(lista);
+        this.pedidos = new ArrayList<>();
+        this.espera = new ArrayList<>();
 
     }
 
@@ -62,6 +70,8 @@ public class Transportadora
         this.taxaPeso = tp;
         this.pesoLimite = peso;
         this.listenc = new ArrayList<>();
+        this.pedidos = new ArrayList<>();
+        this.espera = new ArrayList<>();
 
     }
 
@@ -77,6 +87,9 @@ public class Transportadora
         this.taxaPeso = u.getTaxaPeso();
         this.pesoLimite = u.getPesoLimite();
         this.setList(u.getList());
+        this.setPedidos(u.getPedidos());
+        this.setEspera(u.getEspera());
+
     }
     public void setPass(String p){this.pass = p;}
 
@@ -134,12 +147,36 @@ public class Transportadora
             aux.add(l);
         return aux;
     }
+    public ArrayList<Encomenda> getPedidos() {
+        ArrayList<Encomenda> aux = new ArrayList<>();
+        for (Encomenda l : this.pedidos)
+            aux.add(l);
+        return aux;
+    }
+    public ArrayList<Encomenda> getEspera() {
+        ArrayList<Encomenda> aux = new ArrayList<>();
+        for (Encomenda l : this.espera)
+            aux.add(l);
+        return aux;
+    }
 
     public void setList (ArrayList<Encomenda> l)
     {
         this.listenc = new ArrayList<>();
         for(Encomenda li : l)
             this.listenc.add(li);
+    }
+    public void setPedidos (ArrayList<Encomenda> l)
+    {
+        this.pedidos = new ArrayList<>();
+        for(Encomenda li : l)
+            this.pedidos.add(li);
+    }
+    public void setEspera (ArrayList<Encomenda> l)
+    {
+        this.espera = new ArrayList<>();
+        for(Encomenda li : l)
+            this.espera.add(li);
     }
 
     public void setCod(String s)
@@ -219,4 +256,16 @@ public class Transportadora
         return this.pass.equals(p);
     }
 
+    public void aceitaPedido(Encomenda e){
+        this.pedidos.remove(e);
+        this.espera.add(e);
+    }
+
+    public void rejeitaPedido(Encomenda e){ this.pedidos.remove(e);}
+
+    public double getMedia() {
+        double tc = this.listenc.stream().filter(Encomenda::getAceites).mapToDouble(Encomenda::getClassificacao).sum();
+        double t = this.listenc.stream().filter(Encomenda::getAceites).count();
+        return tc / t;
+    }
 }

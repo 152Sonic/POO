@@ -5,7 +5,6 @@ public class ControladorLogInTransp {
         this.m = m;
     }
     public void run() {
-        ControladorTransp transp = new ControladorTransp();
         ViewLogin v = new ViewLogin();
         int o,o2;
         do {
@@ -20,6 +19,7 @@ public class ControladorLogInTransp {
                     String p = Input.lerString();
                     if (m.verificaLogin(u,p,1)){
                         v.loginAccep();
+                        ControladorTransp transp = new ControladorTransp(u,m.getTransportadoras().getTransportadora(u), m.getUtilizadores());
                         transp.run();
                     }
                     else v.LoginDeny();
@@ -55,7 +55,7 @@ public class ControladorLogInTransp {
 
                     v.continuar();
                     o2 = Input.lerInt();
-                    continuar(transp, o2);
+                    continuar(c,m.getTransportadoras().getTransportadora(c), m.getUtilizadores(), o2);
                     break;
                 default:
                     v.printError();
@@ -66,12 +66,13 @@ public class ControladorLogInTransp {
 
     public boolean verificaLogin(String u, String p){ return m.verificaLogin(u,p,1);}
 
-    public void continuar(ControladorTransp t, int o) {
+    public void continuar(String c, Transportadora t, Utilizadores u, int o) {
         ViewLogin v = new ViewLogin();
         if (o == 1) {
             v.pressioneEnter();
             v.flush();
-            t.run();
+            ControladorTransp transp = new ControladorTransp(c,t,u);
+            transp.run();
         }
     }
 }
