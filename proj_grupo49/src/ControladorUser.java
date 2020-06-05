@@ -14,6 +14,8 @@ public class ControladorUser {
             v.menuUser();
             o = Input.lerInt();
             switch (o){
+                case 0:
+                    break;
                 case 1:
                     v.codEnc();
                     String e = Input.lerString();

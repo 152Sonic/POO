@@ -16,6 +16,8 @@ public class ControladorTransp {
             v.menuTransp();
             o = Input.lerInt();
             switch (o){
+                case 0:
+                    break;
                 case 1:
                     if (transp.getPedidos().isEmpty()){
                         v.printVazia();

@@ -12,6 +12,8 @@ public class ControladorLogInTransp {
             v.Op();
             o = Input.lerInt();
             switch (o) {
+                case 0:
+                    break;
                 case 1:
                     v.ID();
                     String u = Input.lerString();

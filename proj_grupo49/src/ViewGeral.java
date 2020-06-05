@@ -30,7 +30,7 @@ public class ViewGeral {
     }
 
     public void printExit(){
-        System.out.println("\nObrigado por usar GestVendasApp!");
+        System.out.println("\nObrigado por usar Traz Aqui!");
     }
 
     public void printError(){

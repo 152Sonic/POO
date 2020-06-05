@@ -14,6 +14,8 @@ public class ControladorLogInLoja {
             v.Op();
             o = Input.lerInt();
             switch (o){
+                case 0:
+                    break;
                 case 1:
                     v.flush();
                     v.pressioneEnter();

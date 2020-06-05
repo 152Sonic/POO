@@ -16,6 +16,8 @@ public class ControladorVoluntario {
             v.menuVol();
             o = Input.lerInt();
             switch (o){
+                case 0:
+                    break;
                 case 1:
                     if (vol.getPedidos().isEmpty()){
                         v.printVazia();

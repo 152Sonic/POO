@@ -17,6 +17,8 @@ public class ControladorLoja {
             v.inst();
             o = Input.lerInt();
                 switch (o){
+                    case 0:
+                        break;
                     case 1:
                         v.pressioneEnter();
                         v.flush();
