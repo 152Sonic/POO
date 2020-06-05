@@ -183,9 +183,25 @@ public class Loja
         }
     }
 
+    public void addEncomenda(Encomenda e){
+        this.listaEnc.add(e);
+    }
+
     public void addEncomendaParse(Encomenda e) {
         if (!listaEnc.contains(e)) {
             listaEnc.add(e);
+        }
+    }
+
+    public void setEntregue(Encomenda e){
+        Iterator<Encomenda> it = this.listaEnc.iterator();
+        boolean r = false;
+        while(it.hasNext() && !r){
+            Encomenda enc = it.next();
+            if(enc.equals(e)) {
+                enc.setEntregue(true);
+                r=true;
+            }
         }
     }
 
@@ -212,7 +228,7 @@ public class Loja
         this.prontas.add(e);
     }
     public void rmEncPronta(Encomenda e){
-        this.listaEnc.remove(e);
+        this.prontas.remove(e);
     }
 
     public void addProdutos(TreeSet<Produto> p){

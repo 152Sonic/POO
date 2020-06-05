@@ -39,16 +39,9 @@ public class Voluntario
         this.raio =r;
         this.livre = b;
         this.pedidos = new ArrayList<>();
-        this.pedidos.add(e);
-        this.pedidos.add(e1);
-        this.pedidos.add(e2);
         this.setList(lista);
 
     }
-    List<LinhaEncomenda> linha = new ArrayList<>();
-    Encomenda e = new Encomenda ("e44", "u34", "l89", 89, linha);
-    Encomenda e1 = new Encomenda ("e784", "u34", "l89", 89, linha);
-    Encomenda e2 = new Encomenda ("e823", "u34", "l89", 89, linha);
     public Voluntario (String p, String s, String n, GPS gps, double r)
     {
         this.pass = s;

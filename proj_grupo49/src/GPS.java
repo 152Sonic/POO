@@ -90,7 +90,11 @@ public class GPS
         return (this.distancia(gps)<=r);
     }
 
-
-
-
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder();
+        sb.append("Latitude = ").append(lat);
+        sb.append("\n    Longitude = ").append(lon);
+        return sb.toString();
+    }
 }

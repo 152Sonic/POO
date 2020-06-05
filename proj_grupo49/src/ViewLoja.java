@@ -197,7 +197,7 @@ public class ViewLoja {
         System.out.println("\nOs seus dados atuais: ");
         System.out.println("Nome:" + l.getNome());
         System.out.println("Codigo:"  + l.getCod());
-        System.out.println("Localização:" + l.getGPS() + "\n");
+        System.out.println("Localização:\n    " + l.getGPS().toString() + "\n");
     }
 
 }

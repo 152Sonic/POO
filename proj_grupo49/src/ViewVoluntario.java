@@ -8,6 +8,7 @@ public class ViewVoluntario {
         System.out.println("|1  -> Aceitar Entrega                                                                       |");
         System.out.println("|2  -> Ver historico de encomendas  entregues                                                |");
         System.out.println("|3  -> Alterar dados pessoais                                                                |");
+        System.out.println("|4  -> Entregar Encomenda                                                                    |");
         System.out.println("|0  -> Exit Program                                                                          |");
         System.out.println("|____________________________________________________________________________________________|");
     }
@@ -46,11 +47,15 @@ public class ViewVoluntario {
     public void opc2(List<Encomenda> e){
         System.out.println("Codigo");
         for (Encomenda es : e){
-            if (!es.getAceites()) System.out.println(es.getCodenc());
+            if (es.getEntregue()) System.out.println(es.getCodenc());
         }
     }
 
     public void op1(Encomenda e){System.out.println(e.toString());}
+
+    public void op4(){
+        System.out.println("Insira o código de encomenda que entregou:");
+    }
 
     public void printMenuPedidos(){
         System.out.println("_____________________________________________________________________________________________");
@@ -101,6 +106,14 @@ public class ViewVoluntario {
     public void altRaio(){ System.out.println("Insira o novo raio de ação:");}
 
     public void raioSuc(){System.out.println("Raio de ação alterado com sucesso!");}
+
+    public void printDadosAtuais(Voluntario v){
+        System.out.println("\nOs seus dados atuais: ");
+        System.out.println("Nome:" + v.getNome());
+        System.out.println("Codigo:"  + v.getCod());
+        System.out.println("Raio de ação:" + v.getRaio());
+        System.out.println("Localização:\n    " + v.getGPS().toString() + "\n");
+    }
 
 
 }

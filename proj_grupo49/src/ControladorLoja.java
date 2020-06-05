@@ -65,8 +65,9 @@ public class ControladorLoja {
                     case 7:
                         int op = -1;
                         while (op!=0) {
-                            v.pressioneEnter();
                             v.flush();
+                            v.printDadosAtuais(m.getLojas().getLoja(c));
+                            v.pressioneEnter();
                             v.printMenuDados();
                             v.inst();
                             op = Input.lerInt();
@@ -92,7 +93,6 @@ public class ControladorLoja {
 
 
     public void op7(ViewLoja v, int op){
-        v.printDadosAtuais(m.getLojas().getLoja(c));
         switch (op){
             case 0:
                 break;

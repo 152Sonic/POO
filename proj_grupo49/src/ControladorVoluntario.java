@@ -1,11 +1,10 @@
 public class ControladorVoluntario {
-    private Voluntario vol;
+    private Modelo m;
     private String cod;
-    private Utilizadores u;
 
-    public ControladorVoluntario(String c, Voluntario v, Utilizadores u) {
-        this.vol = v;
-        this.u = u;
+
+    public ControladorVoluntario(String c, Modelo m) {
+        this.m = m;
         this.cod = c;
     }
 
@@ -19,63 +18,54 @@ public class ControladorVoluntario {
                 case 0:
                     break;
                 case 1:
-                    if (vol.getPedidos().isEmpty()){
+                    if (m.getVoluntarios().getVoluntario(cod).getPedidos().isEmpty()){
                         v.printVazia();
                         break;
                     }
                     else{
-                        for(Encomenda e : vol.getPedidos()) {
+                        for(Encomenda e : m.getVoluntario(cod).getPedidos()) {
                             v.op1(e);
                             int op;
                             v.printMenuPedidos();
                             v.inst();
                             op = Input.lerInt();
                             if (op == 1) {
-                                vol.aceitaPedido(e);
-                                vol.setLivre(false);
+                                m.op1Voluntario_1(cod,e);
                                 v.aceite();
                             }
                             else if (op == 2) {
-                                vol.rejeitaPedido(e);
+                                m.op1Voluntario_2(cod,e);
                                 v.rejeite();
                             }
                         }
                     }
                     break;
                 case 2:
-                    v.opc2(vol.getList());
+                    v.opc2(m.getVoluntario(cod).getList());
                     break;
                 case 3:
                     int op = -1;
                     while (op!=0) {
                         v.pressioneEnter();
                         v.flush();
+                        v.printDadosAtuais(m.getVoluntario(cod));
                         v.printMenuDados();
                         v.inst();
                         op = Input.lerInt();
                         op3(v, op);
                     }
                     break;
+                case 4:
+                    v.op4();
+                    String e = Input.lerString();
+                    if(m.op4Vol(e,cod) == 1);
+                    else v.printError();
+                    break;
                 default:
                     System.out.println("Opçao invalida!");
             }
 
         }while(o!=0);
-    }
-    public void op1(ViewVoluntario v, int op, Encomenda e){
-        switch(op){
-            case 0:
-                break;
-            case 1:
-                vol.aceitaPedido(e);
-                break;
-            case 2:
-                vol.rejeitaPedido(e);
-                break;
-            default:
-                System.out.println("Opçao Invalida!");
-
-        }
     }
 
     public void op3(ViewVoluntario v, int op){
@@ -88,17 +78,17 @@ public class ControladorVoluntario {
 //                v.pressioneEnter();
                 v.altNome();
                 String nome = Input.lerString();
-                vol.setNome(nome);
+                m.op3VolNome(nome,cod);
                 break;
             case 2:
 //                v.flush();
 //                v.pressioneEnter();
                 v.passordAntiga();
                 String passAnt = Input.lerString();
-                if (passAnt.equals(vol.getPass())){
+                if (passAnt.equals(m.getVoluntario(cod).getPass())){
                     v.passordNova();
                     String nova = Input.lerString();
-                    vol.setPass(nova);
+                    m.op3VolPass(nova,cod);
                 }
                 else v.passError();
                 break;
@@ -109,12 +99,12 @@ public class ControladorVoluntario {
                 double lat = Input.lerDouble();
                 v.altloclon();
                 double lon = Input.lerDouble();
-                vol.setGPS(lat, lon);
+                m.op3VolGPS(lat,lon,cod);
                 break;
             case 4:
                 v.altRaio();
                 double raio = Input.lerDouble();
-                vol.setRaio(raio);
+                m.op3VolRaio(raio,cod);
                 v.raioSuc();
                 break;
             default:

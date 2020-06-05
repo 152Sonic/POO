@@ -1,12 +1,10 @@
 public class ControladorTransp {
     private String cod;
-    private Transportadora transp;
-    private Utilizadores u;
+    private Modelo m;
 
-    public ControladorTransp(String cod, Transportadora t, Utilizadores u){
+    public ControladorTransp(String cod, Modelo m){
         this.cod = cod;
-        this.transp = t;
-        this.u = u;
+        this.m = m;
     }
 
     public void run(){
@@ -19,23 +17,23 @@ public class ControladorTransp {
                 case 0:
                     break;
                 case 1:
-                    if (transp.getPedidos().isEmpty()){
+                    if (m.getTransportadora(cod).getPedidos().isEmpty()){
                         v.printVazia();
                         break;
                     }
                     else{
-                        for(Encomenda e : transp.getPedidos()) {
+                        for(Encomenda e : m.getTransportadora(cod).getPedidos()) {
                             v.op1(e);
                             int op;
                             v.printMenuPedidos();
                             v.inst();
                             op = Input.lerInt();
                             if (op == 1) {
-                                transp.aceitaPedido(e);
+                                m.op1Transp_1(cod,e);
                                 v.aceite();
                             }
                             else if (op == 2) {
-                                transp.rejeitaPedido(e);
+                                m.opTransp_2(cod,e);
                                 v.rejeite();
                             }
                         }
@@ -43,7 +41,7 @@ public class ControladorTransp {
                     break;
 
                 case 2:
-                    v.opc2(transp.getList());
+                    v.opc2(m.getTransportadora(cod).getList());
                     break;
                 case 3:
                     int op = -1;
@@ -59,13 +57,12 @@ public class ControladorTransp {
                 case 4:
                     v.printEntregue();
                     String e = Input.lerString();
-                    if(transp.getEntregue(e)){
-                        Encomenda enc = transp.getEncomenda(e);
-                        enc.setEntregue(true);
+                    if(m.op4Transp(e,cod) ==1);
+                    else v.printError();
                         break;
-                    }
                 default:
                     v.printError();
+                    break;
             }
 
         }while(o!=0);
@@ -82,17 +79,17 @@ public class ControladorTransp {
 //                v.pressioneEnter();
                 t.altNome();
                 String nome = Input.lerString();
-                transp.setNome(nome);
+                m.op3TranspNome(nome,cod);
                 break;
             case 2:
 //                v.flush();
 //                v.pressioneEnter();
                 t.passordAntiga();
                 String passAnt = Input.lerString();
-                if (passAnt.equals(transp.getPass())){
+                if (passAnt.equals(m.getTransportadora(cod).getPass())){
                     t.passordNova();
                     String nova = Input.lerString();
-                    transp.setPass(nova);
+                    m.op3TranspPass(nova,cod);
                 }
                 else t.passError();
                 break;
@@ -103,23 +100,23 @@ public class ControladorTransp {
                 double lat = Input.lerDouble();
                 t.altloclon();
                 double lon = Input.lerDouble();
-                transp.setGPS(lat, lon);
+                m.op3TranspGPS(lat,lon,cod);
                 break;
             case 4:
                 t.altRaio();
                 double raio = Input.lerDouble();
-                transp.setRaio(raio);
+                m.op3TranspRaio(raio,cod);
                 t.raioSuc();
                 break;
             case 5:
                 t.altT();
                 double taxa = Input.lerDouble();
-                transp.setTaxa(taxa);
+                m.op3TranspTaxa(taxa,cod);
                 break;
             case 6:
                 t.altTP();
                 double taxap = Input.lerDouble();
-                transp.setTaxaPeso(taxap);
+                m.op3TranspTaxap(taxap,cod);
                 break;
             default:
                 t.printError();

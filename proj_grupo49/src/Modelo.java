@@ -261,6 +261,11 @@ public class Modelo {
 
     }
 
+    public void addEncomenda (Encomenda e){
+        this.encomendas.put(e.getCodenc(),e);
+        this.lojas.getLoja(e.getCodloja()).addEncomenda(e);
+    }
+
 
     public static List<String> lerFicheiro(String nomeFich) {
         List<String> lines = new ArrayList<>();
@@ -270,6 +275,25 @@ public class Modelo {
             System.out.println(exc);
         }
         return lines;
+    }
+
+    public void setPossiveisEntregadores(Encomenda e){
+
+        Loja l = this.lojas.getLoja(e.getCodloja());
+        Utilizador u = this.utilizadores.getUtilizador(e.getCoduser());
+        GPS cordl = l.getGPS().clone();
+        GPS cordu = u.getGPS().clone();
+        for(Map.Entry<String,Transportadora> t : this.transportadoras.getTransportadoras().entrySet()) {
+            if (t.getValue().getGPS().isNear(cordl, t.getValue().getRaio()) && t.getValue().getGPS().isNear(cordu, t.getValue().getRaio())) {
+                t.getValue().addPedido(e);
+            }
+        }
+        for(Map.Entry<String,Voluntario> v : this.voluntarios.getVoluntarios().entrySet()) {
+            if (v.getValue().getGPS().isNear(cordl, v.getValue().getRaio()) && v.getValue().getGPS().isNear(cordu, v.getValue().getRaio()) && v.getValue().getLivre()) {
+                v.getValue().addPedido(e);
+            }
+        }
+
     }
 
     public Map<String,List<String>> getPossiveisEntregadores(Encomenda e){
@@ -283,13 +307,11 @@ public class Modelo {
         for(Map.Entry<String,Transportadora> t : this.transportadoras.getTransportadoras().entrySet()) {
             if (t.getValue().getGPS().isNear(cordl, t.getValue().getRaio()) && t.getValue().getGPS().isNear(cordu, t.getValue().getRaio())) {
                 aux.get("T").add(t.getValue().getCod());
-                t.getValue().addPedido(e);
             }
         }
         for(Map.Entry<String,Voluntario> v : this.voluntarios.getVoluntarios().entrySet()) {
-            if (v.getValue().getGPS().isNear(cordl, v.getValue().getRaio()) && v.getValue().getGPS().isNear(cordu, v.getValue().getRaio())) {
+            if (v.getValue().getGPS().isNear(cordl, v.getValue().getRaio()) && v.getValue().getGPS().isNear(cordu, v.getValue().getRaio()) && v.getValue().getLivre()) {
                 aux.get("V").add(v.getValue().getCod());
-                v.getValue().addPedido(e);
             }
         }
         return aux;
@@ -306,14 +328,30 @@ public class Modelo {
         e.setAceites(true);
     }
 
+    public Voluntario getVoluntario(String cod){
+        return this.getVoluntarios().getVoluntario(cod);
+    }
 
+    public Loja getLoja(String cod){
+        return this.getLojas().getLoja(cod);
+    }
+
+    public Transportadora getTransportadora(String cod){
+        return this.getTransportadoras().getTransportadora(cod);
+    }
+
+    public Utilizador getUtilizador(String cod){
+        return this.getUtilizadores().getUtilizador(cod);
+    }
+
+    //////////////////////////////////////////// Interpretador Loja ////////////////////////////////////////////////////////////////
     public int op1Loja(String e, String l){
         int r = 0;
         if(this.encomendas.containsKey(e)) {
             Encomenda enc = this.encomendas.get(e);
             if (this.lojas.getLoja(l).getListaEnc().contains(enc) && !enc.getAceites()){
                 this.lojas.getLoja(l).addEncPronta(enc);
-                getPossiveisEntregadores(enc);
+                setPossiveisEntregadores(enc);
                 r=1;
             }
         }
@@ -335,4 +373,95 @@ public class Modelo {
     public void op7LojaGPS(double x, double y, String c){
         lojas.getLoja(c).setGPS(x,y);
     }
+
+    //////////////////////////////////////////// Interpretador Voluntario ////////////////////////////////////////////////////////////////
+
+    public void op1Voluntario_1(String cod, Encomenda e){
+            this.getVoluntario(cod).aceitaPedido(e);
+            this.voluntarios.getVoluntario(cod).setLivre(false);
+            this.encomendas.get(e.getCodenc()).setAceites(true);
+            rejeitaOutraTransp(getPossiveisEntregadores(e), cod, e);
+    }
+
+    public void op1Voluntario_2(String cod, Encomenda e){
+        this.voluntarios.getVoluntario(cod).rejeitaPedido(e);
+    }
+
+    public void op3VolNome(String nome, String c){
+        voluntarios.getVoluntario(c).setNome(nome);
+    }
+
+    public void op3VolPass (String pass, String c){
+        voluntarios.getVoluntario(c).setPass(pass);
+    }
+
+    public void op3VolGPS(double x, double y, String c){
+        voluntarios.getVoluntario(c).setGPS(x,y);
+    }
+
+    public void op3VolRaio(double x, String c){
+        voluntarios.getVoluntario(c).setRaio(x);
+    }
+
+    public int op4Vol(String e, String cod){
+        int r=0;
+        if(this.encomendas.containsKey(e)){
+            Encomenda enc = this.encomendas.get(e);
+            if(this.voluntarios.getVoluntario(cod).getList().contains(enc)){
+                this.encomendas.get(e).setEntregue(true);
+                this.lojas.getLoja(enc.getCodloja()).setEntregue(enc);
+                r=1;
+            }
+        }
+        return r;
+    }
+
+    //////////////////////////////////////////// Interpretador Loja ////////////////////////////////////////////////////////////////
+
+    public void op1Transp_1(String cod, Encomenda e){
+        this.getTransportadora(cod).aceitaPedido(e);
+        this.encomendas.get(e.getCodenc()).setAceites(true);
+    }
+
+    public void opTransp_2(String cod, Encomenda e){ this.getTransportadora(cod).rejeitaPedido(e);}
+
+    public void op3TranspNome(String nome, String c){
+        transportadoras.getTransportadora(c).setNome(nome);
+    }
+
+    public void op3TranspPass (String pass, String c){
+        transportadoras.getTransportadora(c).setPass(pass);
+    }
+
+    public void op3TranspGPS(double x, double y, String c){
+        transportadoras.getTransportadora(c).setGPS(x,y);
+    }
+
+    public void op3TranspRaio(double x, String c){
+        transportadoras.getTransportadora(c).setRaio(x);
+    }
+
+    public void op3TranspTaxa(double x, String c){
+        transportadoras.getTransportadora(c).setTaxa(x);
+    }
+
+    public void op3TranspTaxap(double x, String c){
+        transportadoras.getTransportadora(c).setTaxaPeso(x);
+    }
+
+    public int op4Transp(String e, String cod){
+        int r=0;
+        if(this.encomendas.containsKey(e)){
+            Encomenda enc = this.encomendas.get(e);
+            if(this.getTransportadora(cod).getList().contains(enc)){
+                this.encomendas.get(e).setEntregue(true);
+                this.lojas.getLoja(enc.getCodloja()).setEntregue(enc);
+                r=1;
+            }
+        }
+        return r;
+    }
+
 }
+
+
