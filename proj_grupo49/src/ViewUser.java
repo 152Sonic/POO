@@ -96,6 +96,8 @@ public class ViewUser {
     }
 
 
+
+
     public void printEnc(Map<String,List<String>> p){
         System.out.println("Encomendas em espera:");
         for(Map.Entry<String,List<String>> ped : p.entrySet()){
@@ -103,14 +105,25 @@ public class ViewUser {
         }
     }
 
-    public void printTransp(Map<String,List<String>> p, String e){
-        System.out.println("Pedidos de Transportadoras:");
-        for(String t : p.get(e)){
-            System.out.println();
-        }
+    public void pedTransp(String e ){
+        System.out.println("Pedidos de Transportadoras para a encomenda "+e+":\n");
+    }
+
+    public void printTransp(Transportadora t, double pr, double time){
+        System.out.println("\nCodigo: "+t.getCod());
+        System.out.println("Nome: "+t.getNome());
+        System.out.println("Preço: "+ pr);
+        System.out.println("Tempo estimad: "+ time);
+    }
+
+    public void codEncC(){
+        System.out.println("Introduza o código da encomenda a consultar:");
     }
 
 
+    public void acceptTransp(){
+        System.out.println("Insira o codigo da transportadora a aceitar");
+    }
 
 
 

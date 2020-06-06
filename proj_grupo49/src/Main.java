@@ -13,7 +13,7 @@ public class Main {
 
 
          Modelo m = new Modelo(lojas,transportadoras,voluntarios,utilizadors,encomendas);
-         m.parse("proj_grupo49/logs2.txt");
+         m.parse("logs2.txt");
 
 
        List<LinhaEncomenda> linha = new ArrayList<>();

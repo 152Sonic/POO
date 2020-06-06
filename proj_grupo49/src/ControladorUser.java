@@ -38,7 +38,23 @@ public class ControladorUser {
                     }
                     break;
                 case 2:
-                    double preço = m.(enc,transp)
+                    v.printEnc(m.getUtilizador(user).getPedidos());
+                    v.codEncC();
+                    String ec = Input.lerString();
+                    if (m.getUtilizador(user).getPedidos().containsKey(ec)){
+
+                        v.pedTransp(ec);
+                        for (String t: m.getUtilizador(user).getPedidos().get(ec) ){
+                            v.printTransp(m.getTransportadora(t),m.getPrecoTransp(ec,t),0.0);
+                        }
+                        v.acceptTransp();
+                        String ct= Input.lerString();
+//                        if (m.getUtilizador(user).getPedidos().get(ec).contains(ct)){
+//
+//                        }
+
+                    }
+                    //double preço = m.getPrecoTransp()
 
                     break;
 

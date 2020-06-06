@@ -484,7 +484,11 @@ public class Modelo {
     }
 
     public double getPrecoTransp(String e, String t){
-        return this.getTransportadora(t).getPreço()
+        String cl = encomendas.get(e).getCodloja();
+        GPS l = lojas.getLoja(cl).getGPS().clone();
+        String user = encomendas.get(e).getCoduser();
+        GPS us = utilizadores.getUtilizador(user).getGPS().clone();
+        return this.getTransportadora(t).getPreço(l,us,encomendas.get(e).clone());
     }
 
 }
