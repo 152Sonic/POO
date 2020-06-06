@@ -1,4 +1,5 @@
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -18,6 +19,7 @@ public class Encomenda {
         this.coduser = new String();
         this.codloja = new String();
         this.peso = 0;
+        this.aceites = false;
         this.entregue = false;
         this.classificacao = 0.0;
         this.linha = new ArrayList<>();
@@ -29,6 +31,7 @@ public class Encomenda {
         this.coduser = u;
         this.codloja = l;
         this.peso = y;
+        this.aceites = false;
         this.entregue = false;
         this.classificacao = 0.0;
         this.setLinha(li);
@@ -140,4 +143,9 @@ public class Encomenda {
     public double getPreco() {
         return this.linha.stream().mapToDouble(LinhaEncomenda::getPreco).sum();
     }
+
+    public double getPesoLinhas() {
+        return this.linha.stream().mapToDouble(LinhaEncomenda::getPeso).sum();
+    }
+
 }

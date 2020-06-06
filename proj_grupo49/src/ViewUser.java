@@ -58,10 +58,18 @@ public class ViewUser {
     }
 
     public void succes(){
-        System.out.println("Encomenda bem sucedida!");
+        System.out.println("Encomenda bem sucedida!\n A Loja irá sinalizar a sua encomenda e ser-lhe-á atribuído um transporte.\n Aguarde por mais informação.");
     }
 
     public void lojaInv(){ System.out.println("Esta loja não existe, por favor insira uma loja válida!");}
+
+    public void prodInv(){ System.out.println("Este produto nao existe, por favor insira um produto válido!");}
+
+    public void remProd(){System.out.println("Insira o codigo de produto que pretende remover:");}
+
+    public void encVazia(){
+        System.out.println("Ainda não acrescentou nenhum produto!");
+    }
 
     public void printLojas(Lojas l){
         System.out.println("Código           Nome da Loja\n");
@@ -75,6 +83,16 @@ public class ViewUser {
         for(Produto pr : p){
             System.out.printf("%4s             %f                %s\n", pr.getCod(), pr.getPreçouni(), pr.getNome());
         }
+    }
+
+    public void menuEncomenda(){
+        System.out.println("_____________________________________________________________________________________________");
+        System.out.println("|Escolha uma opção:                                                                          |");
+        System.out.println("|1  -> Acrescentar um Produto                                                                |");
+        System.out.println("|2  -> Remover um Produto                                                                    |");
+        System.out.println("|3  -> Finalizar Encomenda                                                                   |");
+        System.out.println("|0  -> Exit Program                                                                          |");
+        System.out.println("|____________________________________________________________________________________________|");
     }
 
 

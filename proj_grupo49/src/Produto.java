@@ -1,21 +1,21 @@
 public class Produto implements Comparable<Produto> {
-    private String cod;
-    private String nome;
-    private double peso;
-    private double preçouni;
+            private String cod;
+            private String nome;
+            private double peso;
+            private double preçouni;
 
-    public Produto(){
-        this.cod = new String();
-        this.nome = new String();
-        this.peso = 0;
-        this.preçouni = 0;
-    }
+            public Produto(){
+                this.cod = new String();
+                this.nome = new String();
+                this.peso = 0;
+                this.preçouni = 0;
+            }
 
-    public Produto(String c, String n, double peso, double p){
-        this.cod = c;
-        this.nome = n;
-        this.peso = peso;
-        this.preçouni = p;
+            public Produto(String c, String n, double peso, double p){
+                this.cod = c;
+                this.nome = n;
+                this.peso = peso;
+                this.preçouni = p;
     }
 
     public double getPeso() {

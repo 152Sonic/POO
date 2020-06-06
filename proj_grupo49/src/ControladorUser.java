@@ -1,3 +1,8 @@
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
+
 public class ControladorUser {
     private Modelo m;
     private String user;
@@ -22,24 +27,18 @@ public class ControladorUser {
                     v.printLojas(m.getLojas());
                     v.codloja();
                     String l = Input.lerString();
-                    String u = this.user;
-                    v.quant();
-                    int quantos = Input.lerInt();
-                    String[] ps = new String[quantos];
-                    int[] qts = new int[quantos];
-                    for(; quantos>0; quantos--){
-                        v.codProd();
-                        String p = Input.lerString();
-                        v.quantp();
-                        int q = Input.lerInt();
-                        ps[quantos-1] = p;
-                        qts[quantos-1] = q;
+                    List<LinhaEncomenda> linha = new ArrayList<>();
+                    int op=-1;
+                    while(op!=0) {
+                        v.printProdutos(m.getProdutos());
+                        v.menuEncomenda();
+                        op = Input.lerInt();
+                        op1(op, e, l, v, linha, m.getProdutos());
+                        if(op ==3) break;
                     }
-                    m.addEncomendaLoja( e, l, u, ps, qts);
-                    v.succes();
+                    break;
                 case 2:
-
-
+                    break;
 
                 default:
                     System.out.println("Opçao invalida!");
@@ -47,4 +46,78 @@ public class ControladorUser {
 
         }while(o!=0);
     }
+
+
+    public void op1(int op, String enc, String loja, ViewUser v, List<LinhaEncomenda> linha, Set<Produto> produtos){
+        switch(op){
+            case 0:
+                break;
+            case 1:
+                v.codProd();
+                String p = Input.lerString();
+                if(m.existeProd(p,produtos)){
+                    v.quantp();
+                    int q = Input.lerInt();
+                    Produto pr = getProd(p,produtos);
+                    LinhaEncomenda li = new LinhaEncomenda(p,pr.getNome(),q,pr.getPeso(),pr.getPreçouni() * q);
+                    linha.add(li);
+                }
+                else{
+                    v.prodInv();
+                }
+                break;
+            case 2:
+                v.remProd();
+                String p1 = Input.lerString();
+                if(existeProd(p1,linha));
+                else{
+                    v.prodInv();
+                }
+                break;
+            case 3:
+                if(linha.size()<=0){
+                    v.encVazia();
+                }
+                else {
+                    Encomenda encomenda = new Encomenda(enc,this.user,loja, getPesoLinha(linha), linha);
+                    m.op1User_3(encomenda);
+                    v.succes();
+                }
+                break;
+            default:
+                v.printError();
+                break;
+        }
+    }
+
+    public boolean existeProd(String cod, List<LinhaEncomenda> l){
+        Iterator<LinhaEncomenda> it = l.iterator();
+        boolean found = false;
+        while(it.hasNext() && !found){
+            LinhaEncomenda li = it.next();
+            if(li.getCod().equals(cod)) {
+                found = true;
+                l.remove(li);
+            }
+        }
+        return found;
+    }
+
+    public double getPesoLinha(List<LinhaEncomenda> linha){return linha.stream().mapToDouble(LinhaEncomenda::getPeso).sum();
+    }
+
+    public Produto getProd( String cod,Set<Produto> p){
+        Iterator<Produto> it = p.iterator();
+        boolean found = false;
+        Produto pr = new Produto();
+        while(it.hasNext() && !found){
+            pr = it.next();
+            if(pr.getCod().equals(cod)) {
+                found = true;
+            }
+        }
+        return pr;
+    }
 }
+
+

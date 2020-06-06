@@ -344,6 +344,18 @@ public class Modelo {
         return this.getUtilizadores().getUtilizador(cod);
     }
 
+    public boolean existeProd(String cod, Set<Produto> pr){
+        Iterator<Produto> it = pr.iterator();
+        boolean r = false;
+        while (it.hasNext() && !r){
+            Produto aux = it.next();
+            if (aux.getCod().equals(cod)){
+                r = true;
+            }
+        }
+        return r;
+    }
+
     //////////////////////////////////////////// Interpretador Loja ////////////////////////////////////////////////////////////////
     public int op1Loja(String e, String l){
         int r = 0;
@@ -465,6 +477,10 @@ public class Modelo {
 
     //////////////////////////////////////////// Interpretador Utilizador ////////////////////////////////////////////////////////////////
 
+    public void op1User_3(Encomenda e){
+        this.encomendas.put(e.getCodenc(),e.clone());
+        this.getLoja(e.getCodloja()).addEncomenda(e.clone());
+    }
 
 }
 
