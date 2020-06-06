@@ -1,5 +1,7 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Write a description of class Utilizador here.
@@ -16,7 +18,7 @@ public class Utilizador
     private String cod;
     private String nome;
     private GPS gps;
-    private List<Encomenda> pedidos;
+    private Map<String,List<String>> pedidos;
     private List<Encomenda> entregues;
 
 
@@ -26,7 +28,7 @@ public class Utilizador
         this.cod = new String();
         this.nome = new String();
         this.gps = new GPS();
-        this.pedidos = new ArrayList<>();
+        this.pedidos = new HashMap<>();
         this.entregues = new ArrayList<>();
     }
 
@@ -36,7 +38,7 @@ public class Utilizador
         this.cod = s;
         this.nome = n;
         this.gps = gps.clone();
-        this.pedidos = new ArrayList<>();
+        this.pedidos = new HashMap<>();
         this.setEntregues(lista);
     }
     public Utilizador (String p,String s, String n, GPS gps)
@@ -45,7 +47,7 @@ public class Utilizador
         this.cod = s;
         this.nome = n;
         this.gps = gps.clone();
-        this.pedidos = new ArrayList<>();
+        this.pedidos = new HashMap<>();
         this.entregues = new ArrayList<>();
     }
 
@@ -55,7 +57,7 @@ public class Utilizador
         this.cod = u.getCod();
         this.nome = u.getNome();
         this.gps = new GPS(u.getGPS());
-        this.pedidos = new ArrayList<>();
+        this.setPedidos(u.getPedidos());
         this.setEntregues(u.getEntregues());
     }
 
@@ -91,17 +93,21 @@ public class Utilizador
             this.entregues.add(li);
     }
 
-    public ArrayList<Encomenda> getPedidos() {
-        ArrayList<Encomenda> aux = new ArrayList<>();
-        for (Encomenda l : this.pedidos)
-            aux.add(l);
+    public Map<String,List<String>> getPedidos() {
+        Map<String,List<String>> aux = new HashMap<>();
+        for (Map.Entry<String,List<String>> l : this.pedidos.entrySet()) {
+            if (!aux.containsKey(l.getKey())) aux.put(l.getKey(), new ArrayList<>());
+            aux.put(l.getKey(), l.getValue());
+        }
         return aux;
     }
-    public void setPedidos (ArrayList<Encomenda> l)
+    public void setPedidos (Map<String,List<String>> l)
     {
-        this.pedidos = new ArrayList<>();
-        for(Encomenda li : l)
-            this.pedidos.add(li);
+        this.pedidos = new HashMap<>();
+        for(Map.Entry<String,List<String>> li : l.entrySet()) {
+            if (!pedidos.containsKey(li.getKey())) pedidos.put(li.getKey(), new ArrayList<>());
+            this.pedidos.put(li.getKey(), li.getValue());
+        }
     }
 
     public void setCod(String s)
@@ -147,5 +153,13 @@ public class Utilizador
 
     public boolean validaPass(String p){
         return this.pass.equals(p);
+    }
+
+    public void addPedidos(String e, String t){
+        if(pedidos.containsKey(e)) pedidos.get(e).add(t);
+        else {
+            pedidos.put(e,new ArrayList<>());
+            pedidos.get(e).add(t);
+        }
     }
 }

@@ -434,6 +434,7 @@ public class Modelo {
     public void op1Transp_1(String cod, Encomenda e){
         this.getTransportadora(cod).aceitaPedido(e);
         this.encomendas.get(e.getCodenc()).setAceites(true);
+        this.getUtilizador(e.getCoduser()).addPedidos(e.getCodenc(),cod);
     }
 
     public void opTransp_2(String cod, Encomenda e){ this.getTransportadora(cod).rejeitaPedido(e);}
@@ -480,6 +481,10 @@ public class Modelo {
     public void op1User_3(Encomenda e){
         this.encomendas.put(e.getCodenc(),e.clone());
         this.getLoja(e.getCodloja()).addEncomenda(e.clone());
+    }
+
+    public double getPrecoTransp(String e, String t){
+        return this.getTransportadora(t).getPreço()
     }
 
 }

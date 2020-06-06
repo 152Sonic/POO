@@ -49,4 +49,6 @@ public class Utilizadores {
 
     public boolean existeUser(String c){ return this.utilizadores.containsKey(c);}
 
+
+
 }

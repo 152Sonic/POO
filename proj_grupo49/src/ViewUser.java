@@ -96,6 +96,22 @@ public class ViewUser {
     }
 
 
+    public void printEnc(Map<String,List<String>> p){
+        System.out.println("Encomendas em espera:");
+        for(Map.Entry<String,List<String>> ped : p.entrySet()){
+            System.out.println(ped.getKey());
+        }
+    }
+
+    public void printTransp(Map<String,List<String>> p, String e){
+        System.out.println("Pedidos de Transportadoras:");
+        for(String t : p.get(e)){
+            System.out.println();
+        }
+    }
+
+
+
 
 
 
