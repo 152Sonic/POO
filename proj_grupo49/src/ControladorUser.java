@@ -35,7 +35,7 @@ public class ControladorUser {
                         v.menuEncomenda();
                         op = Input.lerInt();
                         op1(op, e, l, v, linha, m.getProdutos());
-                        if(op ==3) break;
+                        if(op == 4) break;
                     }
                     break;
                 case 2:
@@ -68,14 +68,21 @@ public class ControladorUser {
                     v.histEnc(m.getUtilizador(user).getEntregues());
                     break;
                 case 4:
-                    v.classifica(m.getUtilizador(user).getEntregues());
-                    String en = Input.lerString();
-                    int op4 = -1;
-                    while(op4 == -1){
-                        v.classificacao();
-                        op4 = Input.lerInt();
-                        m.op4(en,op4);
-                        v.obg();
+                    List<Encomenda> cl = listaCl(m.getUtilizador(user).getEntregues());
+                    if(cl.size()<=0){
+                        v.vazia();
+                        break;
+                    }
+                    else {
+                        v.classifica(cl);
+                        String en = Input.lerString();
+                        int op4 = -1;
+                        while (op4 == -1) {
+                            v.classificacao();
+                            op4 = Input.lerInt();
+                            m.op4(en, op4);
+                            v.obg();
+                        }
                     }
                     break;
                 case 5:
@@ -209,6 +216,18 @@ public class ControladorUser {
             default:
                 v.printError();
         }
+    }
+
+    public List<Encomenda> listaCl(List<Encomenda> list){
+        List<Encomenda> aux = new ArrayList<>();
+        if(list.size() <=0) return aux;
+        else{
+            for(Encomenda e: list){
+                if(e.getEntregue() && e.getClassificacao() ==-1)
+                    aux.add(e);
+            }
+        }
+        return aux;
     }
 }
 

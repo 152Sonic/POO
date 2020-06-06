@@ -4,11 +4,6 @@
     <list default="true" id="6033b161-af32-4abb-9906-154c8440547d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/proj_grupo49/src/ControladorUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/proj_grupo49/src/ControladorUser.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/proj_grupo49/src/Encomenda.java" beforeDir="false" afterPath="$PROJECT_DIR$/proj_grupo49/src/Encomenda.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/proj_grupo49/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/proj_grupo49/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/proj_grupo49/src/Modelo.java" beforeDir="false" afterPath="$PROJECT_DIR$/proj_grupo49/src/Modelo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/proj_grupo49/src/Pedido.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/proj_grupo49/src/Utilizador.java" beforeDir="false" afterPath="$PROJECT_DIR$/proj_grupo49/src/Utilizador.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/proj_grupo49/src/ViewUser.java" beforeDir="false" afterPath="$PROJECT_DIR$/proj_grupo49/src/ViewUser.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -83,7 +78,7 @@
       <workItem from="1591134252744" duration="1293000" />
       <workItem from="1591282971301" duration="11019000" />
       <workItem from="1591364435850" duration="27797000" />
-      <workItem from="1591448018477" duration="17713000" />
+      <workItem from="1591448018477" duration="19584000" />
     </task>
     <task id="LOCAL-00001" summary="criaçao de lojas, transportadoras, users, e voluntarios">
       <created>1590021207693</created>
@@ -218,7 +213,14 @@
       <option name="project" value="LOCAL" />
       <updated>1591456971245</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="op4 user">
+      <created>1591472366772</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1591472366772</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -242,7 +244,8 @@
     <MESSAGE value="Inicio queries controlador user" />
     <MESSAGE value="Case 1 Controlador User" />
     <MESSAGE value="OP2 user" />
-    <option name="LAST_COMMIT_MESSAGE" value="OP2 user" />
+    <MESSAGE value="op4 user" />
+    <option name="LAST_COMMIT_MESSAGE" value="op4 user" />
   </component>
   <component name="WindowStateProjectService">
     <state x="801" y="271" width="544" height="562" key="#com.intellij.ide.util.MemberChooser" timestamp="1591381438750">
@@ -253,30 +256,30 @@
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="746" y="439" width="494" height="237" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/67.27.1853.1053@67.27.1853.1053" timestamp="1591113070537" />
-    <state x="558" y="149" width="860" height="807" key="CommitChangelistDialog2" timestamp="1591456971145">
+    <state x="558" y="149" width="860" height="807" key="CommitChangelistDialog2" timestamp="1591472366713">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="558" y="149" width="860" height="807" key="CommitChangelistDialog2/67.27.1853.1053@67.27.1853.1053" timestamp="1591456971145" />
+    <state x="558" y="149" width="860" height="807" key="CommitChangelistDialog2/67.27.1853.1053@67.27.1853.1053" timestamp="1591472366713" />
     <state x="776" y="310" width="424" height="484" key="FileChooserDialogImpl" timestamp="1590022649100">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="776" y="310" width="424" height="484" key="FileChooserDialogImpl/67.27.1853.1053@67.27.1853.1053" timestamp="1590022649100" />
-    <state width="1807" height="407" key="GridCell.Tab.0.bottom" timestamp="1591472189772">
+    <state width="1807" height="668" key="GridCell.Tab.0.bottom" timestamp="1591475045269">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="407" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1591472189772" />
-    <state width="1807" height="407" key="GridCell.Tab.0.center" timestamp="1591472189772">
+    <state width="1807" height="668" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1591475045269" />
+    <state width="1807" height="668" key="GridCell.Tab.0.center" timestamp="1591475045269">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="407" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1591472189772" />
-    <state width="1807" height="407" key="GridCell.Tab.0.left" timestamp="1591472189772">
+    <state width="1807" height="668" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1591475045269" />
+    <state width="1807" height="668" key="GridCell.Tab.0.left" timestamp="1591475045268">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="407" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1591472189772" />
-    <state width="1807" height="407" key="GridCell.Tab.0.right" timestamp="1591472189772">
+    <state width="1807" height="668" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1591475045268" />
+    <state width="1807" height="668" key="GridCell.Tab.0.right" timestamp="1591475045269">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="407" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1591472189772" />
+    <state width="1807" height="668" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1591475045269" />
     <state x="698" y="270" width="580" height="564" key="MultipleFileMergeDialog" timestamp="1591469074081">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>

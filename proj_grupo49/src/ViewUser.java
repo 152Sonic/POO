@@ -153,15 +153,11 @@ public class ViewUser {
     }
 
     public void classifica(List<Encomenda> l){
-        if (l.size()<=0) System.out.println("Lista Vazia! ");
-        else{
             for(Encomenda e : l){
-                if(e.getEntregue() && e.getClassificacao()==-1)
                     System.out.println("Encomenda:" + e.getCodenc());
             }
             System.out.println("Escolha qual entrega pretende classificar!");
         }
-    }
 
     public void classificacao(){
         System.out.println("Classifique a entrega de 0 a 5");
@@ -226,7 +222,9 @@ public class ViewUser {
         System.out.println("Insira a nova longitude:");
     }
 
-
+    public void vazia(){
+        System.out.println("A lista está vazia");
+    }
 
 
 }
