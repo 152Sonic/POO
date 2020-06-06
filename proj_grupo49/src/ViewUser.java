@@ -1,4 +1,6 @@
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 public class ViewUser {
 
@@ -61,7 +63,19 @@ public class ViewUser {
 
     public void lojaInv(){ System.out.println("Esta loja não existe, por favor insira uma loja válida!");}
 
+    public void printLojas(Lojas l){
+        System.out.println("Código           Nome da Loja\n");
+        for(Map.Entry<String,Loja> loja : l.getLojas().entrySet()){
+            System.out.printf("%4s           %s\n", loja.getKey(), loja.getValue().getNome());
+        }
+    }
 
+    public void printProdutos(Set<Produto> p){
+        System.out.println("Código           Preço           Descrição\n");
+        for(Produto pr : p){
+            System.out.printf("%4s             %f                %s\n", pr.getCod(), pr.getPreçouni(), pr.getNome());
+        }
+    }
 
 
 

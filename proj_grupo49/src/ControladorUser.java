@@ -19,6 +19,7 @@ public class ControladorUser {
                 case 1:
                     v.codEnc();
                     String e = Input.lerString();
+                    v.printLojas(m.getLojas());
                     v.codloja();
                     String l = Input.lerString();
                     String u = this.user;
