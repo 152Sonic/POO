@@ -319,7 +319,10 @@ public class Modelo {
 
     public void rejeitaOutraTransp(Map<String,List<String>> map, String codt, Encomenda e){
         for(String t : map.get("T")){
-            if(!t.equals(codt)) this.transportadoras.getTransportadora(t).rmPedido(e);
+            if(!t.equals(codt)){
+                this.transportadoras.getTransportadora(t).rmPedido(e);
+                this.transportadoras.getTransportadora(t).getEspera().remove(e);
+            }
         }
         for(String v : map.get("V")){
             if(!v.equals(codt)) this.voluntarios.getVoluntario(v).rmPedido(e);
@@ -489,6 +492,25 @@ public class Modelo {
         String user = encomendas.get(e).getCoduser();
         GPS us = utilizadores.getUtilizador(user).getGPS().clone();
         return this.getTransportadora(t).getPreço(l,us,encomendas.get(e).clone());
+    }
+
+    public void aceite(String user, String t, String e){
+        //encomendas.get(e).setAceites(true);
+        this.getUtilizador(user).getPedidos().remove(e);
+        rejeitaOutraTransp(getPossiveisEntregadores(encomendas.get(e)), t, encomendas.get(e));
+        this.getTransportadora(t).addEncT(encomendas.get(e));
+    }
+
+    public void opUNome(String nome, String c){
+        utilizadores.getUtilizador(c).setNome(nome);
+    }
+
+    public void opUPass (String pass, String c){
+        utilizadores.getUtilizador(c).setPass(pass);
+    }
+
+    public void opUGPS(double x, double y, String c){
+        utilizadores.getUtilizador(c).setGPS(x,y);
     }
 
 }

@@ -17,8 +17,9 @@ public class ControladorLogInLoja {
                 case 0:
                     break;
                 case 1:
-                    v.flush();
                     v.pressioneEnter();
+                    Input.lerString();
+                    v.flush();
                     v.ID();
                     String u = Input.lerString();
                     v.pass();
@@ -29,9 +30,17 @@ public class ControladorLogInLoja {
 //                        loja.setC(u);
 //                        loja.setL(m.getLojas());
 //                        loja.setU(m.getUtilizadores());
+                        v.pressioneEnter();
+                        Input.lerString();
+                        v.flush();
                         loja.run();
                     }
-                    else v.LoginDeny();
+                    else {
+                        v.LoginDeny();
+                        v.pressioneEnter();
+                        Input.lerString();
+                        v.flush();
+                    }
                     break;
                 case 2:
                     v.pressioneEnter();

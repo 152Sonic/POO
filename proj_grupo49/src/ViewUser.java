@@ -23,6 +23,9 @@ public class ViewUser {
     public void flush(){
         System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
     }
+    public void inst(){
+        System.out.println("\nEscolha a instrução: ");
+    }
 
     public void pressioneEnter(){
         System.out.println("\nPressione enter para continuar");
@@ -90,13 +93,25 @@ public class ViewUser {
         System.out.println("|Escolha uma opção:                                                                          |");
         System.out.println("|1  -> Acrescentar um Produto                                                                |");
         System.out.println("|2  -> Remover um Produto                                                                    |");
-        System.out.println("|3  -> Finalizar Encomenda                                                                   |");
+        System.out.println("|3  -> Ver estado de Encomenda                                                               |");
+        System.out.println("|4  -> Finalizar Encomenda                                                                   |");
         System.out.println("|0  -> Exit Program                                                                          |");
         System.out.println("|____________________________________________________________________________________________|");
     }
 
 
-
+    public void getEstadoEnc(List<LinhaEncomenda> l){
+        if (l.size()<=0) System.out.println("Lista Vazia!");
+        else{
+            for (LinhaEncomenda linha: l){
+                System.out.println();
+                System.out.println("Produto: " + linha.getCod());
+                System.out.println("Descrição: " + linha.getDesc());
+                System.out.println("Quantidade: " + linha.getQuant());
+                System.out.println("Preço s/transp: " + linha.getPreco());
+            }
+        }
+    }
 
     public void printEnc(Map<String,List<String>> p){
         System.out.println("Encomendas em espera:");
@@ -113,7 +128,7 @@ public class ViewUser {
         System.out.println("\nCodigo: "+t.getCod());
         System.out.println("Nome: "+t.getNome());
         System.out.println("Preço: "+ pr);
-        System.out.println("Tempo estimad: "+ time);
+        System.out.println("Tempo estimad: "+ time+ "\n");
     }
 
     public void codEncC(){
@@ -123,6 +138,74 @@ public class ViewUser {
 
     public void acceptTransp(){
         System.out.println("Insira o codigo da transportadora a aceitar");
+    }
+
+    public void jaAceite(String ec){
+        System.out.println("A encomenda "+ec+" já tem trasnportadora!");
+    }
+
+    public void printNonT(){
+        System.out.println("A transportadora que inseriu não existe. Por favor tente outra vez:");
+    }
+
+    public void printNonE(){
+        System.out.println("A encomenda que inseriu não existe. Por favor tente outra vez:");
+    }
+
+
+    public void histEnc(List<Encomenda> l){
+        if (l.size()<=0) System.out.println("Lista Vazia! ");
+        else{
+            for(Encomenda e : l){
+                System.out.println();
+                System.out.println("Ecomenda:" + e.getCodenc());
+                System.out.println("Loja: " +e.getCodloja());
+                System.out.println("Preço: " + e.getPreco());
+                System.out.println("Aceite: " + e.getAceites());
+                System.out.println("Entregue: "+ e.getEntregue());
+            }
+        }
+    }
+
+    public void printMenuDados(){
+        System.out.println("_____________________________________________________________________________________________");
+        System.out.println("|Escolha uma opção:                                                                          |");
+        System.out.println("|1  -> Alterar Nome                                                                          |");
+        System.out.println("|2  -> Alterar Password                                                                      |");
+        System.out.println("|3  -> Alterar Localização                                                                   |");
+        System.out.println("|0  -> Voltar ao menu                                                                        |");
+        System.out.println("|____________________________________________________________________________________________|");
+    }
+
+    public void printDadosAtuais(Utilizador l){
+        System.out.println("\nOs seus dados atuais: ");
+        System.out.println("Nome:" + l.getNome());
+        System.out.println("Codigo:"  + l.getCod());
+        System.out.println("Localização:\n    " + l.getGPS().toString() + "\n");
+    }
+
+    public void altNome(){
+        System.out.println("Insira o nome novo:");
+    }
+
+    public void passordAntiga(){
+        System.out.println("Insira a password atual:");
+    }
+
+    public void passError(){
+        System.out.println("Palavra pass incorreta");
+    }
+
+    public void passordNova(){
+        System.out.println("Insira a password nova:");
+    }
+
+    public void altloc(){
+        System.out.println("Insira a nova latitude:");
+    }
+
+    public void altloclon(){
+        System.out.println("Insira a nova longitude:");
     }
 
 

@@ -17,6 +17,7 @@ public class ControladorUser {
         do{
             ViewUser v = new ViewUser();
             v.menuUser();
+            v.inst();
             o = Input.lerInt();
             switch (o){
                 case 0:
@@ -41,21 +42,46 @@ public class ControladorUser {
                     v.printEnc(m.getUtilizador(user).getPedidos());
                     v.codEncC();
                     String ec = Input.lerString();
-                    if (m.getUtilizador(user).getPedidos().containsKey(ec)){
-
-                        v.pedTransp(ec);
-                        for (String t: m.getUtilizador(user).getPedidos().get(ec) ){
-                            v.printTransp(m.getTransportadora(t),m.getPrecoTransp(ec,t),0.0);
+                    boolean ri = true;
+                    while (ri) {
+                        if (m.getUtilizador(user).getPedidos().containsKey(ec)) {
+                            v.pedTransp(ec);
+                            for (String t : m.getUtilizador(user).getPedidos().get(ec)) {
+                                //falta funçao de tempo estimado
+                                v.printTransp(m.getTransportadora(t), m.getPrecoTransp(ec, t), 0.0);
+                            }
+                            boolean r = true;
+                            while (r) {
+                                v.acceptTransp();
+                                String ct = Input.lerString();
+                                if (m.getUtilizador(user).getPedidos().get(ec).contains(ct)) {
+                                    m.aceite(user, ct, ec);
+                                    r = false;
+                                } else v.printNonT();
+                            }
+                            ri = false;
                         }
-                        v.acceptTransp();
-                        String ct= Input.lerString();
-//                        if (m.getUtilizador(user).getPedidos().get(ec).contains(ct)){
-//
-//                        }
-
+                        else v.printNonE();
                     }
-                    //double preço = m.getPrecoTransp()
-
+                    break;
+                case 3:
+                    v.histEnc(m.getUtilizador(user).getEntregues());
+                    break;
+                case 4:
+                    break;
+                case 5:
+                    int op5 = -1;
+                    while (op5!=0) {
+                        v.flush();
+                        v.printDadosAtuais(m.getUtilizador(user));
+                        v.pressioneEnter();
+                        Input.lerString();
+                        v.flush();
+                        v.printMenuDados();
+                        v.inst();
+                        op5 = Input.lerInt();
+                        opU(v, op5);
+                    }
                     break;
 
                 default:
@@ -93,6 +119,9 @@ public class ControladorUser {
                 }
                 break;
             case 3:
+                v.getEstadoEnc(linha);
+                break;
+            case 4:
                 if(linha.size()<=0){
                     v.encVazia();
                 }
@@ -135,6 +164,42 @@ public class ControladorUser {
             }
         }
         return pr;
+    }
+    public void opU(ViewUser v, int op){
+        switch (op){
+            case 0:
+                break;
+            case 1:
+//                v.flush();
+//                v.pressioneEnter();
+                v.altNome();
+                String nome = Input.lerString();
+                m.opUNome(nome, user);
+                break;
+            case 2:
+//                v.flush();
+//                v.pressioneEnter();
+                v.passordAntiga();
+                String passAnt = Input.lerString();
+                if (passAnt.equals(m.getUtilizador(user).getPass())){
+                    v.passordNova();
+                    String nova = Input.lerString();
+                    m.opUPass(nova,user);
+                }
+                else v.passError();
+                break;
+            case 3:
+//                v.flush();
+//                v.pressioneEnter();
+                v.altloc();
+                double lat = Input.lerDouble();
+                v.altloclon();
+                double lon = Input.lerDouble();
+                m.opUGPS(lat,lon,user);
+                break;
+            default:
+                v.printError();
+        }
     }
 }
 

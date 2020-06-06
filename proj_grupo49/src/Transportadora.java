@@ -313,4 +313,9 @@ public class Transportadora
         this.pedidos.remove(e);
     }
 
+    public void addEncT(Encomenda e){
+        this.listenc.add(e);
+    }
+
+
 }

@@ -50,9 +50,14 @@ public class ViewTransp {
     }
 
     public void opc2(List<Encomenda> e){
-        System.out.println("Codigo");
-        for (Encomenda es : e){
-            if (!es.getAceites()) System.out.println(es.getCodenc());
+        if (e.size() <= 0){
+            System.out.println("LISTA VAZIA!");
+        }
+        else {
+            System.out.println("Codigo:");
+            for (Encomenda es : e) {
+                if (es.getAceites()) System.out.println(es.getCodenc());
+            }
         }
     }
 
@@ -126,6 +131,10 @@ public class ViewTransp {
         System.out.println("Localização:\n    " + t.getGPS().toString() + "\n");
         System.out.println("Taxa:" + t.getTaxa());
         System.out.println("Taxa de Peso:" + t.getTaxaPeso());
+    }
+
+    public void printNonE(){
+        System.out.println("A encomenda não existe!");
     }
 
 

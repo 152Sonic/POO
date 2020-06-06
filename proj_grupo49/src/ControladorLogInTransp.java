@@ -22,9 +22,17 @@ public class ControladorLogInTransp {
                     if (m.verificaLogin(u,p,1)){
                         v.loginAccep();
                         ControladorTransp transp = new ControladorTransp(u,m);
+                        v.pressioneEnter();
+                        Input.lerString();
+                        v.flush();
                         transp.run();
                     }
-                    else v.LoginDeny();
+                    else {
+                        v.LoginDeny();
+                        v.pressioneEnter();
+                        Input.lerString();
+                        v.flush();
+                    }
                     break;
                 case 2:
                     v.ID();

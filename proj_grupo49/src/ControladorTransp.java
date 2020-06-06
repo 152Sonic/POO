@@ -58,7 +58,7 @@ public class ControladorTransp {
                     v.printEntregue();
                     String e = Input.lerString();
                     if(m.op4Transp(e,cod) ==1);
-                    else v.printError();
+                    else v.printNonE();
                         break;
                 default:
                     v.printError();

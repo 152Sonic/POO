@@ -16,6 +16,7 @@ public class ControladorLogInVoluntarios {
                 case 0:
                     break;
                 case 1:
+
                     v.ID();
                     String u = Input.lerString();
                     v.pass();
@@ -23,9 +24,17 @@ public class ControladorLogInVoluntarios {
                     if (m.verificaLogin(u, p,2)){
                         v.loginAccep();
                         ControladorVoluntario vol = new ControladorVoluntario(u,m);
+                        v.pressioneEnter();
+                        Input.lerString();
+                        v.flush();
                         vol.run();
                     }
-                    else v.LoginDeny();
+                    else {
+                        v.pressioneEnter();
+                        Input.lerString();
+                        v.flush();
+                        v.LoginDeny();
+                    }
                     break;
                 case 2:
                     v.ID();

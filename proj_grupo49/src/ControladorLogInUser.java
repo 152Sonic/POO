@@ -29,9 +29,17 @@ public class ControladorLogInUser {
                     if (m.verificaLogin(u, p,3)){
                         v.loginAccep();
                         ControladorUser user = new ControladorUser(m,u);
+                        v.pressioneEnter();
+                        Input.lerString();
+                        v.flush();
                         user.run();
                     }
-                    else v.LoginDeny();
+                    else {
+                        v.LoginDeny();
+                        v.pressioneEnter();
+                        Input.lerString();
+                        v.flush();
+                    }
                     break;
                 case 2:
                     v.ID();

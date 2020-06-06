@@ -25,21 +25,25 @@ public class ControladorGeral {
                     break;
                 case 1:
                     v.pressioneEnter();
+                    Input.lerString();
                     v.flush();
                     l.run();
                     break;
                 case 2:
                     v.pressioneEnter();
+                    Input.lerString();
                     v.flush();
                     u.run();
                     break;
                 case 3:
                     v.pressioneEnter();
+                    Input.lerString();
                     v.flush();
                     vol.run();
                     break;
                 case 4:
                     v.pressioneEnter();
+                    Input.lerString();
                     v.flush();
                     t.run();
                     break;
