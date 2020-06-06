@@ -395,6 +395,7 @@ public class Modelo {
             this.getVoluntario(cod).aceitaPedido(e);
             this.voluntarios.getVoluntario(cod).setLivre(false);
             this.encomendas.get(e.getCodenc()).setAceites(true);
+            this.getUtilizador(e.getCoduser()).encAceite(e);
             rejeitaOutraTransp(getPossiveisEntregadores(e), cod, e);
     }
 
@@ -426,6 +427,7 @@ public class Modelo {
                 this.encomendas.get(e).setEntregue(true);
                 this.getVoluntario(cod).setLivre(true);
                 this.lojas.getLoja(enc.getCodloja()).setEntregue(enc);
+                this.getUtilizador(encomendas.get(e).getCoduser()).encEntregue(encomendas.get(e));
                 r=1;
             }
         }
@@ -483,6 +485,7 @@ public class Modelo {
 
     public void op1User_3(Encomenda e){
         this.encomendas.put(e.getCodenc(),e.clone());
+        getUtilizador(e.getCoduser()).addEncomenda(e);
         this.getLoja(e.getCodloja()).addEncomenda(e.clone());
     }
 
@@ -513,6 +516,11 @@ public class Modelo {
         utilizadores.getUtilizador(c).setGPS(x,y);
     }
 
+    public void op4(String e, int cl){
+        encomendas.get(e).setClassificacao(cl);
+        getUtilizador(encomendas.get(e).getCoduser()).setCl(encomendas.get(e), cl);
+
+    }
 }
 
 

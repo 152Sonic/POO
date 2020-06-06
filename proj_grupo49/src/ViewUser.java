@@ -152,6 +152,24 @@ public class ViewUser {
         System.out.println("A encomenda que inseriu não existe. Por favor tente outra vez:");
     }
 
+    public void classifica(List<Encomenda> l){
+        if (l.size()<=0) System.out.println("Lista Vazia! ");
+        else{
+            for(Encomenda e : l){
+                if(e.getEntregue() && e.getClassificacao()==-1)
+                    System.out.println("Encomenda:" + e.getCodenc());
+            }
+            System.out.println("Escolha qual entrega pretende classificar!");
+        }
+    }
+
+    public void classificacao(){
+        System.out.println("Classifique a entrega de 0 a 5");
+    }
+
+    public void obg(){
+        System.out.println("Obrigado pela sua classificacao!");
+    }
 
     public void histEnc(List<Encomenda> l){
         if (l.size()<=0) System.out.println("Lista Vazia! ");

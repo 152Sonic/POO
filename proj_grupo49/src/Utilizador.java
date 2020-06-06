@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Write a description of class Utilizador here.
@@ -160,6 +157,46 @@ public class Utilizador
         else {
             pedidos.put(e,new ArrayList<>());
             pedidos.get(e).add(t);
+        }
+    }
+
+    public void addEncomenda(Encomenda e){
+        this.entregues.add(e);
+    }
+
+    public void encAceite(Encomenda e){
+        Iterator<Encomenda> it = this.entregues.iterator();
+        boolean f = false;
+        while(it.hasNext() && !f){
+            Encomenda e1 = it.next();
+            if(e1.equals(e)){
+                e1.setAceites(true);
+                f = true;
+            }
+        }
+    }
+
+    public void encEntregue(Encomenda e){
+        Iterator<Encomenda> it = this.entregues.iterator();
+        boolean f = false;
+        while(it.hasNext() && !f){
+            Encomenda e1 = it.next();
+            if(e1.equals(e)){
+                e1.setEntregue(true);
+                f = true;
+            }
+        }
+    }
+
+    public void setCl(Encomenda e, int cl){
+        Iterator<Encomenda> it = this.entregues.iterator();
+        boolean f = false;
+        while(it.hasNext() && !f){
+            Encomenda e1 = it.next();
+            if(e1.equals(e)){
+                e1.setClassificacao(cl);
+                f = true;
+            }
         }
     }
 }

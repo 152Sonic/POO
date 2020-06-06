@@ -68,6 +68,15 @@ public class ControladorUser {
                     v.histEnc(m.getUtilizador(user).getEntregues());
                     break;
                 case 4:
+                    v.classifica(m.getUtilizador(user).getEntregues());
+                    String en = Input.lerString();
+                    int op4 = -1;
+                    while(op4 == -1){
+                        v.classificacao();
+                        op4 = Input.lerInt();
+                        m.op4(en,op4);
+                        v.obg();
+                    }
                     break;
                 case 5:
                     int op5 = -1;
