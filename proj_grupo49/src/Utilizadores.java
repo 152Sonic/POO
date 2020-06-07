@@ -1,5 +1,7 @@
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeMap;
+import java.util.TreeSet;
 
 public class Utilizadores {
     private Map<String,Utilizador> utilizadores;
@@ -50,5 +52,15 @@ public class Utilizadores {
     public boolean existeUser(String c){ return this.utilizadores.containsKey(c);}
 
 
+    public Set<Utilizador> maisUsados(Set<Utilizador> aux){
+        for(Map.Entry<String,Utilizador> u : utilizadores.entrySet()){
+            aux.add(u.getValue());
+        }
+        return aux;
+    }
+
+    public void addEncomendaParse(String l, Encomenda e){
+        this.utilizadores.get(l).addEncomendaParse(e);
+    }
 
 }

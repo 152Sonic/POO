@@ -7,6 +7,8 @@ public class Encomenda {
     private String codenc;
     private String coduser;
     private String codloja;
+    private String transp;
+  //  private boolean medica;
     private double peso;
     private boolean aceites;
     private int classificacao;
@@ -18,6 +20,7 @@ public class Encomenda {
         this.codenc = new String();
         this.coduser = new String();
         this.codloja = new String();
+        this.transp = new String();
         this.peso = 0;
         this.aceites = false;
         this.entregue = false;
@@ -30,6 +33,7 @@ public class Encomenda {
         this.codenc = e;
         this.coduser = u;
         this.codloja = l;
+        this.transp = new String();
         this.peso = y;
         this.aceites = false;
         this.entregue = false;
@@ -41,6 +45,7 @@ public class Encomenda {
         this.codenc = e.getCodenc();
         this.coduser = e.getCoduser();
         this.codloja = e.getCodloja();
+        this.transp = e.getTransp();
         this.peso = e.getPeso();
         this.entregue = e.getEntregue();
         this.classificacao = e.getClassificacao();
@@ -50,6 +55,8 @@ public class Encomenda {
     public String getCodenc() {
         return this.codenc;
     }
+
+    public String getTransp(){ return this.transp;}
 
     public boolean getEntregue(){return this.entregue;}
 
@@ -77,6 +84,8 @@ public class Encomenda {
     public void setCodenc(String s) {
         this.codenc = s;
     }
+
+    public void setTransp(String t) { this.transp = t;}
 
     public void setCoduser(String n) {
         this.coduser = n;

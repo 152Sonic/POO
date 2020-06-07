@@ -25,43 +25,49 @@ public class ControladorUser {
                 case 1:
                     v.codEnc();
                     String e = Input.lerString();
-                    v.printLojas(m.getLojas());
-                    v.codloja();
-                    String l = Input.lerString();
-                    List<LinhaEncomenda> linha = new ArrayList<>();
-                    int op=-1;
-                    while(op!=0) {
-                        v.printProdutos(m.getProdutos());
-                        v.menuEncomenda();
-                        op = Input.lerInt();
-                        op1(op, e, l, v, linha, m.getProdutos());
-                        if(op == 4) break;
+                    if(!m.getEncomendas().containsKey(e)) {
+                        v.printLojas(m.getLojas());
+                        v.codloja();
+                        String l = Input.lerString();
+                        List<LinhaEncomenda> linha = new ArrayList<>();
+                        int op = -1;
+                        while (op != 0) {
+                            v.printProdutos(m.getProdutos());
+                            v.menuEncomenda();
+                            op = Input.lerInt();
+                            op1(op, e, l, v, linha, m.getProdutos());
+                            if (op == 4) break;
+                        }
                     }
+                    else v.existe();
                     break;
                 case 2:
-                    v.printEnc(m.getUtilizador(user).getPedidos());
-                    v.codEncC();
-                    String ec = Input.lerString();
-                    boolean ri = true;
-                    while (ri) {
-                        if (m.getUtilizador(user).getPedidos().containsKey(ec)) {
-                            v.pedTransp(ec);
-                            for (String t : m.getUtilizador(user).getPedidos().get(ec)) {
-                                //falta funçao de tempo estimado
-                                v.printTransp(m.getTransportadora(t), m.getPrecoTransp(ec, t), 0.0);
-                            }
-                            boolean r = true;
-                            while (r) {
-                                v.acceptTransp();
-                                String ct = Input.lerString();
-                                if (m.getUtilizador(user).getPedidos().get(ec).contains(ct)) {
-                                    m.aceite(user, ct, ec);
-                                    r = false;
-                                } else v.printNonT();
-                            }
-                            ri = false;
+                    if(m.getUtilizador(user).getPedidos().size()<=0) break;
+                    else {
+                        v.printEnc(m.getUtilizador(user).getPedidos());
+                        v.codEncC();
+                        String ec = Input.lerString();
+                        boolean ri = true;
+                        while (ri) {
+                            if (m.getUtilizador(user).getPedidos().size() <= 0) ri = false;
+                            else if (m.getUtilizador(user).getPedidos().containsKey(ec)) {
+                                v.pedTransp(ec);
+                                for (String t : m.getUtilizador(user).getPedidos().get(ec)) {
+                                    //falta funçao de tempo estimado
+                                    v.printTransp(m.getTransportadora(t), m.getPrecoTransp(ec, t), m.getTempoEstimado(ec, t));
+                                }
+                                boolean r = true;
+                                while (r) {
+                                    v.acceptTransp();
+                                    String ct = Input.lerString();
+                                    if (m.getUtilizador(user).getPedidos().get(ec).contains(ct)) {
+                                        m.aceite(user, ct, ec);
+                                        r = false;
+                                    } else v.printNonT();
+                                }
+                                ri = false;
+                            } else v.printNonE();
                         }
-                        else v.printNonE();
                     }
                     break;
                 case 3:

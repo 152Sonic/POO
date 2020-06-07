@@ -37,9 +37,9 @@ public class ControladorLogInVoluntarios {
                     }
                     break;
                 case 2:
-                    v.ID();
+                    v.IDV();
                     String c = Input.lerString();
-                    if(m.existeVol(c)){
+                    if(m.existeVol(c) || c.charAt(0)!='v'){
                         v.siginD();
                         break;
                     }

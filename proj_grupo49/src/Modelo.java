@@ -2,6 +2,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class Modelo {
@@ -170,6 +171,7 @@ public class Modelo {
             for (Map.Entry<String,Encomenda> e : this.encomendas.entrySet()){
                 //if (e.getValue().getAceites()){
                     lojas.addEncomendaParse(e.getValue().getCodloja(), e.getValue());
+                    utilizadores.addEncomendaParse(e.getValue().getCoduser(), e.getValue());
                 //}
             }
             for (Map.Entry<String,Loja> l: lojas.getLojas().entrySet()){
@@ -329,6 +331,7 @@ public class Modelo {
         }
         this.lojas.getLoja(e.getCodloja()).rmEncPronta(e);
         e.setAceites(true);
+        e.setTransp(codt);
     }
 
     public Voluntario getVoluntario(String cod){
@@ -358,6 +361,14 @@ public class Modelo {
         }
         return r;
     }
+    //////////////////////////////////////////// Funções básicas //////////////////////////////////////////////////////////////////
+
+    public Set<Utilizador> maisUsados(){
+        Set<Utilizador> mais= new TreeSet<>(new ComparatorUtilizador());
+        this.utilizadores.maisUsados(mais);
+        return mais;
+        }
+
 
     //////////////////////////////////////////// Interpretador Loja ////////////////////////////////////////////////////////////////
     public int op1Loja(String e, String l){
@@ -395,7 +406,8 @@ public class Modelo {
             this.getVoluntario(cod).aceitaPedido(e);
             this.voluntarios.getVoluntario(cod).setLivre(false);
             this.encomendas.get(e.getCodenc()).setAceites(true);
-            this.getUtilizador(e.getCoduser()).encAceite(e);
+            this.encomendas.get(e.getCodenc()).setTransp(cod);
+            this.getUtilizador(e.getCoduser()).encAceite(e,cod);
             rejeitaOutraTransp(getPossiveisEntregadores(e), cod, e);
     }
 
@@ -425,6 +437,7 @@ public class Modelo {
             Encomenda enc = this.encomendas.get(e);
             if(this.voluntarios.getVoluntario(cod).getList().contains(enc)){
                 this.encomendas.get(e).setEntregue(true);
+                this.getVoluntario(cod).encEntregue(encomendas.get(e));
                 this.getVoluntario(cod).setLivre(true);
                 this.lojas.getLoja(enc.getCodloja()).setEntregue(enc);
                 this.getUtilizador(encomendas.get(e).getCoduser()).encEntregue(encomendas.get(e));
@@ -474,7 +487,9 @@ public class Modelo {
             Encomenda enc = this.encomendas.get(e);
             if(this.getTransportadora(cod).getList().contains(enc)){
                 this.encomendas.get(e).setEntregue(true);
+                getTransportadora(cod).encEntregue(encomendas.get(e));
                 this.lojas.getLoja(enc.getCodloja()).setEntregue(enc);
+                getUtilizador(encomendas.get(e).getCoduser()).encEntregue(encomendas.get(e));
                 r=1;
             }
         }
@@ -496,10 +511,20 @@ public class Modelo {
         GPS us = utilizadores.getUtilizador(user).getGPS().clone();
         return this.getTransportadora(t).getPreço(l,us,encomendas.get(e).clone());
     }
+    public double[] getTempoEstimado(String e, String t){
+        String cl = encomendas.get(e).getCodloja();
+        GPS l = lojas.getLoja(cl).getGPS().clone();
+        String user = encomendas.get(e).getCoduser();
+        GPS us = utilizadores.getUtilizador(user).getGPS().clone();
+        double horas = this.getTransportadora(t).getTempo(l,us);
+        return getTime(horas);
+    }
 
     public void aceite(String user, String t, String e){
-        //encomendas.get(e).setAceites(true);
+        encomendas.get(e).setAceites(true);
+        encomendas.get(e).setTransp(t);
         this.getUtilizador(user).getPedidos().remove(e);
+        getUtilizador(user).encAceite(encomendas.get(e),t);
         rejeitaOutraTransp(getPossiveisEntregadores(encomendas.get(e)), t, encomendas.get(e));
         this.getTransportadora(t).addEncT(encomendas.get(e));
     }
@@ -516,10 +541,29 @@ public class Modelo {
         utilizadores.getUtilizador(c).setGPS(x,y);
     }
 
-    public void op4(String e, int cl){
+    public void op4(String e, int cl) {
         encomendas.get(e).setClassificacao(cl);
         getUtilizador(encomendas.get(e).getCoduser()).setCl(encomendas.get(e), cl);
+        char c = encomendas.get(e).getTransp().charAt(0);
+        if (c == 'v') {
+            getVoluntario(encomendas.get(e).getTransp()).setCl(encomendas.get(e), cl);
+        } else {
+            getTransportadora(encomendas.get(e).getTransp()).setCl(encomendas.get(e), cl);
+        }
+    }
 
+    public double[] getTime(double horas){
+        double[] a = new double[3];
+        double dias = horas/24;
+        double rest = dias %1;
+        horas = rest *24;
+        a[0] = dias - rest;
+        double restH = horas %1;
+        horas = horas - restH;
+        double min = restH * 60 - ((restH*60)%1);
+        a[1] = horas;
+        a[2] = min;
+        return a;
     }
 }
 

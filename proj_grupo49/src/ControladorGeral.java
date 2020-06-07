@@ -47,6 +47,9 @@ public class ControladorGeral {
                     v.flush();
                     t.run();
                     break;
+                case 5:
+                    v.maisUsados(modelo.maisUsados());
+                    break;
                 default:
                     System.out.println("Opção invalida");
                     break;

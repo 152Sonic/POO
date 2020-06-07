@@ -124,11 +124,11 @@ public class ViewUser {
         System.out.println("Pedidos de Transportadoras para a encomenda "+e+":\n");
     }
 
-    public void printTransp(Transportadora t, double pr, double time){
+    public void printTransp(Transportadora t, double pr, double[] time){
         System.out.println("\nCodigo: "+t.getCod());
         System.out.println("Nome: "+t.getNome());
         System.out.println("Preço: "+ pr);
-        System.out.println("Tempo estimad: "+ time+ "\n");
+        System.out.println("Tempo estimado: " +time[0] +"D " + time[1]+ "H " + time[2] +" min");
     }
 
     public void codEncC(){
@@ -175,6 +175,7 @@ public class ViewUser {
                 System.out.println("Ecomenda:" + e.getCodenc());
                 System.out.println("Loja: " +e.getCodloja());
                 System.out.println("Preço: " + e.getPreco());
+                System.out.println("Transporte: " + e.getTransp());
                 System.out.println("Aceite: " + e.getAceites());
                 System.out.println("Entregue: "+ e.getEntregue());
             }
@@ -224,6 +225,10 @@ public class ViewUser {
 
     public void vazia(){
         System.out.println("A lista está vazia");
+    }
+
+    public void existe(){
+        System.out.println("A encomenda que tentou criar já existe!");
     }
 
 

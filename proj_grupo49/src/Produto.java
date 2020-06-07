@@ -1,6 +1,7 @@
 public class Produto implements Comparable<Produto> {
             private String cod;
             private String nome;
+         // private boolean medico;
             private double peso;
             private double preçouni;
 

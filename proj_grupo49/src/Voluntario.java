@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -13,6 +14,7 @@ public class Voluntario
     private String cod;
     private String nome;
     private GPS gps;
+   // private boolean medico;
     private double raio;
     private boolean livre;
     private List<Encomenda> pedidos;
@@ -184,20 +186,64 @@ public class Voluntario
     public void aceitaPedido(Encomenda e){
         this.pedidos.remove(e);
         this.listenc.add(e);
+        Iterator<Encomenda> it = listenc.iterator();
+        boolean f = false;
+        while(it.hasNext() && !f){
+            Encomenda enc = it.next();
+            if(enc.equals(e)){
+                enc.setTransp(this.cod);
+                f=true;
+            }
+        }
     }
 
     public void rejeitaPedido(Encomenda e){
         this.pedidos.remove(e);
     }
 
-    public double getMedia() {
-        double tc = this.listenc.stream().filter(Encomenda::getAceites).mapToDouble(Encomenda::getClassificacao).sum();
-        double t = this.listenc.stream().filter(Encomenda::getAceites).count();
-        return tc / t;
-    }
 
     public void addPedido(Encomenda e){ this.pedidos.add(e);}
 
     public void rmPedido(Encomenda e){ this.pedidos.remove(e);}
+
+    public void setCl(Encomenda e, int cl){
+        Iterator<Encomenda> it = pedidos.iterator();
+        boolean f = false;
+        while(it.hasNext() && !f){
+            Encomenda enc = it.next();
+            if(enc.equals(e)){
+                enc.setClassificacao(cl);
+                f=true;
+            }
+        }
+    }
+
+    public double getClGeral() {
+        double r = 0;
+        double size = 0;
+        if (this.listenc.size() <= 0) return 0;
+        else {
+            for (Encomenda e : this.listenc){
+                if (e.getClassificacao() != -1 && e.getEntregue()) {
+                    r += e.getClassificacao();
+                    size++;
+                }
+            }
+            if (size == 0) return 0;
+            else return r / size;
+        }
+    }
+
+    public void encEntregue(Encomenda e) {
+        Iterator<Encomenda> it = this.listenc.iterator();
+        boolean f = false;
+        while (it.hasNext() && !f) {
+            Encomenda e1 = it.next();
+            if (e1.equals(e)) {
+                e1.setEntregue(true);
+                f = true;
+            }
+        }
+    }
 
 }

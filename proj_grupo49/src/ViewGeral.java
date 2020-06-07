@@ -1,3 +1,6 @@
+import java.util.Iterator;
+import java.util.Set;
+
 public class ViewGeral {
 
     public void printHeader(){
@@ -36,6 +39,26 @@ public class ViewGeral {
     public void printError(){
         System.out.println("\nNão escreveu nenhuma das duas opções válidas!");
         System.out.print("Por favor tente outra vez: ");
+    }
+
+    public void maisUsados(Set<Utilizador> aux){
+        Iterator<Utilizador> it = aux.iterator();
+        if(aux.size()<10){
+            int size = aux.size();
+            while(it.hasNext() && size>0){
+                Utilizador u = it.next();
+                System.out.println(u.getCod());
+                size--;
+            }
+        }
+        else{
+            int size=10;
+            while(it.hasNext() && size>0) {
+                Utilizador u = it.next();
+                System.out.println(u.getCod());
+                size--;
+            }
+        }
     }
 
 }

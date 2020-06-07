@@ -159,19 +159,24 @@ public class Utilizador
             pedidos.get(e).add(t);
         }
     }
+    public void rejeitaPedido(Encomenda e){
+        this.pedidos.remove(e.getCodenc());
+    }
 
     public void addEncomenda(Encomenda e){
         this.entregues.add(e);
     }
 
-    public void encAceite(Encomenda e){
+    public void encAceite(Encomenda e,String cod){
         Iterator<Encomenda> it = this.entregues.iterator();
         boolean f = false;
         while(it.hasNext() && !f){
             Encomenda e1 = it.next();
             if(e1.equals(e)){
+                e1.setTransp(cod);
                 e1.setAceites(true);
                 f = true;
+                rejeitaPedido(e);
             }
         }
     }
@@ -197,6 +202,12 @@ public class Utilizador
                 e1.setClassificacao(cl);
                 f = true;
             }
+        }
+    }
+
+    public void addEncomendaParse(Encomenda e) {
+        if (!entregues.contains(e)) {
+            entregues.add(e);
         }
     }
 }

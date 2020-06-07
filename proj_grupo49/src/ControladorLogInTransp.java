@@ -35,9 +35,9 @@ public class ControladorLogInTransp {
                     }
                     break;
                 case 2:
-                    v.ID();
+                    v.IDT();
                     String c = Input.lerString();
-                    if(m.existeTransp(c)){
+                    if(m.existeTransp(c) || c.charAt(0)!='t'){
                         v.siginD();
                         break;
                     }

@@ -45,9 +45,12 @@ public class ViewVoluntario {
     public void rejeite(){System.out.println("Encomenda rejeitada");}
 
     public void opc2(List<Encomenda> e){
-        System.out.println("Codigo");
-        for (Encomenda es : e){
-            if (es.getEntregue()) System.out.println(es.getCodenc());
+        if(e.size()<=0) System.out.println("Lista Vazia");
+        else {
+            System.out.println("Codigo");
+            for (Encomenda es : e) {
+                if (es.getEntregue()) System.out.println(es.getCodenc());
+            }
         }
     }
 
@@ -112,6 +115,7 @@ public class ViewVoluntario {
         System.out.println("Nome:" + v.getNome());
         System.out.println("Codigo:"  + v.getCod());
         System.out.println("Raio de ação:" + v.getRaio());
+        System.out.println("Classificacao: " + v.getClGeral());
         System.out.println("Localização:\n    " + v.getGPS().toString() + "\n");
     }
 

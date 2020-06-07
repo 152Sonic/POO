@@ -14,6 +14,7 @@ public class Transportadora
     private String nome;
     private GPS gps;
     private int nif;
+   // private boolean medico;
     private double raio;
     private double taxa;
     private double taxaPeso;
@@ -249,6 +250,13 @@ public class Transportadora
         return taxa * (d1 + d2) + (taxaPeso * e.getPeso()) ;
 
     }
+
+    public double getTempo(GPS loja, GPS user){
+        double d1 = this.gps.distancia(loja);
+        double d2 = loja.distancia(user);
+        double v = 50;
+        return (d1+d2)/v;
+    }
     public boolean validaPass(String p){
         return this.pass.equals(p);
     }
@@ -317,5 +325,41 @@ public class Transportadora
         this.listenc.add(e);
     }
 
+    public double getClGeral(){
+        double r=0;
+        double size = 0;
+        for(Encomenda e : this.listenc){
+            if(e.getClassificacao()!=-1 && e.getEntregue()){
+                r+=e.getClassificacao();
+                size++;
+            }
+        }
+        if(size==0) return 0;
+        else return r/size;
+    }
+
+    public void setCl(Encomenda e, int cl){
+        Iterator<Encomenda> it = pedidos.iterator();
+        boolean f = false;
+        while(it.hasNext() && !f){
+            Encomenda enc = it.next();
+            if(enc.equals(e)){
+                enc.setClassificacao(cl);
+                f=true;
+            }
+        }
+    }
+
+    public void encEntregue(Encomenda e) {
+        Iterator<Encomenda> it = this.listenc.iterator();
+        boolean f = false;
+        while (it.hasNext() && !f) {
+            Encomenda e1 = it.next();
+            if (e1.equals(e)) {
+                e1.setEntregue(true);
+                f = true;
+            }
+        }
+    }
 
 }

@@ -55,6 +55,12 @@ public class ViewLogin {
             System.out.println("Insira o seu ID:");
     }
 
+    public void IDT(){System.out.println("Insira o seu ID começado por t:");
+    }
+
+    public void IDV(){System.out.println("Insira o seu ID começado por v:");
+    }
+
     public void pass(){
             System.out.println("Insira a palavra-passe:");
     }
