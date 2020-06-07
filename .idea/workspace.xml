@@ -2,7 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6033b161-af32-4abb-9906-154c8440547d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/proj_grupo49/src/ComparatorTransp.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proj_grupo49/logs2.txt" beforeDir="false" afterPath="$PROJECT_DIR$/proj_grupo49/logs2.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proj_grupo49/src/ControladorGeral.java" beforeDir="false" afterPath="$PROJECT_DIR$/proj_grupo49/src/ControladorGeral.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proj_grupo49/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/proj_grupo49/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proj_grupo49/src/Modelo.java" beforeDir="false" afterPath="$PROJECT_DIR$/proj_grupo49/src/Modelo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proj_grupo49/src/Transportadora.java" beforeDir="false" afterPath="$PROJECT_DIR$/proj_grupo49/src/Transportadora.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proj_grupo49/src/ViewGeral.java" beforeDir="false" afterPath="$PROJECT_DIR$/proj_grupo49/src/ViewGeral.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proj_grupo49/src/ViewTransp.java" beforeDir="false" afterPath="$PROJECT_DIR$/proj_grupo49/src/ViewTransp.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,6 +87,7 @@
       <workItem from="1591448018477" duration="22027000" />
       <workItem from="1591479557818" duration="8451000" />
       <workItem from="1591531490052" duration="52000" />
+      <workItem from="1591553817617" duration="6594000" />
     </task>
     <task id="LOCAL-00001" summary="criaçao de lojas, transportadoras, users, e voluntarios">
       <created>1590021207693</created>
@@ -241,7 +250,28 @@
       <option name="project" value="LOCAL" />
       <updated>1591531502302</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="Homeless é um burro">
+      <created>1591553848005</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1591553848005</updated>
+    </task>
+    <task id="LOCAL-00025" summary="LocalDateTimes nas Encomendas">
+      <created>1591556448799</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1591556448799</updated>
+    </task>
+    <task id="LOCAL-00026" summary="coisas">
+      <created>1591557524595</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1591557524595</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -268,41 +298,43 @@
     <MESSAGE value="op4 user" />
     <MESSAGE value="Classificações por parte de utilizador, utilizadores mais usados, e ajustes nas views" />
     <MESSAGE value="Homeless é um burro" />
-    <option name="LAST_COMMIT_MESSAGE" value="Homeless é um burro" />
+    <MESSAGE value="LocalDateTimes nas Encomendas" />
+    <MESSAGE value="coisas" />
+    <option name="LAST_COMMIT_MESSAGE" value="coisas" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="801" y="271" width="544" height="562" key="#com.intellij.ide.util.MemberChooser" timestamp="1591381438750">
+    <state x="801" y="271" width="544" height="562" key="#com.intellij.ide.util.MemberChooser" timestamp="1591559066518">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="801" y="271" width="544" height="562" key="#com.intellij.ide.util.MemberChooser/67.27.1853.1053@67.27.1853.1053" timestamp="1591381438750" />
+    <state x="801" y="271" width="544" height="562" key="#com.intellij.ide.util.MemberChooser/67.27.1853.1053@67.27.1853.1053" timestamp="1591559066518" />
     <state x="746" y="439" width="494" height="237" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1591113070537">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="746" y="439" width="494" height="237" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/67.27.1853.1053@67.27.1853.1053" timestamp="1591113070537" />
-    <state x="558" y="149" width="860" height="807" key="CommitChangelistDialog2" timestamp="1591556448713">
+    <state x="558" y="149" width="860" height="807" key="CommitChangelistDialog2" timestamp="1591557524520">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="558" y="149" width="860" height="807" key="CommitChangelistDialog2/67.27.1853.1053@67.27.1853.1053" timestamp="1591556448713" />
+    <state x="558" y="149" width="860" height="807" key="CommitChangelistDialog2/67.27.1853.1053@67.27.1853.1053" timestamp="1591557524520" />
     <state x="776" y="310" width="424" height="484" key="FileChooserDialogImpl" timestamp="1590022649100">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="776" y="310" width="424" height="484" key="FileChooserDialogImpl/67.27.1853.1053@67.27.1853.1053" timestamp="1590022649100" />
-    <state width="1807" height="754" key="GridCell.Tab.0.bottom" timestamp="1591557514760">
+    <state width="1807" height="767" key="GridCell.Tab.0.bottom" timestamp="1591559877343">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="754" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1591557514760" />
-    <state width="1807" height="754" key="GridCell.Tab.0.center" timestamp="1591557514760">
+    <state width="1807" height="767" key="GridCell.Tab.0.bottom/67.27.1853.1053@67.27.1853.1053" timestamp="1591559877343" />
+    <state width="1807" height="767" key="GridCell.Tab.0.center" timestamp="1591559877343">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="754" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1591557514760" />
-    <state width="1807" height="754" key="GridCell.Tab.0.left" timestamp="1591557514759">
+    <state width="1807" height="767" key="GridCell.Tab.0.center/67.27.1853.1053@67.27.1853.1053" timestamp="1591559877343" />
+    <state width="1807" height="767" key="GridCell.Tab.0.left" timestamp="1591559877342">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="754" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1591557514759" />
-    <state width="1807" height="754" key="GridCell.Tab.0.right" timestamp="1591557514760">
+    <state width="1807" height="767" key="GridCell.Tab.0.left/67.27.1853.1053@67.27.1853.1053" timestamp="1591559877342" />
+    <state width="1807" height="767" key="GridCell.Tab.0.right" timestamp="1591559877343">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state width="1807" height="754" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1591557514760" />
+    <state width="1807" height="767" key="GridCell.Tab.0.right/67.27.1853.1053@67.27.1853.1053" timestamp="1591559877343" />
     <state x="698" y="270" width="580" height="564" key="MultipleFileMergeDialog" timestamp="1591469074081">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
@@ -311,10 +343,10 @@
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="649" y="380" key="com.intellij.ide.util.TipDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1591553818079" />
-    <state x="761" y="472" width="464" height="160" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1591469065699">
+    <state x="761" y="472" width="464" height="160" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1591558004658">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="761" y="472" width="464" height="160" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/67.27.1853.1053@67.27.1853.1053" timestamp="1591469065699" />
+    <state x="761" y="472" width="464" height="160" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/67.27.1853.1053@67.27.1853.1053" timestamp="1591558004658" />
     <state x="302" y="154" width="1372" height="796" key="new project wizard" timestamp="1591479537463">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>

@@ -70,6 +70,31 @@ public class ViewGeral {
         }
     }
 
+    public void maisUsadosT(Set<Transportadora> aux){
+        Iterator<Transportadora> it = aux.iterator();
+        if (aux.size()==0){
+            System.out.println("Lista Vazia");
+            return;
+        }
+        System.out.println("Utilizadores ordenados em ordem ao numero de compras!");
+        if(aux.size()<10){
+            int size = aux.size();
+            while(it.hasNext() && size>0){
+                Transportadora t = it.next();
+                System.out.println(t.getCod());
+                size--;
+            }
+        }
+        else{
+            int size=10;
+            while(it.hasNext() && size>0) {
+                Transportadora t = it.next();
+                System.out.println(t.getCod());
+                size--;
+            }
+        }
+    }
+
 
     public void load(){
         System.out.println("_____________________________________________________________________________________________");

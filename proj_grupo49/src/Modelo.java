@@ -371,6 +371,15 @@ public class Modelo {
         return mais;
         }
 
+    public Set<Transportadora> maisUsadosT(){
+        Set<Transportadora> mais= new TreeSet<>(new ComparatorTransp());
+        for(Map.Entry<String,Transportadora> t: transportadoras.getTransportadoras().entrySet()){
+            mais.add(t.getValue());
+        }
+        return mais;
+    }
+
+
     //////////////////////////////////////////// Interpretador Loja ////////////////////////////////////////////////////////////////
     public int op1Loja(String e, String l){
         int r = 0;
@@ -494,6 +503,7 @@ public class Modelo {
                 this.encomendas.get(e).setDataf(f);
                 getTransportadora(cod).encEntregue(encomendas.get(e),f);
                 this.lojas.getLoja(enc.getCodloja()).setEntregue(enc,f);
+                getTransportadora(cod).addKms(getDT(getTransportadora(cod), encomendas.get(e)));
                 getUtilizador(encomendas.get(e).getCoduser()).encEntregue(encomendas.get(e),f);
                 r=1;
             }
@@ -501,12 +511,10 @@ public class Modelo {
         return r;
     }
 
-    public double getDT(Transportadora t){
+    public double getDT(Transportadora t, Encomenda e){
         double d = 0;
-        for(Encomenda e : t.getList()){
-            if(e.getEntregue()){
-               d+= t.getGPS().distancia(getLoja(e.getCodloja()).getGPS()) + getLoja(e.getCodloja()).getGPS().distancia(getUtilizador(e.getCoduser()).getGPS());
-            }
+        if(e.getEntregue()){
+            d = t.getGPS().distancia(getLoja(e.getCodloja()).getGPS()) + getLoja(e.getCodloja()).getGPS().distancia(getUtilizador(e.getCoduser()).getGPS());
         }
         return d;
     }

@@ -79,6 +79,7 @@ public class ControladorGeral {
                     v.maisUsados(modelo.maisUsados());
                     break;
                 case 6:
+                    v.maisUsadosT(modelo.maisUsadosT());
                     break;
                 case 7:
                     break;

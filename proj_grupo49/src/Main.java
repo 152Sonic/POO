@@ -11,7 +11,7 @@ public class Main {
          Map<String, Encomenda> encomendas = new TreeMap<>();
          Set<Produto> produtos;
          Modelo m = new Modelo(lojas,transportadoras,voluntarios,utilizadors,encomendas);
-         m.parse("logs2.txt");
+         m.parse("proj_grupo49/logs2.txt");
 
 
         ControladorGeral g = new ControladorGeral(m);

@@ -21,6 +21,7 @@ public class Transportadora
     private double taxa;
     private double taxaPeso;
     private int pesoLimite;
+    public double kms;
     private List<Encomenda> listenc;
     private List<Encomenda> pedidos;
     private List<Encomenda> espera;
@@ -35,6 +36,7 @@ public class Transportadora
         this.raio = 0;
         this.taxa = 0;
         this.taxaPeso = 0;
+        this.kms = 0;
         this.pesoLimite = 100;
         this.listenc = new ArrayList<>();
         this.pedidos = new ArrayList<>();
@@ -52,6 +54,7 @@ public class Transportadora
         this.taxa = p;
         this.taxaPeso = tp;
         this.pesoLimite = peso;
+        this.kms = 0;
         this.setList(lista);
         this.pedidos = new ArrayList<>();
         this.espera = new ArrayList<>();
@@ -68,6 +71,7 @@ public class Transportadora
         this.raio =r;
         this.taxa = p;
         this.taxaPeso = tp;
+        this.kms = 0;
         this.pesoLimite = peso;
         this.listenc = new ArrayList<>();
         this.pedidos = new ArrayList<>();
@@ -86,10 +90,19 @@ public class Transportadora
         this.taxa = u.getTaxa();
         this.taxaPeso = u.getTaxaPeso();
         this.pesoLimite = u.getPesoLimite();
+        this.kms = u.getKms();
         this.setList(u.getList());
         this.setPedidos(u.getPedidos());
         this.setEspera(u.getEspera());
 
+    }
+
+    public double getKms() {
+        return kms;
+    }
+
+    public void setKms(double kms) {
+        this.kms = kms;
     }
     public void setPass(String p){this.pass = p;}
 
@@ -326,6 +339,8 @@ public class Transportadora
     public void addEncT(Encomenda e){
         this.listenc.add(e);
     }
+
+    public void addKms(double kms){this.kms+=kms;}
 
     public double getClGeral(){
         double r=0;
