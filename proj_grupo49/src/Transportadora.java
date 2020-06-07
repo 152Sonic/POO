@@ -266,10 +266,23 @@ public class Transportadora
 
     }
 
-    public double getTempo(GPS loja, GPS user){
+    public double getTempoV(GPS loja, GPS user){
+        double d1 = this.gps.distancia(loja);
+        double d2 = loja.distancia(user);
+        double v = 100;
+        return (d1+d2)/v;
+    }
+    public double getTempoI(GPS loja, GPS user){
         double d1 = this.gps.distancia(loja);
         double d2 = loja.distancia(user);
         double v = 50;
+        return (d1+d2)/v;
+    }
+
+    public double getTempoPO(GPS loja, GPS user){
+        double d1 = this.gps.distancia(loja);
+        double d2 = loja.distancia(user);
+        double v = 75;
         return (d1+d2)/v;
     }
     public boolean validaPass(String p){

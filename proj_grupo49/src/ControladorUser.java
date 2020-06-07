@@ -31,7 +31,7 @@ public class ControladorUser {
                         String l = Input.lerString();
                         List<LinhaEncomenda> linha = new ArrayList<>();
                         int op = -1;
-                        while (op != 0) {
+                        while (op != 0 ) {
                             v.printProdutos(m.getProdutos());
                             v.menuEncomenda();
                             op = Input.lerInt();

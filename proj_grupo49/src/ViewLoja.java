@@ -123,6 +123,10 @@ public class ViewLoja {
     public void addDesP(){
         System.out.println("Insira a descrição do produto a adicionar:");
     }
+
+    public void addMedico(){
+        System.out.println("O pruduto inserido é classificado como médico? (1) se sim (0) caso contrário");
+    }
     
     public void addPeso(){
         System.out.println("Insira o peso unitário do produto a adicionar:");
@@ -147,10 +151,20 @@ public class ViewLoja {
             for (Produto p : produtos){
                 System.out.println("\nCodigo: "+ p.getCod());
                 System.out.println("Descrição: "+ p.getNome());
+                System.out.println("Médico: " +p.getMedico());
                 System.out.println("Peso uni: "+ p.getPeso());
                 System.out.println("Preço uni: "+ p.getPreçouni());
             }
         }
+    }
+
+    public void printProduto(Produto p){
+        System.out.println("\nProduto inserido:");
+        System.out.println("Codigo: "+ p.getCod());
+        System.out.println("Descrição: "+ p.getNome());
+        System.out.println("Médico: " +p.getMedico());
+        System.out.println("Peso uni: "+ p.getPeso());
+        System.out.println("Preço uni: "+ p.getPreçouni());
     }
 
 

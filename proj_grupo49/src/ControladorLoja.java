@@ -9,6 +9,8 @@ public class ControladorLoja {
 
     public void run(){
         int o;
+        boolean medico = false;
+        boolean cenas = true;
         do{
             ViewLoja v = new ViewLoja();
             v.menuLoja();
@@ -33,14 +35,27 @@ public class ControladorLoja {
                         if (!m.getLojas().getLoja(c).existeProd(p)) {
                             v.addDesP();
                             String des = Input.lerString();
+                            while (!medico && cenas){
+                                v.addMedico();
+                                int med = Input.lerInt();
+                                if (med == 1){
+                                    medico = true;
+                                }
+                                else if (med == 0) cenas = false;
+                                else v.printError();
+                            }
                             v.addPeso();
                             double pr = Input.lerDouble();
                             v.addQP();
                             double q = Input.lerDouble();
-                            Produto produto = new Produto(p, des, pr, q);
+                            Produto produto = new Produto(p, des,medico, pr, q);
                             m.op2Loja(produto,c);
+                            v.printProduto(produto);
                         }
                         else v.addPError();
+
+                        medico = false;
+                        cenas = true;
                         break;
                     case 3:
                         v.pressioneEnter();

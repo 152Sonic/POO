@@ -5,6 +5,7 @@ import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Month;
 import java.util.*;
 
 public class Modelo {
@@ -238,7 +239,7 @@ public class Modelo {
             i += 4;
             LinhaEncomenda a = new LinhaEncomenda(codL, desc, q, 0, preco);
             res.add(a);
-            produtos.add(new Produto(codL,desc,q,preco));
+            produtos.add(new Produto(codL,desc,false,q,preco));
         }
         Encomenda enc =new Encomenda(cod, codUser, codLoja, peso, res);
         //lojas.addEncomendaParse(codLoja, enc);
@@ -553,7 +554,15 @@ public class Modelo {
         GPS l = lojas.getLoja(cl).getGPS().clone();
         String user = encomendas.get(e).getCoduser();
         GPS us = utilizadores.getUtilizador(user).getGPS().clone();
-        double horas = this.getTransportadora(t).getTempo(l,us);
+        Month mes = getEncomenda(e).getDatai().getMonth();
+        double horas;
+        if (mes == Month.JUNE || mes == Month.JULY || mes == Month.AUGUST || mes == Month.SEPTEMBER ) {
+            horas = this.getTransportadora(t).getTempoV(l, us);
+        }
+        else if(mes == Month.DECEMBER || mes == Month.JANUARY || mes == Month.FEBRUARY || mes == Month.APRIL){
+            horas = this.getTransportadora(t).getTempoI(l, us);
+        }
+        else horas = this.getTransportadora(t).getTempoPO(l, us);
         return getTime(horas);
     }
 
