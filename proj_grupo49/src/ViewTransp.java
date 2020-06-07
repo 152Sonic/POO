@@ -63,7 +63,13 @@ public class ViewTransp {
         }
     }
 
-    public void op1(Encomenda e){System.out.println(e.toString());}
+    public void op1(Encomenda e){
+        System.out.println("\nEcomenda:" + e.getCodenc());
+        System.out.println("Loja: " +e.getCodloja());
+        System.out.println("Inicio da Entrega:" + e.getDatai());
+        System.out.println("Entregue: "+ e.getEntregue());
+        System.out.println("Fim da Entrega:" + e.getDataf());
+    }
 
     public void aceite(){
         System.out.println("Encomenda Aceite para entrega!");

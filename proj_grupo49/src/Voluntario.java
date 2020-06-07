@@ -16,11 +16,11 @@ public class Voluntario
     private String cod;
     private String nome;
     private GPS gps;
-   // private boolean medico;
     private double raio;
     private boolean livre;
     private List<Encomenda> pedidos;
     private List<Encomenda> listenc;
+    private boolean medico;
 
     public Voluntario()
     {
@@ -32,9 +32,10 @@ public class Voluntario
         this.livre = true;
         this.pedidos = new ArrayList<>();
         this.listenc = new ArrayList<>();
+        this.medico = false;
     }
 
-    public Voluntario (String s, String n, GPS gps, double r, boolean b, ArrayList<Encomenda> lista)
+    public Voluntario (String s, String n, GPS gps, double r, boolean b, ArrayList<Encomenda> lista, boolean med)
     {
         this.pass = s;
         this.cod = s;
@@ -44,9 +45,10 @@ public class Voluntario
         this.livre = b;
         this.pedidos = new ArrayList<>();
         this.setList(lista);
+        this.medico = med;
 
     }
-    public Voluntario (String p, String s, String n, GPS gps, double r)
+    public Voluntario (String p, String s, String n, GPS gps, double r, boolean med)
     {
         this.pass = s;
         this.cod = s;
@@ -56,6 +58,7 @@ public class Voluntario
         this.livre = true;
         this.pedidos = new ArrayList<>();
         this.listenc = new ArrayList<>();
+        this.medico = false;
 
     }
 
@@ -69,7 +72,17 @@ public class Voluntario
         this.livre = u.getLivre();
         this.setPedidos(u.getPedidos());
         this.setList(u.getList());
+        this.medico = getMedico();
     }
+
+    public boolean getMedico() {
+        return medico;
+    }
+
+    public void setMedico(boolean medico) {
+        this.medico = medico;
+    }
+
     public void setPass(String p){this.pass = p;}
 
     public String getPass(){return this.pass;}

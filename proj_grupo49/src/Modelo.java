@@ -254,7 +254,7 @@ public class Modelo {
         double gpsx = Double.parseDouble(campos[2]);
         double gpsy = Double.parseDouble(campos[3]);
         double raio = Double.parseDouble(campos[4]);
-        return new Voluntario(cod, nome, new GPS(gpsx, gpsy), raio, true, new ArrayList<>());
+        return new Voluntario(cod, nome, new GPS(gpsx, gpsy), raio, true, new ArrayList<>(), false);
     }
 
     public String parseAceite(String input) {

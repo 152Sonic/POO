@@ -69,6 +69,22 @@ public class ViewLogin {
             System.out.println("Insira o seu raio de ação em Km:");
     }
 
+    public void addMedico(){
+        System.out.println("Tem aptidões para transporte de encomendas médicas?");
+        System.out.println("1 -> Sim");
+        System.out.println("2 -> Não");
+    }
+
+    public void printDadosVol(Voluntario v){
+        System.out.println("\nOs seus dados atuais: ");
+        System.out.println("Nome:" + v.getNome());
+        System.out.println("Codigo:"  + v.getCod());
+        System.out.println("Raio de ação:" + v.getRaio());
+        System.out.println("Médico: "+ v.getMedico());
+        System.out.println("Classificacao: " + v.getClGeral());
+        System.out.println("Localização:\n    " + v.getGPS().toString() + "\n");
+    }
+
     public void GPS(){
             System.out.println("Insira a sua Latidude e Longitude:");
     }

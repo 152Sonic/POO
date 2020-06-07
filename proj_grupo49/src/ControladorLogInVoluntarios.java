@@ -8,6 +8,8 @@ public class ControladorLogInVoluntarios {
     public void run() {
         ViewLogin v = new ViewLogin();
         int o,o2;
+        boolean medico = false;
+        boolean cenas = true;
         do {
             v.menuLogin();
             v.Op();
@@ -53,13 +55,26 @@ public class ControladorLogInVoluntarios {
                     v.raio();
                     double r = Input.lerDouble();
                     GPS gps = new GPS(x, y);
-                    Voluntario novo = new Voluntario(pa,c,n,gps,r);
+                    while (!medico && cenas){
+                        v.addMedico();
+                        int med = Input.lerInt();
+                        if (med == 1){
+                            medico = true;
+                        }
+                        else if (med == 0) cenas = false;
+                        else v.printError();
+                    }
+
+                    Voluntario novo = new Voluntario(pa,c,n,gps,r, medico);
+                    v.printDadosVol(novo);
                     m.addVoluntario(novo);
                     v.siginA();
 
                     v.continuar();
                     o2 = Input.lerInt();
                     continuar(c,m, o2);
+                    medico = false;
+                    cenas = true;
                     break;
                 default:
                     v.printError();
