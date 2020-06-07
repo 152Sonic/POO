@@ -216,7 +216,7 @@ public class Modelo {
         int nif = Integer.parseInt(campos[4]);
         double rai = Double.parseDouble(campos[5]);
         double taxa = Double.parseDouble(campos[6]);
-        return new Transportadora(cod, nome, new GPS(gpsx, gpsy), nif, rai, taxa, 0.1, 100, new ArrayList<Encomenda>());
+        return new Transportadora(cod, nome, new GPS(gpsx, gpsy), nif, rai, taxa, 0.1, 100, new ArrayList<Encomenda>(), false);
     }
 
     public Encomenda parseEncomenda(String input) {

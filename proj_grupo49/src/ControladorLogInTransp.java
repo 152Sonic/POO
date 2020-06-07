@@ -5,6 +5,8 @@ public class ControladorLogInTransp {
         this.m = m;
     }
     public void run() {
+        boolean medico = false;
+        boolean cenas = true;
         ViewLogin v = new ViewLogin();
         int o,o2;
         do {
@@ -33,6 +35,8 @@ public class ControladorLogInTransp {
                         Input.lerString();
                         v.flush();
                     }
+                    medico = false;
+                    cenas = true;
                     break;
                 case 2:
                     v.IDT();
@@ -59,8 +63,18 @@ public class ControladorLogInTransp {
                     v.pesol();
                     int pesol = Input.lerInt();
                     GPS gps = new GPS(x, y);
-                    Transportadora novo = new Transportadora(pa, c, n, gps, nif, r, taxa, taxapeso, pesol);
+                    while (!medico && cenas){
+                        v.addMedico();
+                        int med = Input.lerInt();
+                        if (med == 1){
+                            medico = true;
+                        }
+                        else if (med == 0) cenas = false;
+                        else v.printError();
+                    }
+                    Transportadora novo = new Transportadora(pa, c, n, gps, nif, r, taxa, taxapeso, pesol, medico);
                     m.addTransportadora(novo);
+                    v.printDadosTrans(novo);
                     v.siginA();
 
                     v.continuar();

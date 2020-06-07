@@ -16,7 +16,6 @@ public class Transportadora
     private String nome;
     private GPS gps;
     private int nif;
-   // private boolean medico;
     private double raio;
     private double taxa;
     private double taxaPeso;
@@ -25,6 +24,7 @@ public class Transportadora
     private List<Encomenda> listenc;
     private List<Encomenda> pedidos;
     private List<Encomenda> espera;
+    private boolean medico;
 
     public Transportadora()
     {
@@ -41,9 +41,10 @@ public class Transportadora
         this.listenc = new ArrayList<>();
         this.pedidos = new ArrayList<>();
         this.espera = new ArrayList<>();
+        this.medico = false;
     }
 
-    public Transportadora (String s, String nome, GPS gps,int n, double r, double p,double tp, int peso, ArrayList<Encomenda> lista )
+    public Transportadora (String s, String nome, GPS gps,int n, double r, double p,double tp, int peso, ArrayList<Encomenda> lista , boolean medico)
     {
         this.pass = s;
         this.cod = s;
@@ -58,10 +59,10 @@ public class Transportadora
         this.setList(lista);
         this.pedidos = new ArrayList<>();
         this.espera = new ArrayList<>();
-
+        this.medico = medico;
     }
 
-    public Transportadora (String pass, String s, String nome, GPS gps,int n, double r, double p,double tp, int peso)
+    public Transportadora (String pass, String s, String nome, GPS gps,int n, double r, double p,double tp, int peso, boolean med)
     {
         this.pass = pass;
         this.cod = s;
@@ -76,6 +77,7 @@ public class Transportadora
         this.listenc = new ArrayList<>();
         this.pedidos = new ArrayList<>();
         this.espera = new ArrayList<>();
+        this.medico = med;
 
     }
 
@@ -94,7 +96,16 @@ public class Transportadora
         this.setList(u.getList());
         this.setPedidos(u.getPedidos());
         this.setEspera(u.getEspera());
+        this.medico = u.getMedico();
 
+    }
+
+    public boolean getMedico() {
+        return medico;
+    }
+
+    public void setMedico(boolean medico) {
+        this.medico = medico;
     }
 
     public double getKms() {
