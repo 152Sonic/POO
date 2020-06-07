@@ -224,6 +224,8 @@ public class ControladorUser {
         }
     }
 
+
+
     public List<Encomenda> listaCl(List<Encomenda> list){
         List<Encomenda> aux = new ArrayList<>();
         if(list.size() <=0) return aux;
