@@ -519,6 +519,20 @@ public class Modelo {
         return d;
     }
 
+    public double faturado(LocalDateTime d1, LocalDateTime d2, Transportadora t){
+        double fat = 0;
+        if(t.getList().size() <=0) return 0;
+        else {
+            for (Encomenda e : t.getList()) {
+                if (e.getEntregue() && e.getDataf().compareTo(d1) <= 0 && e.getDataf().compareTo(d2) >= 0) {
+                    fat += t.getPreço(getLoja(e.getCodloja()).getGPS(), getUtilizador(e.getCoduser()).getGPS(), e);
+                }
+            }
+        }
+        return fat;
+
+    }
+
     //////////////////////////////////////////// Interpretador Utilizador ////////////////////////////////////////////////////////////////
 
     public void op1User_3(Encomenda e){

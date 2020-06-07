@@ -1,3 +1,5 @@
+import java.time.LocalDateTime;
+
 public class ControladorTransp {
     private String cod;
     private Modelo m;
@@ -61,6 +63,9 @@ public class ControladorTransp {
                     if(m.op4Transp(e,cod) ==1);
                     else v.printNonE();
                         break;
+                case 5:
+                    op5(v,this.cod);
+                    break;
                 default:
                     v.printError();
                     break;
@@ -123,4 +128,39 @@ public class ControladorTransp {
                 t.printError();
         }
     }
+
+    public void op5(ViewTransp v, String cod) {
+        try {
+            v.print1stDate();
+            v.ano();
+            int y = Input.lerInt();
+            v.mes();
+            int m = Input.lerInt();
+            v.dia();
+            int d = Input.lerInt();
+            v.hora();
+            int h = Input.lerInt();
+            v.minuto();
+            int min = Input.lerInt();
+            LocalDateTime date1 = LocalDateTime.of(y, m, d, h, min);
+
+            v.print2ndDate();
+            v.ano();
+            int y2 = Input.lerInt();
+            v.mes();
+            int m2 = Input.lerInt();
+            v.dia();
+            int d2 = Input.lerInt();
+            v.hora();
+            int h2 = Input.lerInt();
+            v.minuto();
+            int min2 = Input.lerInt();
+            LocalDateTime date2 = LocalDateTime.of(y2, m2, d2, h2, min2);
+
+            v.printFat(date1, date2, this.m.faturado(date1, date2, this.m.getTransportadora(cod)));
+        } catch (Exception e) {
+            v.invalidDate();
+        }
+    }
+
 }

@@ -1,3 +1,4 @@
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class ViewTransp {
@@ -9,6 +10,7 @@ public class ViewTransp {
         System.out.println("|2  -> Ver historico de encomendas  entregues                                                |");
         System.out.println("|3  -> Alterar dados pessoais                                                                |");
         System.out.println("|4  -> Encomenda entregue                                                                    |");
+        System.out.println("|5  -> Ver total faturado entre 2 datas                                                      |");
         System.out.println("|0  -> Exit Program                                                                          |");
         System.out.println("|____________________________________________________________________________________________|");
     }
@@ -86,8 +88,8 @@ public class ViewTransp {
         System.out.println("|2  -> Alterar Password                                                                      |");
         System.out.println("|3  -> Alterar Localização                                                                   |");
         System.out.println("|4  -> Alterar raio de ação                                                                  |");
-        System.out.println("|4  -> Alterar taxa                                                                          |");
-        System.out.println("|4  -> Alterar taxa de peso                                                                  |");
+        System.out.println("|5  -> Alterar taxa                                                                          |");
+        System.out.println("|6  -> Alterar taxa de peso                                                                  |");
         System.out.println("|0  -> Voltar ao menu Transportadora                                                         |");
         System.out.println("|____________________________________________________________________________________________|");
     }
@@ -139,6 +141,40 @@ public class ViewTransp {
 
     public void printNonE(){
         System.out.println("A encomenda não existe!");
+    }
+
+    public void ano(){
+        System.out.println("Insira o ano:");
+    }
+
+    public void mes(){
+        System.out.println("Insira o mes:");
+    }
+
+    public void dia(){
+        System.out.println("Insira o dia:");
+    }
+    public void hora(){
+        System.out.println("Insira o hora:");
+    }
+    public void minuto(){
+        System.out.println("Insira o minuto:");
+    }
+
+    public void print1stDate(){
+        System.out.println("Insira a primeira data:");
+    }
+    public void print2ndDate(){
+        System.out.println("Insira a segunda data:");
+    }
+
+    public void printFat(LocalDateTime d1, LocalDateTime d2, double f){
+        if(f==0) System.out.println("Nao existem entregas entre essas datas!");
+       else  System.out.println("O total faturado entre: " + d1 + " e " + d2 +"foi: " + f);
+    }
+
+    public void invalidDate(){
+        System.out.println("Alguns dos valores são invalidos!");
     }
 
 
