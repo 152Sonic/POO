@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.*;
 
 /**
@@ -167,12 +169,13 @@ public class Utilizador
         this.entregues.add(e);
     }
 
-    public void encAceite(Encomenda e,String cod){
+    public void encAceite(Encomenda e,String cod, LocalDateTime i){
         Iterator<Encomenda> it = this.entregues.iterator();
         boolean f = false;
         while(it.hasNext() && !f){
             Encomenda e1 = it.next();
             if(e1.equals(e)){
+                e1.setDatai(i);
                 e1.setTransp(cod);
                 e1.setAceites(true);
                 f = true;
@@ -181,12 +184,13 @@ public class Utilizador
         }
     }
 
-    public void encEntregue(Encomenda e){
+    public void encEntregue(Encomenda e, LocalDateTime fi){
         Iterator<Encomenda> it = this.entregues.iterator();
         boolean f = false;
         while(it.hasNext() && !f){
             Encomenda e1 = it.next();
             if(e1.equals(e)){
+                e1.setDataf(fi);
                 e1.setEntregue(true);
                 f = true;
             }

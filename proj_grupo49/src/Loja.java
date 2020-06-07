@@ -1,5 +1,7 @@
 import org.ietf.jgss.GSSContext;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.*;
 
 /**
@@ -193,12 +195,13 @@ public class Loja
         }
     }
 
-    public void setEntregue(Encomenda e){
+    public void setEntregue(Encomenda e, LocalDateTime f){
         Iterator<Encomenda> it = this.listaEnc.iterator();
         boolean r = false;
         while(it.hasNext() && !r){
             Encomenda enc = it.next();
             if(enc.equals(e)) {
+                enc.setDataf(f);
                 enc.setEntregue(true);
                 r=true;
             }

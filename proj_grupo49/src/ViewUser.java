@@ -177,7 +177,9 @@ public class ViewUser {
                 System.out.println("Preço: " + e.getPreco());
                 System.out.println("Transporte: " + e.getTransp());
                 System.out.println("Aceite: " + e.getAceites());
+                System.out.println("Inicio da Entrega:" + e.getDatai());
                 System.out.println("Entregue: "+ e.getEntregue());
+                System.out.println("Fim da Entrega:" + e.getDataf());
             }
         }
     }

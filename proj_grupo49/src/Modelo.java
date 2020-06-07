@@ -3,6 +3,8 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.*;
 
 public class Modelo {
@@ -403,12 +405,13 @@ public class Modelo {
     //////////////////////////////////////////// Interpretador Voluntario ////////////////////////////////////////////////////////////////
 
     public void op1Voluntario_1(String cod, Encomenda e){
-            this.getVoluntario(cod).aceitaPedido(e);
-            this.voluntarios.getVoluntario(cod).setLivre(false);
-            this.encomendas.get(e.getCodenc()).setAceites(true);
-            this.encomendas.get(e.getCodenc()).setTransp(cod);
-            this.getUtilizador(e.getCoduser()).encAceite(e,cod);
-            rejeitaOutraTransp(getPossiveisEntregadores(e), cod, e);
+        LocalDateTime i = LocalDateTime.now();
+        this.getVoluntario(cod).aceitaPedido(e,i);
+        this.encomendas.get(e.getCodenc()).setAceites(true);
+        this.encomendas.get(e.getCodenc()).setTransp(cod);
+        this.encomendas.get(e.getCodenc()).setDatai(i);
+        this.getUtilizador(e.getCoduser()).encAceite(e,cod,i);
+        rejeitaOutraTransp(getPossiveisEntregadores(e), cod, e);
     }
 
     public void op1Voluntario_2(String cod, Encomenda e){
@@ -433,14 +436,15 @@ public class Modelo {
 
     public int op4Vol(String e, String cod){
         int r=0;
+        LocalDateTime f = LocalDateTime.now();
         if(this.encomendas.containsKey(e)){
             Encomenda enc = this.encomendas.get(e);
             if(this.voluntarios.getVoluntario(cod).getList().contains(enc)){
                 this.encomendas.get(e).setEntregue(true);
-                this.getVoluntario(cod).encEntregue(encomendas.get(e));
-                this.getVoluntario(cod).setLivre(true);
-                this.lojas.getLoja(enc.getCodloja()).setEntregue(enc);
-                this.getUtilizador(encomendas.get(e).getCoduser()).encEntregue(encomendas.get(e));
+                this.encomendas.get(e).setDataf(f);
+                this.getVoluntario(cod).encEntregue(encomendas.get(e),f);
+                this.lojas.getLoja(enc.getCodloja()).setEntregue(enc,f);
+                this.getUtilizador(encomendas.get(e).getCoduser()).encEntregue(encomendas.get(e),f);
                 r=1;
             }
         }
@@ -482,14 +486,16 @@ public class Modelo {
     }
 
     public int op4Transp(String e, String cod){
+        LocalDateTime f = LocalDateTime.now();
         int r=0;
         if(this.encomendas.containsKey(e)){
             Encomenda enc = this.encomendas.get(e);
             if(this.getTransportadora(cod).getList().contains(enc)){
                 this.encomendas.get(e).setEntregue(true);
-                getTransportadora(cod).encEntregue(encomendas.get(e));
-                this.lojas.getLoja(enc.getCodloja()).setEntregue(enc);
-                getUtilizador(encomendas.get(e).getCoduser()).encEntregue(encomendas.get(e));
+                this.encomendas.get(e).setDataf(f);
+                getTransportadora(cod).encEntregue(encomendas.get(e),f);
+                this.lojas.getLoja(enc.getCodloja()).setEntregue(enc,f);
+                getUtilizador(encomendas.get(e).getCoduser()).encEntregue(encomendas.get(e),f);
                 r=1;
             }
         }
@@ -521,10 +527,12 @@ public class Modelo {
     }
 
     public void aceite(String user, String t, String e){
+        LocalDateTime i = LocalDateTime.now();
         encomendas.get(e).setAceites(true);
         encomendas.get(e).setTransp(t);
+        encomendas.get(e).setDatai(i);
         this.getUtilizador(user).getPedidos().remove(e);
-        getUtilizador(user).encAceite(encomendas.get(e),t);
+        getUtilizador(user).encAceite(encomendas.get(e),t,i);
         rejeitaOutraTransp(getPossiveisEntregadores(encomendas.get(e)), t, encomendas.get(e));
         this.getTransportadora(t).addEncT(encomendas.get(e));
     }

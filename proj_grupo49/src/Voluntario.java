@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -183,14 +185,16 @@ public class Voluntario
         return this.pass.equals(p);
     }
 
-    public void aceitaPedido(Encomenda e){
+    public void aceitaPedido(Encomenda e, LocalDateTime i){
         this.pedidos.remove(e);
         this.listenc.add(e);
+        this.livre = false;
         Iterator<Encomenda> it = listenc.iterator();
         boolean f = false;
         while(it.hasNext() && !f){
             Encomenda enc = it.next();
             if(enc.equals(e)){
+                enc.setDatai(i);
                 enc.setTransp(this.cod);
                 f=true;
             }
@@ -234,12 +238,14 @@ public class Voluntario
         }
     }
 
-    public void encEntregue(Encomenda e) {
+    public void encEntregue(Encomenda e, LocalDateTime fi) {
         Iterator<Encomenda> it = this.listenc.iterator();
+        this.livre = true;
         boolean f = false;
         while (it.hasNext() && !f) {
             Encomenda e1 = it.next();
             if (e1.equals(e)) {
+                e1.setDataf(fi);
                 e1.setEntregue(true);
                 f = true;
             }

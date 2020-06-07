@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.*;
 import java.util.stream.Collector;
 
@@ -350,12 +352,13 @@ public class Transportadora
         }
     }
 
-    public void encEntregue(Encomenda e) {
+    public void encEntregue(Encomenda e, LocalDateTime fi) {
         Iterator<Encomenda> it = this.listenc.iterator();
         boolean f = false;
         while (it.hasNext() && !f) {
             Encomenda e1 = it.next();
             if (e1.equals(e)) {
+                e1.setDataf(fi);
                 e1.setEntregue(true);
                 f = true;
             }

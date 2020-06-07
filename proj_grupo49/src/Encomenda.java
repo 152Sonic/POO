@@ -1,4 +1,6 @@
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ArrayList;
@@ -8,6 +10,8 @@ public class Encomenda {
     private String coduser;
     private String codloja;
     private String transp;
+    private LocalDateTime inicio;
+    private LocalDateTime fim;
   //  private boolean medica;
     private double peso;
     private boolean aceites;
@@ -21,6 +25,8 @@ public class Encomenda {
         this.coduser = new String();
         this.codloja = new String();
         this.transp = new String();
+        this.inicio = LocalDateTime.now();
+        this.fim = LocalDateTime.now();
         this.peso = 0;
         this.aceites = false;
         this.entregue = false;
@@ -35,6 +41,8 @@ public class Encomenda {
         this.codloja = l;
         this.transp = new String();
         this.peso = y;
+        this.inicio = LocalDateTime.now();
+        this.fim = LocalDateTime.now();
         this.aceites = false;
         this.entregue = false;
         this.classificacao = -1;
@@ -46,6 +54,8 @@ public class Encomenda {
         this.coduser = e.getCoduser();
         this.codloja = e.getCodloja();
         this.transp = e.getTransp();
+        this.inicio = e.getDatai();
+        this.fim = e.getDataf();
         this.peso = e.getPeso();
         this.entregue = e.getEntregue();
         this.classificacao = e.getClassificacao();
@@ -74,6 +84,10 @@ public class Encomenda {
         return this.peso;
     }
 
+    public LocalDateTime getDatai(){ return this.inicio;}
+
+    public LocalDateTime getDataf(){ return this.fim;}
+
     public List<LinhaEncomenda> getLinha() {
         List<LinhaEncomenda> aux = new ArrayList<>();
         for (LinhaEncomenda l : this.linha)
@@ -84,6 +98,10 @@ public class Encomenda {
     public void setCodenc(String s) {
         this.codenc = s;
     }
+
+    public void setDatai(LocalDateTime d){ this.inicio = d;}
+
+    public void setDataf(LocalDateTime d){this.fim = d;}
 
     public void setTransp(String t) { this.transp = t;}
 
