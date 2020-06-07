@@ -48,6 +48,7 @@ public class ControladorTransp {
                     while (op!=0) {
                         v.pressioneEnter();
                         v.flush();
+                        v.printDadosAtuais(m.getTransportadora(this.cod));
                         v.printMenuDados();
                         v.inst();
                         op = Input.lerInt();

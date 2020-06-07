@@ -92,6 +92,8 @@ public class ViewTransp {
         System.out.println("|____________________________________________________________________________________________|");
     }
 
+
+
     public void altNome(){ System.out.println("Insira o nome novo:");
     }
 
@@ -131,6 +133,7 @@ public class ViewTransp {
         System.out.println("Localização:\n    " + t.getGPS().toString() + "\n");
         System.out.println("Taxa:" + t.getTaxa());
         System.out.println("Taxa de Peso:" + t.getTaxaPeso());
+        System.out.println("A sua Classificação: " + t.getClGeral());
     }
 
     public void printNonE(){

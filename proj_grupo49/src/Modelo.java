@@ -371,7 +371,6 @@ public class Modelo {
         return mais;
         }
 
-
     //////////////////////////////////////////// Interpretador Loja ////////////////////////////////////////////////////////////////
     public int op1Loja(String e, String l){
         int r = 0;
@@ -500,6 +499,16 @@ public class Modelo {
             }
         }
         return r;
+    }
+
+    public double getDT(Transportadora t){
+        double d = 0;
+        for(Encomenda e : t.getList()){
+            if(e.getEntregue()){
+               d+= t.getGPS().distancia(getLoja(e.getCodloja()).getGPS()) + getLoja(e.getCodloja()).getGPS().distancia(getUtilizador(e.getCoduser()).getGPS());
+            }
+        }
+        return d;
     }
 
     //////////////////////////////////////////// Interpretador Utilizador ////////////////////////////////////////////////////////////////
