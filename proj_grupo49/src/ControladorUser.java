@@ -43,7 +43,7 @@ public class ControladorUser {
                     break;
                 case 2:
                     if(m.getUtilizador(user).getPedidos().size()<=0) break;
-                    else {
+                    else{
                         v.printEnc(m.getUtilizador(user).getPedidos());
                         v.codEncC();
                         String ec = Input.lerString();

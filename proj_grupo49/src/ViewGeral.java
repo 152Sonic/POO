@@ -17,6 +17,10 @@ public class ViewGeral {
         System.out.println("|2  -> Utilizador                                                                            |");
         System.out.println("|3  -> Voluntário                                                                            |");
         System.out.println("|4  -> Transportadora                                                                        |");
+        System.out.println("|5  -> Utilizadores mais frequentes                                                          |");
+        System.out.println("|6  -> Transportadoras mais frequentes(km)                                                   |");
+        System.out.println("|7  -> Gravar estado                                                                         |");
+        System.out.println("|8  -> Load file/ or .dat                                                                    |");
         System.out.println("|0  -> Exit Program                                                                          |");
         System.out.println("|____________________________________________________________________________________________|");
     }
@@ -43,6 +47,11 @@ public class ViewGeral {
 
     public void maisUsados(Set<Utilizador> aux){
         Iterator<Utilizador> it = aux.iterator();
+        if (aux.size()==0){
+            System.out.println("Lista Vazia");
+            return;
+        }
+        System.out.println("Utilizadores ordenados em ordem ao numero de compras!");
         if(aux.size()<10){
             int size = aux.size();
             while(it.hasNext() && size>0){
@@ -60,5 +69,37 @@ public class ViewGeral {
             }
         }
     }
+
+
+    public void load(){
+        System.out.println("_____________________________________________________________________________________________");
+        System.out.println("|LOAD:                                                                                       |");
+        System.out.println("|1  -> Ler a partir de ficheiros                                                             |");
+        System.out.println("|2  -> Ficheiros .dat guardados                                                              |");
+        System.out.println("|0  -> Voltar ao Menu                                                                        |");
+        System.out.println("|____________________________________________________________________________________________|");
+    }
+
+    public void readError(){
+        System.out.println("Os ficheiros a load não encontrados! Por favor repita o processo!");
+    }
+
+    public void loadError(){
+        System.out.println("Ainda naão existem dados na aplicação por favor realize primeiro o paço de load!");
+    }
+
+    public void alreadyLoad(){
+        System.out.println("Ficheiros Lidos!");
+    }
+
+    public void loadAgain(){
+        System.out.println("Deseja ler novos ficheiros por cima dos atuais?(1).      Exit(0)");
+    }
+
+    public void insiraFilePath(){
+        System.out.println("Insira o filePath do ficheiro a dar load!");
+    }
+
+
 
 }
