@@ -3,9 +3,10 @@ package Controlador;
 import Model.*;
 import View.ViewTransp;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class ControladorTransp {
+public class ControladorTransp implements  Serializable {
     private String cod;
     private Modelo m;
 
@@ -15,11 +16,12 @@ public class ControladorTransp {
     }
 
     public void run(){
+        InterfaceInput i = new Input();
         int o;
         do{
             ViewTransp v = new ViewTransp();
             v.menuTransp();
-            o = Input.lerInt();
+            o = i.lerInt();
             switch (o){
                 case 0:
                     break;
@@ -34,7 +36,7 @@ public class ControladorTransp {
                             int op;
                             v.printMenuPedidos();
                             v.inst();
-                            op = Input.lerInt();
+                            op = i.lerInt();
                             if (op == 1) {
                                 m.op1Transp_1(cod,e);
                                 v.aceite();
@@ -58,13 +60,13 @@ public class ControladorTransp {
                         v.printDadosAtuais(m.getTransportadora(this.cod));
                         v.printMenuDados();
                         v.inst();
-                        op = Input.lerInt();
+                        op = i.lerInt();
                         op3(v, op);
                     }
                     break;
                 case 4:
                     v.printEntregue();
-                    String e = Input.lerString();
+                    String e = i.lerString();
                     if(m.op4Transp(e,cod) ==1);
                     else v.printNonE();
                         break;
@@ -81,7 +83,7 @@ public class ControladorTransp {
 
 
     public void op3(ViewTransp t, int op){
-
+        InterfaceInput i = new Input();
         switch (op){
             case 0:
                 break;
@@ -89,17 +91,17 @@ public class ControladorTransp {
 //                v.flush();
 //                v.pressioneEnter();
                 t.altNome();
-                String nome = Input.lerString();
+                String nome = i.lerString();
                 m.op3TranspNome(nome,cod);
                 break;
             case 2:
 //                v.flush();
 //                v.pressioneEnter();
                 t.passordAntiga();
-                String passAnt = Input.lerString();
+                String passAnt = i.lerString();
                 if (passAnt.equals(m.getTransportadora(cod).getPass())){
                     t.passordNova();
-                    String nova = Input.lerString();
+                    String nova = i.lerString();
                     m.op3TranspPass(nova,cod);
                 }
                 else t.passError();
@@ -108,25 +110,25 @@ public class ControladorTransp {
 //                v.flush();
 //                v.pressioneEnter();
                 t.altloc();
-                double lat = Input.lerDouble();
+                double lat = i.lerDouble();
                 t.altloclon();
-                double lon = Input.lerDouble();
+                double lon = i.lerDouble();
                 m.op3TranspGPS(lat,lon,cod);
                 break;
             case 4:
                 t.altRaio();
-                double raio = Input.lerDouble();
+                double raio = i.lerDouble();
                 m.op3TranspRaio(raio,cod);
                 t.raioSuc();
                 break;
             case 5:
                 t.altT();
-                double taxa = Input.lerDouble();
+                double taxa = i.lerDouble();
                 m.op3TranspTaxa(taxa,cod);
                 break;
             case 6:
                 t.altTP();
-                double taxap = Input.lerDouble();
+                double taxap = i.lerDouble();
                 m.op3TranspTaxap(taxap,cod);
                 break;
             case 7:
@@ -134,7 +136,7 @@ public class ControladorTransp {
                 int op7 = -1;
                 boolean op7b = false;
                 while (!op7b){
-                    op7 = Input.lerInt();
+                    op7 = i.lerInt();
                     switch (op7){
                         case 1:
                             m.getTransportadora(cod).aceitaMedicamentos(true);
@@ -155,31 +157,32 @@ public class ControladorTransp {
     }
 
     public void op5(ViewTransp v, String cod) {
+        InterfaceInput i = new Input();
         try {
             v.print1stDate();
             v.ano();
-            int y = Input.lerInt();
+            int y = i.lerInt();
             v.mes();
-            int m = Input.lerInt();
+            int m = i.lerInt();
             v.dia();
-            int d = Input.lerInt();
+            int d = i.lerInt();
             v.hora();
-            int h = Input.lerInt();
+            int h = i.lerInt();
             v.minuto();
-            int min = Input.lerInt();
+            int min = i.lerInt();
             LocalDateTime date1 = LocalDateTime.of(y, m, d, h, min);
 
             v.print2ndDate();
             v.ano();
-            int y2 = Input.lerInt();
+            int y2 = i.lerInt();
             v.mes();
-            int m2 = Input.lerInt();
+            int m2 = i.lerInt();
             v.dia();
-            int d2 = Input.lerInt();
+            int d2 = i.lerInt();
             v.hora();
-            int h2 = Input.lerInt();
+            int h2 = i.lerInt();
             v.minuto();
-            int min2 = Input.lerInt();
+            int min2 = i.lerInt();
             LocalDateTime date2 = LocalDateTime.of(y2, m2, d2, h2, min2);
 
             v.printFat(date1, date2, this.m.faturado(date1, date2, this.m.getTransportadora(cod)));

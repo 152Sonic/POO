@@ -11,24 +11,25 @@ public class ControladorLogInLoja {
     }
 
     public void run() {
-//        Controlador.ControladorLoja loja = new Controlador.ControladorLoja();
+//      Controlador.ControladorLoja loja = new Controlador.ControladorLoja();
+        InterfaceInput i = new Input();
         ViewLogin v = new ViewLogin();
         int o, o2;
         do {
             v.menuLogin();
             v.Op();
-            o = Input.lerInt();
+            o = i.lerInt();
             switch (o){
                 case 0:
                     break;
                 case 1:
                     v.pressioneEnter();
-                    Input.lerString();
+                    i.lerString();
                     v.flush();
                     v.ID();
-                    String u = Input.lerString();
+                    String u = i.lerString();
                     v.pass();
-                    String p = Input.lerString();
+                    String p = i.lerString();
                     if(m.verificaLogin(u,p,0)){
                         v.loginAccep();
                         ControladorLoja loja = new ControladorLoja(u,m);
@@ -36,14 +37,14 @@ public class ControladorLogInLoja {
 //                        loja.setL(m.getLojas());
 //                        loja.setU(m.getUtilizadores());
                         v.pressioneEnter();
-                        Input.lerString();
+                        i.lerString();
                         v.flush();
                         loja.run();
                     }
                     else {
                         v.LoginDeny();
                         v.pressioneEnter();
-                        Input.lerString();
+                        i.lerString();
                         v.flush();
                     }
                     break;
@@ -51,25 +52,25 @@ public class ControladorLogInLoja {
                     v.pressioneEnter();
                     v.flush();
                     v.ID();
-                    String c = Input.lerString();
+                    String c = i.lerString();
                     if(m.existeLoja(c)){
                         v.siginD();
                         break;
                     }
                     v.pass();
-                    String pi = Input.lerString();
+                    String pi = i.lerString();
                     v.nome();
-                    String n = Input.lerString();
+                    String n = i.lerString();
                     v.GPS();
-                    double x = Input.lerDouble();
-                    double y = Input.lerDouble();
+                    double x = i.lerDouble();
+                    double y =  i.lerDouble();
                     GPS gps = new GPS(x,y);
                     Loja novo = new Loja(pi,c,n,gps);
                     m.addLoja(novo);
                     v.siginA();
 
                     v.continuar();
-                    o2 = Input.lerInt();
+                    o2 = i.lerInt();
                     continuar(c , m, o2);
                     break;
                 default:

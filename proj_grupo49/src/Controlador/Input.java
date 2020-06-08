@@ -7,13 +7,13 @@ import java.util.Scanner;
 import static java.lang.System.in;
 import static java.lang.System.out;
 
-public class Input implements Serializable {
+public class Input implements InterfaceInput,Serializable {
 
     /**
      * Métodos de Classe
      */
 
-    public static String lerString() {
+    public String lerString() {
         Scanner input = new Scanner(in);
         boolean ok = false;
         String txt = "";
@@ -32,7 +32,7 @@ public class Input implements Serializable {
     }
 
 
-    public static int lerInt() {
+    public int lerInt() {
         Scanner input = new Scanner(in);
         boolean ok = false;
         int i = 0;
@@ -50,7 +50,7 @@ public class Input implements Serializable {
         return i;
     }
 
-    public static double lerDouble() {
+    public double lerDouble() {
         Scanner input = new Scanner(in);
         boolean ok = false;
         double d = 0.0;
@@ -68,7 +68,7 @@ public class Input implements Serializable {
         return d;
     }
 
-    public static float lerFloat() {
+    public float lerFloat() {
         Scanner input = new Scanner(in);
         boolean ok = false;
         float f = 0.0f;
@@ -86,7 +86,7 @@ public class Input implements Serializable {
         return f;
     }
 
-    public static boolean lerBoolean() {
+    public boolean lerBoolean() {
         Scanner input = new Scanner(in);
         boolean ok = false;
         boolean b = false;
@@ -104,7 +104,7 @@ public class Input implements Serializable {
         return b;
     }
 
-    public static short lerShort() {
+    public short lerShort() {
         Scanner input = new Scanner(in);
         boolean ok = false;
         short s = 0;

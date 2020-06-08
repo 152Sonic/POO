@@ -12,6 +12,7 @@ public class ControladorLogInVoluntarios {
     }
 
     public void run() {
+        InterfaceInput i = new Input();
         ViewLogin v = new ViewLogin();
         int o,o2;
         boolean medico = false;
@@ -19,51 +20,51 @@ public class ControladorLogInVoluntarios {
         do {
             v.menuLogin();
             v.Op();
-            o = Input.lerInt();
+            o = i.lerInt();
             switch (o) {
                 case 0:
                     break;
                 case 1:
 
                     v.ID();
-                    String u = Input.lerString();
+                    String u = i.lerString();
                     v.pass();
-                    String p = Input.lerString();
+                    String p = i.lerString();
                     if (m.verificaLogin(u, p,2)){
                         v.loginAccep();
                         ControladorVoluntario vol = new ControladorVoluntario(u,m);
                         v.pressioneEnter();
-                        Input.lerString();
+                        i.lerString();
                         v.flush();
                         vol.run();
                     }
                     else {
                         v.pressioneEnter();
-                        Input.lerString();
+                        i.lerString();
                         v.flush();
                         v.LoginDeny();
                     }
                     break;
                 case 2:
                     v.IDV();
-                    String c = Input.lerString();
+                    String c = i.lerString();
                     if(m.existeVol(c) || c.charAt(0)!='v'){
                         v.siginD();
                         break;
                     }
                     v.pass();
-                    String pa = Input.lerString();
+                    String pa = i.lerString();
                     v.nome();
-                    String n = Input.lerString();
+                    String n = i.lerString();
                     v.GPS();
-                    double x = Input.lerDouble();
-                    double y = Input.lerDouble();
+                    double x = i.lerDouble();
+                    double y = i.lerDouble();
                     v.raio();
-                    double r = Input.lerDouble();
+                    double r = i.lerDouble();
                     GPS gps = new GPS(x, y);
                     while (!medico && cenas){
                         v.addMedico();
-                        int med = Input.lerInt();
+                        int med = i.lerInt();
                         if (med == 1){
                             medico = true;
                         }
@@ -77,7 +78,7 @@ public class ControladorLogInVoluntarios {
                     v.siginA();
 
                     v.continuar();
-                    o2 = Input.lerInt();
+                    o2 = i.lerInt();
                     continuar(c,m, o2);
                     medico = false;
                     cenas = true;

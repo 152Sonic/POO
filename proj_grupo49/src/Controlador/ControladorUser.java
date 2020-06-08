@@ -3,12 +3,13 @@ package Controlador;
 import Model.*;
 import View.ViewUser;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-public class ControladorUser {
+public class ControladorUser{
     private Modelo m;
     private String user;
 
@@ -18,28 +19,29 @@ public class ControladorUser {
     }
 
     public void run(){
+        InterfaceInput i = new Input();
         int o;
         do{
             ViewUser v = new ViewUser();
             v.menuUser();
             v.inst();
-            o = Input.lerInt();
+            o = i.lerInt();
             switch (o){
                 case 0:
                     break;
                 case 1:
                     v.codEnc();
-                    String e = Input.lerString();
+                    String e = i.lerString();
                     if(!m.getEncomendas().containsKey(e)) {
                         v.printLojas(m.getLojas());
                         v.codloja();
-                        String l = Input.lerString();
+                        String l = i.lerString();
                         List<LinhaEncomenda> linha = new ArrayList<>();
                         int op = -1;
                         while (op != 0 ) {
                             v.printProdutos(m.getLoja(l).getStock());
                             v.menuEncomenda();
-                            op = Input.lerInt();
+                            op = i.lerInt();
                             op1(op, e, l, v, linha, m.getLoja(l).getStock());
                             if (op == 4) break;
                         }
@@ -52,7 +54,7 @@ public class ControladorUser {
                     else{
                         v.printEnc(m.getUtilizador(user).getPedidos());
                         v.codEncC();
-                        String ec = Input.lerString();
+                        String ec = i.lerString();
                         boolean ri = true;
                         while (ri) {
                             if (m.getUtilizador(user).getPedidos().size() <= 0) ri = false;
@@ -65,7 +67,7 @@ public class ControladorUser {
                                 boolean r = true;
                                 while (r) {
                                     v.acceptTransp();
-                                    String ct = Input.lerString();
+                                    String ct = i.lerString();
                                     if (m.getUtilizador(user).getPedidos().get(ec).contains(ct)) {
                                         m.aceite(user, ct, ec);
                                         r = false;
@@ -87,11 +89,11 @@ public class ControladorUser {
                     }
                     else {
                         v.classifica(cl);
-                        String en = Input.lerString();
+                        String en = i.lerString();
                         int op4 = -1;
                         while (op4 == -1) {
                             v.classificacao();
-                            op4 = Input.lerInt();
+                            op4 = i.lerInt();
                             m.op4(en, op4);
                             v.obg();
                         }
@@ -103,11 +105,11 @@ public class ControladorUser {
                         v.flush();
                         v.printDadosAtuais(m.getUtilizador(user));
                         v.pressioneEnter();
-                        Input.lerString();
+                        i.lerString();
                         v.flush();
                         v.printMenuDados();
                         v.inst();
-                        op5 = Input.lerInt();
+                        op5 = i.lerInt();
                         opU(v, op5);
                     }
                     break;
@@ -121,20 +123,21 @@ public class ControladorUser {
 
 
     public void op1(int op, String enc, String loja, ViewUser v, List<LinhaEncomenda> linha, Set<Produto> produtos){
+        InterfaceInput i = new Input();
         switch(op){
             case 0:
                 break;
             case 1:
                 v.codProd();
-                String p = Input.lerString();
+                String p = i.lerString();
                 if(m.existeProd(p,produtos)){
                     v.quantp();
-                    int q = Input.lerInt();
+                    int q = i.lerInt();
                     Produto pr = getProd(p,produtos);
                     LinhaEncomenda li = new LinhaEncomenda(p,pr.getNome(),q,pr.getPeso(),pr.getPreçouni() * q);
                     linha.add(li);
                     v.pressioneEnter();
-                    Input.lerString();
+                    i.lerString();
                     v.flush();
                 }
                 else{
@@ -143,20 +146,20 @@ public class ControladorUser {
                 break;
             case 2:
                 v.remProd();
-                String p1 = Input.lerString();
+                String p1 = i.lerString();
                 if(existeProd(p1,linha));
                 else{
                     v.prodInv();
                 }
 
                 v.pressioneEnter();
-                Input.lerString();
+                i.lerString();
                 v.flush();
                 break;
             case 3:
                 v.getEstadoEnc(linha);
                 v.pressioneEnter();
-                Input.lerString();
+                i.lerString();
                 v.flush();
                 break;
             case 4:
@@ -205,6 +208,7 @@ public class ControladorUser {
         return pr;
     }
     public void opU(ViewUser v, int op){
+        InterfaceInput i = new Input();
         switch (op){
             case 0:
                 break;
@@ -212,17 +216,17 @@ public class ControladorUser {
 //                v.flush();
 //                v.pressioneEnter();
                 v.altNome();
-                String nome = Input.lerString();
+                String nome = i.lerString();
                 m.opUNome(nome, user);
                 break;
             case 2:
 //                v.flush();
 //                v.pressioneEnter();
                 v.passordAntiga();
-                String passAnt = Input.lerString();
+                String passAnt = i.lerString();
                 if (passAnt.equals(m.getUtilizador(user).getPass())){
                     v.passordNova();
-                    String nova = Input.lerString();
+                    String nova = i.lerString();
                     m.opUPass(nova,user);
                 }
                 else v.passError();
@@ -231,9 +235,9 @@ public class ControladorUser {
 //                v.flush();
 //                v.pressioneEnter();
                 v.altloc();
-                double lat = Input.lerDouble();
+                double lat = i.lerDouble();
                 v.altloclon();
-                double lon = Input.lerDouble();
+                double lon = i.lerDouble();
                 m.opUGPS(lat,lon,user);
                 break;
             default:

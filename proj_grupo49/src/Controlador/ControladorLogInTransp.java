@@ -10,7 +10,9 @@ public class ControladorLogInTransp {
     public ControladorLogInTransp(Modelo m){
         this.m = m;
     }
+
     public void run() {
+        InterfaceInput i = new Input();
         boolean medico = false;
         boolean cenas = true;
         ViewLogin v = new ViewLogin();
@@ -18,27 +20,27 @@ public class ControladorLogInTransp {
         do {
             v.menuLogin();
             v.Op();
-            o = Input.lerInt();
+            o = i.lerInt();
             switch (o) {
                 case 0:
                     break;
                 case 1:
                     v.ID();
-                    String u = Input.lerString();
+                    String u = i.lerString();
                     v.pass();
-                    String p = Input.lerString();
+                    String p = i.lerString();
                     if (m.verificaLogin(u,p,1)){
                         v.loginAccep();
                         ControladorTransp transp = new ControladorTransp(u,m);
                         v.pressioneEnter();
-                        Input.lerString();
+                        i.lerString();
                         v.flush();
                         transp.run();
                     }
                     else {
                         v.LoginDeny();
                         v.pressioneEnter();
-                        Input.lerString();
+                        i.lerString();
                         v.flush();
                     }
                     medico = false;
@@ -46,32 +48,32 @@ public class ControladorLogInTransp {
                     break;
                 case 2:
                     v.IDT();
-                    String c = Input.lerString();
+                    String c = i.lerString();
                     if(m.existeTransp(c) || c.charAt(0)!='t'){
                         v.siginD();
                         break;
                     }
                     v.pass();
-                    String pa = Input.lerString();
+                    String pa = i.lerString();
                     v.nome();
-                    String n = Input.lerString();
+                    String n = i.lerString();
                     v.GPS();
-                    double x = Input.lerDouble();
-                    double y = Input.lerDouble();
+                    double x = i.lerDouble();
+                    double y = i.lerDouble();
                     v.raio();
-                    double r = Input.lerDouble();
+                    double r = i.lerDouble();
                     v.nif();
-                    int nif = Input.lerInt();
+                    int nif = i.lerInt();
                     v.taxa();
-                    double taxa = Input.lerDouble();
+                    double taxa = i.lerDouble();
                     v.taxapeso();
-                    double taxapeso = Input.lerDouble();
+                    double taxapeso = i.lerDouble();
                     v.pesol();
-                    int pesol = Input.lerInt();
+                    int pesol = i.lerInt();
                     GPS gps = new GPS(x, y);
                     while (!medico && cenas){
                         v.addMedico();
-                        int med = Input.lerInt();
+                        int med = i.lerInt();
                         if (med == 1){
                             medico = true;
                         }
@@ -84,7 +86,7 @@ public class ControladorLogInTransp {
                     v.siginA();
 
                     v.continuar();
-                    o2 = Input.lerInt();
+                    o2 = i.lerInt();
                     continuar(c,m, o2);
                     break;
                 default:

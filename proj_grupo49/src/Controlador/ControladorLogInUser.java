@@ -11,56 +11,57 @@ public class ControladorLogInUser {
         this.m = m;
     }
     public void run() {
+        InterfaceInput i = new Input();
         ViewLogin v = new ViewLogin();
         int o,o2;
         do {
             v.menuLogin();
             v.Op();
-            o = Input.lerInt();
+            o = i.lerInt();
             switch (o) {
                 case 0:
                     break;
                 case 1:
                     v.ID();
-                    String u = Input.lerString();
+                    String u = i.lerString();
                     v.pass();
-                    String p = Input.lerString();
+                    String p = i.lerString();
                     if (m.verificaLogin(u, p,3)){
                         v.loginAccep();
                         ControladorUser user = new ControladorUser(m,u);
                         v.pressioneEnter();
-                        Input.lerString();
+                        i.lerString();
                         v.flush();
                         user.run();
                     }
                     else {
                         v.LoginDeny();
                         v.pressioneEnter();
-                        Input.lerString();
+                        i.lerString();
                         v.flush();
                     }
                     break;
                 case 2:
                     v.ID();
-                    String c = Input.lerString();
+                    String c = i.lerString();
                     if(m.existeUser(c)){
                         v.siginD();
                         break;
                     }
                     v.pass();
-                    String pa = Input.lerString();
+                    String pa = i.lerString();
                     v.nome();
-                    String n = Input.lerString();
+                    String n = i.lerString();
                     v.GPS();
-                    double x = Input.lerDouble();
-                    double y = Input.lerDouble();
+                    double x = i.lerDouble();
+                    double y = i.lerDouble();
                     GPS gps = new GPS(x, y);
                     Utilizador novo = new Utilizador(pa,c,n,gps);
                     m.addUtilizador(novo);
                     v.siginA();
 
                     v.continuar();
-                    o2 = Input.lerInt();
+                    o2 = i.lerInt();
                     continuar(m,c, o2);
                     break;
                 default:

@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 
-public class ControladorGeral {
+public class ControladorGeral  {
     private Modelo modelo;
 
     public ControladorGeral(Modelo m){
@@ -28,6 +28,7 @@ public class ControladorGeral {
     }
 
     public void run() {
+        InterfaceInput i = new Input();
         ViewGeral v = new ViewGeral();
         ControladorLogInTransp t = new ControladorLogInTransp(modelo);
         ControladorLogInVoluntarios vol = new ControladorLogInVoluntarios(modelo);
@@ -51,32 +52,32 @@ public class ControladorGeral {
         while (op!=0){
             v.menuInicial();
             System.out.println("\nEscolha a instrução: ");
-            op = Input.lerInt();
+            op = i.lerInt();
             switch (op) {
                 case 0:
                     v.printExit();
                     break;
                 case 1:
                     v.pressioneEnter();
-                    Input.lerString();
+                    i.lerString();
                     v.flush();
                     l.run();
                     break;
                 case 2:
                     v.pressioneEnter();
-                    Input.lerString();
+                    i.lerString();
                     v.flush();
                     u.run();
                     break;
                 case 3:
                     v.pressioneEnter();
-                    Input.lerString();
+                    i.lerString();
                     v.flush();
                     vol.run();
                     break;
                 case 4:
                     v.pressioneEnter();
-                    Input.lerString();
+                    i.lerString();
                     v.flush();
                     t.run();
                     break;

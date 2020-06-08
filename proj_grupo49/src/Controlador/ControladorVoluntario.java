@@ -4,7 +4,9 @@ import Model.Encomenda;
 import Model.Modelo;
 import View.ViewVoluntario;
 
-public class ControladorVoluntario {
+import java.io.Serializable;
+
+public class ControladorVoluntario  {
     private Modelo m;
     private String cod;
 
@@ -15,11 +17,12 @@ public class ControladorVoluntario {
     }
 
     public void run(){
+        InterfaceInput i = new Input();
         int o;
         do{
             ViewVoluntario v = new ViewVoluntario();
             v.menuVol();
-            o = Input.lerInt();
+            o = i.lerInt();
             switch (o){
                 case 0:
                     break;
@@ -34,7 +37,7 @@ public class ControladorVoluntario {
                             int op;
                             v.printMenuPedidos();
                             v.inst();
-                            op = Input.lerInt();
+                            op = i.lerInt();
                             if (op == 1) {
                                 m.op1Voluntario_1(cod,e);
                                 v.aceite();
@@ -58,13 +61,13 @@ public class ControladorVoluntario {
                         v.printDadosAtuais(m.getVoluntario(cod));
                         v.printMenuDados();
                         v.inst();
-                        op = Input.lerInt();
+                        op = i.lerInt();
                         op3(v, op);
                     }
                     break;
                 case 4:
                     v.op4();
-                    String e = Input.lerString();
+                    String e = i.lerString();
                     if(m.op4Vol(e,cod) == 1);
                     else v.printError();
                     break;
@@ -76,6 +79,7 @@ public class ControladorVoluntario {
     }
 
     public void op3(ViewVoluntario v, int op){
+        InterfaceInput i = new Input();
 
         switch (op){
             case 0:
@@ -84,17 +88,17 @@ public class ControladorVoluntario {
 //                v.flush();
 //                v.pressioneEnter();
                 v.altNome();
-                String nome = Input.lerString();
+                String nome = i.lerString();
                 m.op3VolNome(nome,cod);
                 break;
             case 2:
 //                v.flush();
 //                v.pressioneEnter();
                 v.passordAntiga();
-                String passAnt = Input.lerString();
+                String passAnt = i.lerString();
                 if (passAnt.equals(m.getVoluntario(cod).getPass())){
                     v.passordNova();
-                    String nova = Input.lerString();
+                    String nova = i.lerString();
                     m.op3VolPass(nova,cod);
                 }
                 else v.passError();
@@ -103,14 +107,14 @@ public class ControladorVoluntario {
 //                v.flush();
 //                v.pressioneEnter();
                 v.altloc();
-                double lat = Input.lerDouble();
+                double lat = i.lerDouble();
                 v.altloclon();
-                double lon = Input.lerDouble();
+                double lon = i.lerDouble();
                 m.op3VolGPS(lat,lon,cod);
                 break;
             case 4:
                 v.altRaio();
-                double raio = Input.lerDouble();
+                double raio = i.lerDouble();
                 m.op3VolRaio(raio,cod);
                 v.raioSuc();
                 break;
@@ -119,7 +123,7 @@ public class ControladorVoluntario {
                 int op3 = -1;
                 boolean op3b = false;
                 while (!op3b){
-                    op3 = Input.lerInt();
+                    op3 = i.lerInt();
                     switch (op3){
                         case 1:
                             m.getVoluntario(cod).aceitaMedicamentos(true);

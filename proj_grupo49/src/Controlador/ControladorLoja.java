@@ -13,6 +13,7 @@ public class ControladorLoja {
     }
 
     public void run(){
+        InterfaceInput i = new Input();
         int o;
         boolean medico = false;
         boolean cenas = true;
@@ -20,7 +21,7 @@ public class ControladorLoja {
             ViewLoja v = new ViewLoja();
             v.menuLoja();
             v.inst();
-            o = Input.lerInt();
+            o = i.lerInt();
                 switch (o){
                     case 0:
                         break;
@@ -28,7 +29,7 @@ public class ControladorLoja {
                         v.pressioneEnter();
                         v.flush();
                         v.op1();
-                        String e = Input.lerString();
+                        String e = i.lerString();
                         if(m.op1Loja(e,c) == 1) v.instExec();
                         else v.op1Error();
                         break;
@@ -36,13 +37,13 @@ public class ControladorLoja {
                         v.pressioneEnter();
                         v.flush();
                         v.addCP();
-                        String p = Input.lerString();
+                        String p = i.lerString();
                         if (!m.getLojas().getLoja(c).existeProd(p)) {
                             v.addDesP();
-                            String des = Input.lerString();
+                            String des = i.lerString();
                             while (!medico && cenas){
                                 v.addMedico();
-                                int med = Input.lerInt();
+                                int med = i.lerInt();
                                 if (med == 1){
                                     medico = true;
                                 }
@@ -50,9 +51,9 @@ public class ControladorLoja {
                                 else v.printError();
                             }
                             v.addPeso();
-                            double pr = Input.lerDouble();
+                            double pr = i.lerDouble();
                             v.addQP();
-                            double q = Input.lerDouble();
+                            double q = i.lerDouble();
                             Produto produto = new Produto(p, des,medico, pr, q);
                             m.op2Loja(produto,c);
                             v.printProduto(produto);
@@ -71,7 +72,7 @@ public class ControladorLoja {
                         v.flush();
                         v.opc4(m.getLojas().getLoja(c).getListaEnc(), m.getLoja(c).getProntas());
                         v.pressioneEnter();
-                        Input.lerString();
+                        i.lerString();
                         v.flush();
                         break;
                     case 5:
@@ -92,7 +93,7 @@ public class ControladorLoja {
                             v.pressioneEnter();
                             v.printMenuDados();
                             v.inst();
-                            op = Input.lerInt();
+                            op = i.lerInt();
                             op7(v, op);
                         }
                         break;
@@ -115,6 +116,7 @@ public class ControladorLoja {
 
 
     public void op7(ViewLoja v, int op){
+        InterfaceInput i = new Input();
         switch (op){
             case 0:
                 break;
@@ -122,17 +124,17 @@ public class ControladorLoja {
 //                v.flush();
 //                v.pressioneEnter();
                 v.altNome();
-                String nome = Input.lerString();
+                String nome = i.lerString();
                 m.op7LojaNome(nome, c);
                 break;
             case 2:
 //                v.flush();
 //                v.pressioneEnter();
                 v.passordAntiga();
-                String passAnt = Input.lerString();
+                String passAnt = i.lerString();
                 if (passAnt.equals(m.getLojas().getLoja(c).getPass())){
                     v.passordNova();
-                    String nova = Input.lerString();
+                    String nova = i.lerString();
                     m.op7LojaPass(nova,c);
                 }
                 else v.passError();
@@ -141,9 +143,9 @@ public class ControladorLoja {
 //                v.flush();
 //                v.pressioneEnter();
                 v.altloc();
-                double lat = Input.lerDouble();
+                double lat = i.lerDouble();
                 v.altloclon();
-                double lon = Input.lerDouble();
+                double lon = i.lerDouble();
                 m.op7LojaGPS(lat,lon,c);
                 break;
             default:
