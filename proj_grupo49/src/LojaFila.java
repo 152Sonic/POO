@@ -1,3 +1,7 @@
+import Model.Encomenda;
+import Model.GPS;
+import Model.Loja;
+
 import java.util.ArrayList;
 
 public class LojaFila extends Loja {

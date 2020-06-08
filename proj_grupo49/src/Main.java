@@ -1,3 +1,6 @@
+import Controlador.ControladorGeral;
+import Model.*;
+
 import java.util.*;
 
 public class Main {
@@ -11,7 +14,7 @@ public class Main {
          Map<String, Encomenda> encomendas = new TreeMap<>();
          Set<Produto> produtos;
          Modelo m = new Modelo(lojas,transportadoras,voluntarios,utilizadors,encomendas);
-         m.parse("proj_grupo49/logs2.txt");
+         m.parse("logs2.txt");
 
 
         ControladorGeral g = new ControladorGeral(m);
