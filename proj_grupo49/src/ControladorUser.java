@@ -38,6 +38,7 @@ public class ControladorUser {
                             op1(op, e, l, v, linha, m.getProdutos());
                             if (op == 4) break;
                         }
+
                     }
                     else v.existe();
                     break;
@@ -127,6 +128,9 @@ public class ControladorUser {
                     Produto pr = getProd(p,produtos);
                     LinhaEncomenda li = new LinhaEncomenda(p,pr.getNome(),q,pr.getPeso(),pr.getPreçouni() * q);
                     linha.add(li);
+                    v.pressioneEnter();
+                    Input.lerString();
+                    v.flush();
                 }
                 else{
                     v.prodInv();
@@ -139,9 +143,15 @@ public class ControladorUser {
                 else{
                     v.prodInv();
                 }
+                v.pressioneEnter();
+                Input.lerString();
+                v.flush();
                 break;
             case 3:
                 v.getEstadoEnc(linha);
+                v.pressioneEnter();
+                Input.lerString();
+                v.flush();
                 break;
             case 4:
                 if(linha.size()<=0){

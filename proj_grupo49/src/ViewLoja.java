@@ -50,7 +50,7 @@ public class ViewLoja {
 
     public void opc3(List<Encomenda> e){
         if (e.size() <=0){
-            System.out.println("A lista está vazia!");
+            System.out.println("A lista está vazia, não tem encomendas sinalizadas!");
         }
         else {
             System.out.println("Codigo");
@@ -60,16 +60,21 @@ public class ViewLoja {
         }
     }
 
-    public void opc4(List<Encomenda> e){
+    public void opc4(List<Encomenda> e, List<Encomenda> prontas){
         if (e.size() <=0){
-            System.out.println("A lista está vazia!");
+            System.out.println("A lista esta de encomendas geral esta vazia vazia!");
         }
         else {
             List<Encomenda> aux = new ArrayList<>();
             for (Encomenda em :e) {
-                 aux.add(em.clone());
+                if (!prontas.contains(em) && !em.getAceites()){
+                    aux.add(em.clone());
+                }
             }
-            if (aux.size() > 0) {
+            if (aux.size()<= 0){
+                System.out.println("Não há encomendas a sinalizar!");
+            }
+            else {
                 System.out.println("Codigo");
                 for (Encomenda es : aux) {
                     System.out.println(es.getCodenc());

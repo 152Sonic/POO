@@ -63,9 +63,11 @@ public class ControladorLoja {
                         v.opc3(m.getLojas().getLoja(c).getProntas());
                         break;
                     case 4:
-                        v.pressioneEnter();
                         v.flush();
-                        v.opc4(m.getLojas().getLoja(c).getListaEnc());
+                        v.opc4(m.getLojas().getLoja(c).getListaEnc(), m.getLoja(c).getProntas());
+                        v.pressioneEnter();
+                        Input.lerString();
+                        v.flush();
                         break;
                     case 5:
                         v.pressioneEnter();
