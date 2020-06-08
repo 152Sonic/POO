@@ -58,9 +58,7 @@ public class ViewVoluntario {
     public void op1(Encomenda e){
         System.out.println("\nEcomenda:" + e.getCodenc());
         System.out.println("Loja: " +e.getCodloja());
-        System.out.println("Inicio da Entrega:" + e.getDatai());
-        System.out.println("Entregue: "+ e.getEntregue());
-        System.out.println("Fim da Entrega:" + e.getDataf());
+        System.out.println("Utilizador: " +e.getCoduser());
     }
 
     public void op4(){
@@ -122,7 +120,7 @@ public class ViewVoluntario {
         System.out.println("Nome:" + v.getNome());
         System.out.println("Codigo:"  + v.getCod());
         System.out.println("Raio de ação:" + v.getRaio());
-        System.out.println("Médico: "+ v.getMedico());
+        System.out.println("Médico: "+ v.aceitoTransporteMedicamentos());
         System.out.println("Classificacao: " + v.getClGeral());
         System.out.println("Localização:\n    " + v.getGPS().toString() + "\n");
     }

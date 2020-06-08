@@ -66,9 +66,7 @@ public class ViewTransp {
     public void op1(Encomenda e){
         System.out.println("\nEcomenda:" + e.getCodenc());
         System.out.println("Loja: " +e.getCodloja());
-        System.out.println("Inicio da Entrega:" + e.getDatai());
-        System.out.println("Entregue: "+ e.getEntregue());
-        System.out.println("Fim da Entrega:" + e.getDataf());
+        System.out.println("Utilizador: "+e.getCoduser());
     }
 
     public void aceite(){
@@ -137,6 +135,7 @@ public class ViewTransp {
         System.out.println("\nOs seus dados atuais: ");
         System.out.println("Nome:" + t.getNome());
         System.out.println("Codigo:"  + t.getCod());
+        System.out.println("Médico: "+t.aceitoTransporteMedicamentos());
         System.out.println("Raio de ação:" + t.getRaio());
         System.out.println("Localização:\n    " + t.getGPS().toString() + "\n");
         System.out.println("Taxa:" + t.getTaxa());

@@ -96,15 +96,15 @@ public class Transportadora
         this.setList(u.getList());
         this.setPedidos(u.getPedidos());
         this.setEspera(u.getEspera());
-        this.medico = u.getMedico();
+        this.medico = u.aceitoTransporteMedicamentos();
 
     }
 
-    public boolean getMedico() {
+    public boolean aceitoTransporteMedicamentos() {
         return medico;
     }
 
-    public void setMedico(boolean medico) {
+    public void aceitaMedicamentos(boolean medico) {
         this.medico = medico;
     }
 

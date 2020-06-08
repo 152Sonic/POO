@@ -32,10 +32,10 @@ public class ControladorUser {
                         List<LinhaEncomenda> linha = new ArrayList<>();
                         int op = -1;
                         while (op != 0 ) {
-                            v.printProdutos(m.getProdutos());
+                            v.printProdutos(m.getLoja(l).getStock());
                             v.menuEncomenda();
                             op = Input.lerInt();
-                            op1(op, e, l, v, linha, m.getProdutos());
+                            op1(op, e, l, v, linha, m.getLoja(l).getStock());
                             if (op == 4) break;
                         }
 
@@ -143,6 +143,7 @@ public class ControladorUser {
                 else{
                     v.prodInv();
                 }
+
                 v.pressioneEnter();
                 Input.lerString();
                 v.flush();
@@ -159,6 +160,7 @@ public class ControladorUser {
                 }
                 else {
                     Encomenda encomenda = new Encomenda(enc,this.user,loja, getPesoLinha(linha), linha);
+                    encomenda.setMedica(m.isMedica(linha));
                     m.op1User_3(encomenda);
                     v.succes();
                 }

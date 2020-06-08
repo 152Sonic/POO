@@ -170,16 +170,20 @@ public class ViewUser {
     public void histEnc(List<Encomenda> l){
         if (l.size()<=0) System.out.println("Lista Vazia! ");
         else{
-            for(Encomenda e : l){
+            for(Encomenda e : l) {
                 System.out.println();
                 System.out.println("Ecomenda:" + e.getCodenc());
-                System.out.println("Loja: " +e.getCodloja());
+                System.out.println("Loja: " + e.getCodloja());
                 System.out.println("Preço: " + e.getPreco());
+                System.out.println("Médica : " +e.getMedica());
                 System.out.println("Transporte: " + e.getTransp());
                 System.out.println("Aceite: " + e.getAceites());
                 System.out.println("Inicio da Entrega:" + e.getDatai());
-                System.out.println("Entregue: "+ e.getEntregue());
-                System.out.println("Fim da Entrega:" + e.getDataf());
+                System.out.println("Entregue: " + e.getEntregue());
+                if (e.getEntregue()) {
+                    System.out.println("Fim da Entrega:" + e.getDataf());
+                }
+                else System.out.println("A encomenda ainda não foi entregue!");
             }
         }
     }

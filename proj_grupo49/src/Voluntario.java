@@ -58,7 +58,7 @@ public class Voluntario
         this.livre = true;
         this.pedidos = new ArrayList<>();
         this.listenc = new ArrayList<>();
-        this.medico = false;
+        this.medico = med;
 
     }
 
@@ -72,14 +72,14 @@ public class Voluntario
         this.livre = u.getLivre();
         this.setPedidos(u.getPedidos());
         this.setList(u.getList());
-        this.medico = getMedico();
+        this.medico = u.aceitoTransporteMedicamentos();
     }
 
-    public boolean getMedico() {
+    public boolean aceitoTransporteMedicamentos() {
         return medico;
     }
 
-    public void setMedico(boolean medico) {
+    public void aceitaMedicamentos(boolean medico) {
         this.medico = medico;
     }
 
@@ -111,6 +111,7 @@ public class Voluntario
     {
         return this.livre;
     }
+
 
     public ArrayList<Encomenda> getList() {
         ArrayList<Encomenda> aux = new ArrayList<>();

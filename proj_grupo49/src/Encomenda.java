@@ -12,7 +12,7 @@ public class Encomenda {
     private String transp;
     private LocalDateTime inicio;
     private LocalDateTime fim;
-  //  private boolean medica;
+    private boolean medica;
     private double peso;
     private boolean aceites;
     private int classificacao;
@@ -25,9 +25,10 @@ public class Encomenda {
         this.coduser = new String();
         this.codloja = new String();
         this.transp = new String();
-        this.inicio = LocalDateTime.now();
-        this.fim = LocalDateTime.now();
+        this.inicio = LocalDateTime.of(0,1,1,0,0);
+        this.fim = LocalDateTime.of(0,1,1,0,0);
         this.peso = 0;
+        this.medica = false;
         this.aceites = false;
         this.entregue = false;
         this.classificacao = -1;
@@ -41,8 +42,9 @@ public class Encomenda {
         this.codloja = l;
         this.transp = new String();
         this.peso = y;
-        this.inicio = LocalDateTime.now();
-        this.fim = LocalDateTime.now();
+        this.inicio = LocalDateTime.of(0,1,1,0,0);
+        this.fim = LocalDateTime.of(0,1,1,0,0);
+        this.medica = false;
         this.aceites = false;
         this.entregue = false;
         this.classificacao = -1;
@@ -56,6 +58,7 @@ public class Encomenda {
         this.transp = e.getTransp();
         this.inicio = e.getDatai();
         this.fim = e.getDataf();
+        this.medica = e.getMedica();
         this.peso = e.getPeso();
         this.entregue = e.getEntregue();
         this.classificacao = e.getClassificacao();
@@ -69,6 +72,14 @@ public class Encomenda {
     public String getTransp(){ return this.transp;}
 
     public boolean getEntregue(){return this.entregue;}
+
+    public boolean getMedica() {
+        return medica;
+    }
+
+    public void setMedica(boolean medica) {
+        this.medica = medica;
+    }
 
     public int getClassificacao(){ return this.classificacao;}
 
@@ -174,5 +185,6 @@ public class Encomenda {
     public double getPesoLinhas() {
         return this.linha.stream().mapToDouble(LinhaEncomenda::getPeso).sum();
     }
+
 
 }

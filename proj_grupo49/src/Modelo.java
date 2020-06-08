@@ -288,14 +288,28 @@ public class Modelo {
         Utilizador u = this.utilizadores.getUtilizador(e.getCoduser());
         GPS cordl = l.getGPS().clone();
         GPS cordu = u.getGPS().clone();
-        for(Map.Entry<String,Transportadora> t : this.transportadoras.getTransportadoras().entrySet()) {
-            if (t.getValue().getGPS().isNear(cordl, t.getValue().getRaio()) && t.getValue().getGPS().isNear(cordu, t.getValue().getRaio())) {
-                t.getValue().addPedido(e);
+        if(!e.getMedica()) {
+            for (Map.Entry<String, Transportadora> t : this.transportadoras.getTransportadoras().entrySet()) {
+                if (t.getValue().getGPS().isNear(cordl, t.getValue().getRaio()) && t.getValue().getGPS().isNear(cordu, t.getValue().getRaio())) {
+                    t.getValue().addPedido(e);
+                }
+            }
+            for (Map.Entry<String, Voluntario> v : this.voluntarios.getVoluntarios().entrySet()) {
+                if (v.getValue().getGPS().isNear(cordl, v.getValue().getRaio()) && v.getValue().getGPS().isNear(cordu, v.getValue().getRaio()) && v.getValue().getLivre()) {
+                    v.getValue().addPedido(e);
+                }
             }
         }
-        for(Map.Entry<String,Voluntario> v : this.voluntarios.getVoluntarios().entrySet()) {
-            if (v.getValue().getGPS().isNear(cordl, v.getValue().getRaio()) && v.getValue().getGPS().isNear(cordu, v.getValue().getRaio()) && v.getValue().getLivre()) {
-                v.getValue().addPedido(e);
+        else {
+            for (Map.Entry<String, Transportadora> t : this.transportadoras.getTransportadoras().entrySet()) {
+                if (t.getValue().getGPS().isNear(cordl, t.getValue().getRaio()) && t.getValue().getGPS().isNear(cordu, t.getValue().getRaio()) && t.getValue().aceitoTransporteMedicamentos()) {
+                    t.getValue().addPedido(e);
+                }
+            }
+            for (Map.Entry<String, Voluntario> v : this.voluntarios.getVoluntarios().entrySet()) {
+                if (v.getValue().getGPS().isNear(cordl, v.getValue().getRaio()) && v.getValue().getGPS().isNear(cordu, v.getValue().getRaio()) && v.getValue().getLivre() && v.getValue().aceitoTransporteMedicamentos()) {
+                    v.getValue().addPedido(e);
+                }
             }
         }
 
@@ -309,14 +323,28 @@ public class Modelo {
         GPS cordu = u.getGPS().clone();
         aux.put("T",new ArrayList<>());
         aux.put("V", new ArrayList<>());
-        for(Map.Entry<String,Transportadora> t : this.transportadoras.getTransportadoras().entrySet()) {
-            if (t.getValue().getGPS().isNear(cordl, t.getValue().getRaio()) && t.getValue().getGPS().isNear(cordu, t.getValue().getRaio())) {
-                aux.get("T").add(t.getValue().getCod());
+        if(!e.getMedica()) {
+            for (Map.Entry<String, Transportadora> t : this.transportadoras.getTransportadoras().entrySet()) {
+                if (t.getValue().getGPS().isNear(cordl, t.getValue().getRaio()) && t.getValue().getGPS().isNear(cordu, t.getValue().getRaio())) {
+                    aux.get("T").add(t.getValue().getCod());
+                }
+            }
+            for (Map.Entry<String, Voluntario> v : this.voluntarios.getVoluntarios().entrySet()) {
+                if (v.getValue().getGPS().isNear(cordl, v.getValue().getRaio()) && v.getValue().getGPS().isNear(cordu, v.getValue().getRaio()) && v.getValue().getLivre()) {
+                    aux.get("V").add(v.getValue().getCod());
+                }
             }
         }
-        for(Map.Entry<String,Voluntario> v : this.voluntarios.getVoluntarios().entrySet()) {
-            if (v.getValue().getGPS().isNear(cordl, v.getValue().getRaio()) && v.getValue().getGPS().isNear(cordu, v.getValue().getRaio()) && v.getValue().getLivre()) {
-                aux.get("V").add(v.getValue().getCod());
+        else {
+            for (Map.Entry<String, Transportadora> t : this.transportadoras.getTransportadoras().entrySet()) {
+                if (t.getValue().getGPS().isNear(cordl, t.getValue().getRaio()) && t.getValue().getGPS().isNear(cordu, t.getValue().getRaio()) && t.getValue().aceitoTransporteMedicamentos()) {
+                    aux.get("T").add(t.getValue().getCod());
+                }
+            }
+            for (Map.Entry<String, Voluntario> v : this.voluntarios.getVoluntarios().entrySet()) {
+                if (v.getValue().getGPS().isNear(cordl, v.getValue().getRaio()) && v.getValue().getGPS().isNear(cordu, v.getValue().getRaio()) && v.getValue().getLivre() && v.getValue().aceitoTransporteMedicamentos()) {
+                    aux.get("V").add(v.getValue().getCod());
+                }
             }
         }
         return aux;
@@ -397,6 +425,7 @@ public class Modelo {
 
     public void op2Loja(Produto p, String c){
         lojas.getLoja(c).addProduto(p);
+        produtos.add(p);
     }
 
     public void op7LojaNome(String nome, String c){
@@ -542,6 +571,16 @@ public class Modelo {
         this.getLoja(e.getCodloja()).addEncomenda(e.clone());
     }
 
+    public boolean isMedica(List<LinhaEncomenda> l){
+        Iterator<LinhaEncomenda> it = l.iterator();
+        boolean f = false;
+        while(it.hasNext() && !f){
+            LinhaEncomenda linha = it.next();
+            if(getProduto(linha.getCod()).getMedico())
+                f=true;
+        }
+        return f;
+    }
     public double getPrecoTransp(String e, String t){
         String cl = encomendas.get(e).getCodloja();
         GPS l = lojas.getLoja(cl).getGPS().clone();
@@ -612,6 +651,18 @@ public class Modelo {
         a[1] = horas;
         a[2] = min;
         return a;
+    }
+
+    public Produto getProduto(String cod) {
+        Iterator<Produto> it = produtos.iterator();
+        boolean f = false;
+        Produto pr = new Produto();
+        while (it.hasNext() && !f) {
+            pr = it.next();
+            if (pr.getCod().equals(cod))
+                f=true;
+        }
+        return pr;
     }
 }
 
