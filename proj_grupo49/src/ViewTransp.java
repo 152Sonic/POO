@@ -94,6 +94,7 @@ public class ViewTransp {
         System.out.println("|4  -> Alterar raio de ação                                                                  |");
         System.out.println("|5  -> Alterar taxa                                                                          |");
         System.out.println("|6  -> Alterar taxa de peso                                                                  |");
+        System.out.println("|7  -> Alterar tranporte de Medicamentos");
         System.out.println("|0  -> Voltar ao menu Transportadora                                                         |");
         System.out.println("|____________________________________________________________________________________________|");
     }
@@ -131,17 +132,23 @@ public class ViewTransp {
 
     public void altTP(){System.out.println("Insira a nova taxa de peso:");}
 
+    public void altMedico(){
+        System.out.println("Tem aptidões para trasnporte de medicamentos?");
+        System.out.println("1  -> SIM");
+        System.out.println("2  -> NÃO");
+    }
+
     public void printDadosAtuais(Transportadora t){
         System.out.println("\nOs seus dados atuais: ");
         System.out.println("Nome:" + t.getNome());
         System.out.println("Codigo:"  + t.getCod());
-        System.out.println("Médico: "+t.aceitoTransporteMedicamentos());
+        System.out.println("Médico: " +t.aceitoTransporteMedicamentos());
         System.out.println("Raio de ação:" + t.getRaio());
-        System.out.println("Localização:\n    " + t.getGPS().toString() + "\n");
         System.out.println("Taxa:" + t.getTaxa());
         System.out.println("Taxa de Peso:" + t.getTaxaPeso());
         System.out.println("Kms percorridos: " + t.getKms());
         System.out.println("A sua Classificação: " + t.getClGeral());
+        System.out.println("Localização:\n    " + t.getGPS().toString() + "\n");
     }
 
     public void printNonE(){

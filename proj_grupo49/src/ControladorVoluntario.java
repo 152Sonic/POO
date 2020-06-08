@@ -108,6 +108,25 @@ public class ControladorVoluntario {
                 m.op3VolRaio(raio,cod);
                 v.raioSuc();
                 break;
+            case 5:
+                v.altMedico();
+                int op3 = -1;
+                boolean op3b = false;
+                while (!op3b){
+                    op3 = Input.lerInt();
+                    switch (op3){
+                        case 1:
+                            m.getVoluntario(cod).aceitaMedicamentos(true);
+                            op3b = true;
+                            break;
+                        case 2:
+                            m.getVoluntario(cod).aceitaMedicamentos(false);
+                            op3b = true;
+                        default:
+                            v.printError();
+                            break;
+                    }
+                }
             default:
                 v.printError();
         }

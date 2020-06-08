@@ -83,6 +83,7 @@ public class ViewVoluntario {
         System.out.println("|2  -> Alterar Password                                                                      |");
         System.out.println("|3  -> Alterar Localização                                                                   |");
         System.out.println("|4  -> Alterar raio de ação                                                                  |");
+        System.out.println("|5  -> Alterar tranporte de Medicamentos                                                     |");
         System.out.println("|0  -> Voltar ao menu Voluntário                                                             |");
         System.out.println("|____________________________________________________________________________________________|");
     }
@@ -112,6 +113,13 @@ public class ViewVoluntario {
     }
 
     public void altRaio(){ System.out.println("Insira o novo raio de ação:");}
+
+    public void altMedico(){
+        System.out.println("Tem aptidões para trasnporte de medicamentos?");
+        System.out.println("1  -> SIM");
+        System.out.println("2  -> NÃO");
+    }
+
 
     public void raioSuc(){System.out.println("Raio de ação alterado com sucesso!");}
 

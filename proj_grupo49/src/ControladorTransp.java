@@ -124,6 +124,26 @@ public class ControladorTransp {
                 double taxap = Input.lerDouble();
                 m.op3TranspTaxap(taxap,cod);
                 break;
+            case 7:
+                t.altMedico();
+                int op7 = -1;
+                boolean op7b = false;
+                while (!op7b){
+                    op7 = Input.lerInt();
+                    switch (op7){
+                        case 1:
+                            m.getTransportadora(cod).aceitaMedicamentos(true);
+                            op7b = true;
+                            break;
+                        case 2:
+                            m.getTransportadora(cod).aceitaMedicamentos(false);
+                            op7b = true;
+                        default:
+                            t.printError();
+                            break;
+                    }
+                }
+
             default:
                 t.printError();
         }

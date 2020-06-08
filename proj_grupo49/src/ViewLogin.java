@@ -89,12 +89,13 @@ public class ViewLogin {
         System.out.println("\nOs seus dados atuais: ");
         System.out.println("Nome:" + t.getNome());
         System.out.println("Codigo:"  + t.getCod());
+        System.out.println("Medico: " + t.aceitoTransporteMedicamentos());
         System.out.println("Raio de ação:" + t.getRaio());
-        System.out.println("Localização:\n    " + t.getGPS().toString() + "\n");
         System.out.println("Taxa:" + t.getTaxa());
         System.out.println("Taxa de Peso:" + t.getTaxaPeso());
         System.out.println("Kms percorridos: " + t.getKms());
         System.out.println("A sua Classificação: " + t.getClGeral());
+        System.out.println("Localização:\n    " + t.getGPS().toString() + "\n");
     }
 
     public void GPS(){
