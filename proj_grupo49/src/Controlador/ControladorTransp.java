@@ -6,7 +6,7 @@ import View.ViewTransp;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class ControladorTransp implements  Serializable {
+public class ControladorTransp {
     private String cod;
     private Modelo m;
 

@@ -1,8 +1,9 @@
 package Model;
 
+import java.io.Serializable;
 import java.util.Comparator;
 
-public class ComparatorTransp implements Comparator<Transportadora> {
+public class ComparatorTransp implements Comparator<Transportadora>, Serializable {
 
     public int compare (Transportadora t1, Transportadora t2){
         double km1 =(double) t1.getKms();

@@ -1,12 +1,14 @@
 package Model;
 
+import java.io.Serializable;
+
 /**
  * Write a description of class Model.LinhaEncomenda here.
  *
  * @author (your name)
  * @version (a version number or a date)
  */
-public class LinhaEncomenda {
+public class LinhaEncomenda implements Serializable {
     private String cod;
     private String desc;
     private double quant;

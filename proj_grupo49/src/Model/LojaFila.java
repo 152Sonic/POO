@@ -1,10 +1,9 @@
-import Model.Encomenda;
-import Model.GPS;
-import Model.Loja;
+package Model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class LojaFila extends Loja {
+public class LojaFila extends Loja implements Serializable {
     private int fila;
 
     public LojaFila(){

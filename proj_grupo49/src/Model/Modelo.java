@@ -1,6 +1,6 @@
 package Model;
 
-import java.io.IOException;
+import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.*;
 
-public class Modelo {
+public class Modelo implements Serializable {
     private Lojas lojas;
     private Transportadoras transportadoras;
     private Voluntarios voluntarios;
@@ -130,7 +130,7 @@ public class Modelo {
     }
 
 
-    public void parse(String filename) {
+    public void parse(String filename) throws IOException{
         List<String> linhas = lerFicheiro(filename); //alterar nome do ficheiro
         String[] linhaPartida;
         for (String linha : linhas) {
@@ -272,13 +272,9 @@ public class Modelo {
     }
 
 
-    public static List<String> lerFicheiro(String nomeFich) {
+    public static List<String> lerFicheiro(String nomeFich) throws IOException {
         List<String> lines = new ArrayList<>();
-        try {
-            lines = Files.readAllLines(Paths.get(nomeFich), StandardCharsets.UTF_8);
-        } catch (IOException exc) {
-            System.out.println(exc);
-        }
+        lines = Files.readAllLines(Paths.get(nomeFich), StandardCharsets.UTF_8);
         return lines;
     }
 
@@ -663,6 +659,28 @@ public class Modelo {
                 f=true;
         }
         return pr;
+    }
+
+
+
+
+        // Gravar para ficheiro
+
+    public void gravarObj() throws IOException {
+        ObjectOutputStream o = new ObjectOutputStream(new FileOutputStream("Dados.dat"));
+        o.writeObject(this);
+        o.flush();
+        o.close();
+    }
+
+
+    //Ler de ficheiros bin
+
+    public static Modelo lerObj() throws IOException, ClassNotFoundException {
+        ObjectInputStream o = new ObjectInputStream(new FileInputStream("Dados.dat"));
+        Modelo c = (Modelo) o.readObject();
+        o.close();
+        return c;
     }
 }
 

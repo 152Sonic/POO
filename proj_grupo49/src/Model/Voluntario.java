@@ -1,5 +1,6 @@
 package Model;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -11,7 +12,7 @@ import java.util.List;
  * @author (your name)
  * @version (a version number or a date)
  */
-public class Voluntario
+public class Voluntario implements Serializable
 {
     private String pass;
     private String cod;

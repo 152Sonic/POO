@@ -3,16 +3,19 @@ package Controlador;
 import Model.*;
 import View.ViewGeral;
 
+import java.io.IOException;
+import java.io.Serializable;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 
-public class ControladorGeral  {
+public class ControladorGeral  implements Serializable {
     private Modelo modelo;
 
     public ControladorGeral(Modelo m){
         this.modelo  = m;
     }
+
     public ControladorGeral(){
         Lojas lojas = new Lojas();
         Transportadoras transportadoras = new Transportadoras();
@@ -27,22 +30,34 @@ public class ControladorGeral  {
         this.modelo = m;
     }
 
-    public void run() {
+
+
+    public void run() throws IOException, ClassNotFoundException {
         InterfaceInput i = new Input();
         ViewGeral v = new ViewGeral();
+
+
+        //System.out.println("Deseja ler de um txt ou de um .dat");
+//        modelo.parse("logs2.txt");
+//        modelo.gravarObj();
+//        this.modelo = Modelo.lerObj();
+
+
+        try {
+            this.modelo = Modelo.lerObj();
+        }
+        catch (IOException | ClassNotFoundException e ){
+            try {
+                this.modelo.parse("logs2.txt");
+            }catch (IOException es){
+                v.readError();
+            }
+        }
+
         ControladorLogInTransp t = new ControladorLogInTransp(modelo);
         ControladorLogInVoluntarios vol = new ControladorLogInVoluntarios(modelo);
         ControladorLogInLoja l = new ControladorLogInLoja(modelo);
         ControladorLogInUser u = new ControladorLogInUser(modelo);
-
-//        Model.Lojas lojas = new Model.Lojas();
-//        Model.Transportadoras transportadoras = new Model.Transportadoras();
-//        Model.Voluntarios voluntarios = new Model.Voluntarios();
-//        Model.Utilizadores utilizadors = new Model.Utilizadores();
-//        Map<String, Model.Encomenda> encomendas = new TreeMap<>();
-//        Set<Model.Produto> produtos;
-//        Model.Modelo m = new Model.Modelo(lojas,transportadoras,voluntarios,utilizadors,encomendas);
-//        setModel(m);
 
         //boolean load = false;
         int op =-1;
@@ -88,8 +103,14 @@ public class ControladorGeral  {
                     v.maisUsadosT(modelo.maisUsadosT());
                     break;
                 case 7:
+                    try {
+                        modelo.gravarObj();
+                        v.leitura();
+                    }catch (IOException e){
+                        v.printErrorMessage(e.getMessage());
+                    }
                     break;
-                case 8:
+//                case 8:
 //                    op1 = Controlador.Input.lerInt();
 //                    v.pressioneEnter();
 //                    Controlador.Input.lerString();
@@ -127,7 +148,7 @@ public class ControladorGeral  {
 //                                break;
 //                        }
 //                    }
-                    break;
+//                    break;
                 default:
                     System.out.println("Opção invalida");
                     break;

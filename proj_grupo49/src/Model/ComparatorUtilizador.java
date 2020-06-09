@@ -1,8 +1,9 @@
 package Model;
 
+import java.io.Serializable;
 import java.util.Comparator;
 
-public class ComparatorUtilizador implements Comparator<Utilizador> {
+public class ComparatorUtilizador implements Comparator<Utilizador>, Serializable {
 
     public int compare(Utilizador u1, Utilizador u2){
         int size1 =(int) u1.getEntregues().stream().filter(Encomenda::getAceites).count();

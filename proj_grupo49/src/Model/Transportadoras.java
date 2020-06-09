@@ -1,9 +1,10 @@
 package Model;
 
+import java.io.Serializable;
 import java.util.Map;
 import java.util.TreeMap;
 
-public class Transportadoras {
+public class Transportadoras implements Serializable {
     private Map<String,Transportadora> transp;
 
     public Transportadoras(){

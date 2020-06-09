@@ -1,5 +1,6 @@
 package Model;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -9,7 +10,7 @@ import java.util.*;
  * @author (your name)
  * @version (a version number or a date)
  */
-public class Loja
+public class Loja implements Serializable
 {
     private String pass;
     private String cod;

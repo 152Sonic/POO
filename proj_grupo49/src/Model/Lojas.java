@@ -1,10 +1,11 @@
 package Model;
 
+import java.io.Serializable;
 import java.util.Map;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
-public class Lojas {
+public class Lojas implements Serializable {
     private Map<String,Loja> lojas;
 
     public Lojas(){

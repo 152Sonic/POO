@@ -1,10 +1,11 @@
 package Model;
 
+import java.io.Serializable;
 import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 
-public class Utilizadores {
+public class Utilizadores implements Serializable {
     private Map<String,Utilizador> utilizadores;
 
     public Utilizadores(){

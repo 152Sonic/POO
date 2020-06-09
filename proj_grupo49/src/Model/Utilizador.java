@@ -1,5 +1,6 @@
 package Model;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.*;
 
@@ -12,7 +13,7 @@ import java.util.*;
 
 
 
-public class Utilizador
+public class Utilizador implements Serializable
 {
     private String pass;
     private String cod;

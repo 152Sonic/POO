@@ -1,12 +1,14 @@
 package Model;
 
+import java.io.Serializable;
+
 /**
  * Write a description of class Model.GPS here.
  *
  * @author (your name)
  * @version (a version number or a date)
  */
-public class GPS
+public class GPS implements Serializable
 {
     private double lat;
     private double lon;
