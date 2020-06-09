@@ -99,9 +99,11 @@ public class ControladorLogInTransp {
     public boolean verificaLogin(String u, String p){ return m.verificaLogin(u,p,1);}
 
     public void continuar(String c, Modelo m, int o) {
+        InterfaceInput i = new Input();
         ViewLogin v = new ViewLogin();
         if (o == 1) {
             v.pressioneEnter();
+            i.lerString();
             v.flush();
             ControladorTransp transp = new ControladorTransp(c,m);
             transp.run();

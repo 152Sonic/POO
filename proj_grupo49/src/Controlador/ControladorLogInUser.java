@@ -77,9 +77,11 @@ public class ControladorLogInUser {
     }
 
     public void continuar(Modelo m, String u, int o) {
+        InterfaceInput i = new Input();
         ViewLogin v = new ViewLogin();
         if (o == 1) {
             v.pressioneEnter();
+            i.lerString();
             v.flush();
             ControladorUser user = new ControladorUser(m,u);
             user.run();

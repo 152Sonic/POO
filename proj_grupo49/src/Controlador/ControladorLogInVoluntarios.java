@@ -95,10 +95,12 @@ public class ControladorLogInVoluntarios {
     }
 
     public void continuar(String u, Modelo m, int o) {
+        InterfaceInput i = new Input();
         ViewLogin v = new ViewLogin();
         if (o == 1) {
             ControladorVoluntario vol = new ControladorVoluntario(u,m);
             v.pressioneEnter();
+            i.lerString();
             v.flush();
             vol.run();
         }

@@ -98,57 +98,27 @@ public class ControladorGeral  implements Serializable {
                     break;
                 case 5:
                     v.maisUsados(modelo.maisUsados());
+                    v.pressioneEnter();
+                    i.lerString();
+                    v.flush();
                     break;
                 case 6:
                     v.maisUsadosT(modelo.maisUsadosT());
+                    v.pressioneEnter();
+                    i.lerString();
+                    v.flush();
                     break;
                 case 7:
                     try {
                         modelo.gravarObj();
                         v.leitura();
+                        v.pressioneEnter();
+                        i.lerString();
+                        v.flush();
                     }catch (IOException e){
                         v.printErrorMessage(e.getMessage());
                     }
                     break;
-//                case 8:
-//                    op1 = Controlador.Input.lerInt();
-//                    v.pressioneEnter();
-//                    Controlador.Input.lerString();
-//                    v.flush();
-//                    v.load();
-//                    while(op1 != 0 ) {
-//                        switch (op1) {
-//                            case 0:
-//                                break;
-//                            case 1:
-//                                while (!load) {
-//                                    try {
-//                                        v.insiraFilePath();
-//                                        String file = Controlador.Input.lerString();
-//                                        modelo.parse(file);
-//                                        v.alreadyLoad();
-//                                        load = true;
-//                                        op1 = 0;
-//                                    } catch (Exception e) {
-//                                        v.readError();
-//                                    }
-//                                }
-//                                break;
-//                            case 2:
-//                                try {
-//                                    v.insiraFilePath();
-//                                    String file2 = Controlador.Input.lerString();
-//                                    //loadData()
-//                                    v.alreadyLoad();
-//                                    op1 = 0;
-//                                    load = true;
-//                                } catch (Exception e) {
-//                                    v.readError();
-//                                }
-//                                break;
-//                        }
-//                    }
-//                    break;
                 default:
                     System.out.println("Opção invalida");
                     break;
