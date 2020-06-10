@@ -14,7 +14,7 @@ public class ViewTransp {
         System.out.println("|1  -> Aceitar Entrega                                                                       |");
         System.out.println("|2  -> Ver historico de encomendas  entregues                                                |");
         System.out.println("|3  -> Ver encomendas por entregar                                                           |");
-        System.out.println("|a  -> Alterar dados pessoais                                                                |");
+        System.out.println("|4  -> Alterar dados pessoais                                                                |");
         System.out.println("|5  -> Encomenda entregue                                                                    |");
         System.out.println("|6  -> Ver total faturado entre 2 datas                                                      |");
         System.out.println("|0  -> Exit Program                                                                          |");

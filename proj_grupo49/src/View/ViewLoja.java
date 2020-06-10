@@ -20,7 +20,7 @@ public class ViewLoja {
         System.out.println("|5  -> Ver lista total de encomendas                                                         |");
         System.out.println("|6  -> Consultar stock de produtos                                                           |");
         System.out.println("|7  -> Alterar dados pessoais                                                                |");
-        System.out.println("|8  -> Exit Program                                                                          |");
+        System.out.println("|0  -> Exit Program                                                                          |");
         System.out.println("|____________________________________________________________________________________________|");
     }
 
