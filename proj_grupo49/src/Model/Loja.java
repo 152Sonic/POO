@@ -10,6 +10,10 @@ import java.util.*;
  * @author (your name)
  * @version (a version number or a date)
  */
+
+/**
+ * Classe que guarda toda a informação de uma loja
+ */
 public class Loja implements Serializable
 {
     private String pass;
@@ -20,6 +24,9 @@ public class Loja implements Serializable
     private List<Encomenda> prontas;
     private Set<Produto> stock;
 
+    /**
+     * Construtor sem parametros
+     */
     public Loja()
     {
         this.pass = new String();
@@ -32,6 +39,14 @@ public class Loja implements Serializable
 
     }
 
+    /**
+     * Construtor parametrizado
+     * @param s         String com codigo de loja
+     * @param n         String com nome
+     * @param gps       String com gps
+     * @param li        Lista com todas as encomendas feitas
+     * @param prontas   Lista com todas as encomendas em espera para serem aceites
+     */
     public Loja (String s, String n, GPS gps, ArrayList<Encomenda> li, ArrayList<Encomenda> prontas)
     {
         this.pass = s;
@@ -43,6 +58,13 @@ public class Loja implements Serializable
         this.stock = new TreeSet<>();
     }
 
+    /**
+     * Construtor parametrizado
+     * @param p     String com pass
+     * @param s     String com codigo
+     * @param n     String com nome
+     * @param gps   GPS
+     */
     public Loja (String p, String s, String n, GPS gps)
     {
         this.pass = p;
@@ -54,6 +76,10 @@ public class Loja implements Serializable
         this.stock = new TreeSet<>();
     }
 
+    /**
+     * Construtor por copia
+     * @param u     Loja a copiar
+     */
     public Loja (Loja u)
     {
         this.pass = u.getPass();
@@ -65,7 +91,10 @@ public class Loja implements Serializable
         this.setStock(u.getStock());
     }
 
-
+    /**
+     * Get da variavel listenc do objeto
+     * @return      Lista com todas as encomendas
+     */
     public ArrayList<Encomenda> getListaEnc() {
         ArrayList<Encomenda> aux = new ArrayList<>();
         for (Encomenda l : this.listaEnc)
@@ -73,6 +102,10 @@ public class Loja implements Serializable
         return aux;
     }
 
+    /**
+     * Get da variavel prontas do objeto
+     * @return      Lista com todas as encomendas prontas
+     */
     public ArrayList<Encomenda> getProntas() {
         ArrayList<Encomenda> aux = new ArrayList<>();
         for (Encomenda l : this.prontas)
@@ -80,10 +113,18 @@ public class Loja implements Serializable
         return aux;
     }
 
+    /**
+     * Get da variavel stock do objeto
+     * @return      Set com todas os produtos disponiveis na loja
+     */
     public TreeSet<Produto> getStock(){
         return new TreeSet<>(stock);
     }
 
+    /**
+     * Set da variavel stock do objeto
+     * @param p     Set com todos os produtos
+     */
     public void setStock(TreeSet<Produto> p){
         this.stock = new TreeSet<>();
         for (Produto pi: p){
@@ -91,6 +132,10 @@ public class Loja implements Serializable
         }
     }
 
+    /**
+     * Set da variavel stock do objeto
+     * @param l     Lista com todas as encomendas
+     */
     public void setListaEnc (ArrayList<Encomenda> l)
     {
         this.listaEnc = new ArrayList<>();
@@ -98,8 +143,10 @@ public class Loja implements Serializable
             this.listaEnc.add(li);
     }
 
-
-
+    /**
+     * Set da variavel stock do objeto
+     * @param l     Lista com todas as encomendas prontas
+     */
     public void setProntas (ArrayList<Encomenda> l)
     {
         this.prontas = new ArrayList<>();
@@ -108,40 +155,77 @@ public class Loja implements Serializable
     }
 
 
+    /**
+     * Set da variavel pass do objeto
+     * @param p     String com pass
+     */
     public void setPass(String p){this.pass = p;}
 
+    /**
+     * Get da variavel pass do objeto
+     * @return      String com pass
+     */
     public String getPass(){return this.pass;}
 
+    /**
+     * Get da variavel cod do objeto
+     * @return      String com cod
+     */
     public String getCod()
     {
         return this.cod;
     }
+    /**
+     * Get da variavel nome do objeto
+     * @return      String com nome
+     */
 
     public String getNome()
     {
         return this.nome;
     }
 
+    /**
+     * Get da variavel gps do objeto
+     * @return      GPS
+     */
     public GPS getGPS()
     {
         return this.gps;
     }
 
+    /**
+     * Set da variavel cod do objeto
+     * @param s     String com cod
+     */
     public void setCod(String s)
     {
         this.cod = s;
     }
 
+    /**
+     * Set da variavel nome do objeto
+     * @param n     String com nome
+     */
     public void setNome(String n)
     {
         this.nome = n;
     }
 
+    /**
+     * Set da variavel gps do objeto
+     * @param l     double com latitude
+     * @param lo    double com longitude
+     */
     public void setGPS(double l, double lo)
     {
         this.gps.setGPS(l,lo);
     }
 
+    /**
+     * Método que clona este objeto
+     * @return      clone do objeto
+     */
     public Loja clone()
     {
         return new Loja(this);
@@ -158,6 +242,11 @@ public class Loja implements Serializable
         return sb.toString();
     }
 
+    /**
+     * Método equals do objeto
+     * @param o     Objeto a comparar
+     * @return      boolean
+     */
     public boolean equals (Object o)
     {
         if (o == this) return true;
@@ -185,16 +274,29 @@ public class Loja implements Serializable
         }
     }
 
+    /**
+     * Método que adiciona ume encomenda a variavel listenc
+     * @param e     Encomenda a adiconar
+     */
     public void addEncomenda(Encomenda e){
         this.listaEnc.add(e);
     }
 
+    /**
+     * Método que aiciona uma encomenda a variavel listEnc atraves do parse de um ficheiro
+     * @param e     Encomenda a adicionar
+     */
     public void addEncomendaParse(Encomenda e) {
         if (!listaEnc.contains(e)) {
             listaEnc.add(e);
         }
     }
 
+    /**
+     * Método que altera a informação quando uma encomenda é entregue
+     * @param e     Encomenda entregue
+     * @param f     Data da entrega
+     */
     public void setEntregue(Encomenda e, LocalDateTime f){
         Iterator<Encomenda> it = this.listaEnc.iterator();
         boolean r = false;
@@ -208,10 +310,20 @@ public class Loja implements Serializable
         }
     }
 
+    /**
+     * Método que verifica se duas pass sao iguais
+     * @param p     String com pass
+     * @return      boolean
+     */
     public boolean validaPass(String p){
         return this.pass.equals(p);
     }
 
+    /**
+     * Método que devolve uma encomenda da variavel listenc
+     * @param e     String com codigo de encomenda
+     * @return      Encomenda
+     */
     public Encomenda getEncomenda(String e) {
         Encomenda enc = new Encomenda();
         Iterator<Encomenda> it = listaEnc.iterator();
@@ -227,19 +339,40 @@ public class Loja implements Serializable
         return enc;
     }
 
+    /**
+     * Método que adiciona uma encomenda a variavel prontas
+     * @param e     Encomenda a adicionar
+     */
     public void addEncPronta(Encomenda e){
         this.prontas.add(e);
     }
+    /**
+     * Método que remove uma encomenda a variavel prontas
+     * @param e     Encomenda a remover
+     */
     public void rmEncPronta(Encomenda e){
         this.prontas.remove(e);
     }
 
+    /**
+     * Método que adiciona um set de produtos a variavel stock
+     * @param p     Set a adicionar
+     */
     public void addProdutos(TreeSet<Produto> p){
         stock.addAll(p);
     }
-    
+
+    /**
+     * Método que adiciona um produto a variavel stock
+     * @param p     produto a adicionar
+     */
     public void addProduto(Produto p){stock.add(p);}
 
+    /**
+     * Método que verifica se um produto existe na variavel stock
+     * @param cod       String com codigo de produtos
+     * @return      boolean
+     */
     public boolean existeProd(String cod){
         Iterator<Produto> it = stock.iterator();
         boolean r = false;
