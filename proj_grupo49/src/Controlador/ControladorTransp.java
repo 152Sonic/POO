@@ -50,9 +50,14 @@ public class ControladorTransp {
                     break;
 
                 case 2:
+                    v.flush();
                     v.opc2(m.getTransportadora(cod).getList());
                     break;
                 case 3:
+                    v.flush();
+                    v.opc3(m.getTransportadora(cod).getList());
+                    break;
+                case 4:
                     int op = -1;
                     while (op!=0) {
                         v.pressioneEnter();
@@ -61,17 +66,17 @@ public class ControladorTransp {
                         v.printMenuDados();
                         v.inst();
                         op = i.lerInt();
-                        op3(v, op);
+                        op4(v, op);
                     }
                     break;
-                case 4:
+                case 5:
                     v.printEntregue();
                     String e = i.lerString();
-                    if(m.op4Transp(e,cod) ==1);
+                    if(m.op5Transp(e,cod) ==1);
                     else v.printNonE();
                         break;
-                case 5:
-                    op5(v,this.cod);
+                case 6:
+                    op6(v,this.cod);
                     break;
                 default:
                     v.printError();
@@ -82,7 +87,7 @@ public class ControladorTransp {
     }
 
 
-    public void op3(ViewTransp t, int op){
+    public void op4(ViewTransp t, int op){
         InterfaceInput i = new Input();
         switch (op){
             case 0:
@@ -156,7 +161,7 @@ public class ControladorTransp {
         }
     }
 
-    public void op5(ViewTransp v, String cod) {
+    public void op6(ViewTransp v, String cod) {
         InterfaceInput i = new Input();
         try {
             v.print1stDate();

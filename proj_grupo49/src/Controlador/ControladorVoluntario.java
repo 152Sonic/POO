@@ -51,9 +51,14 @@ public class ControladorVoluntario  {
                     }
                     break;
                 case 2:
+                    v.flush();
                     v.opc2(m.getVoluntario(cod).getList());
                     break;
                 case 3:
+                    v.flush();
+                    v.op3((m.getVoluntario(cod).getList()));
+                    break;
+                case 4:
                     int op = -1;
                     while (op!=0) {
                         v.pressioneEnter();
@@ -65,10 +70,10 @@ public class ControladorVoluntario  {
                         op3(v, op);
                     }
                     break;
-                case 4:
+                case 5:
                     v.op4();
                     String e = i.lerString();
-                    if(m.op4Vol(e,cod) == 1);
+                    if(m.op5Vol(e,cod) == 1);
                     else v.printError();
                     break;
                 default:

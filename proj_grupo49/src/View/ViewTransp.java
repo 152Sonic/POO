@@ -13,9 +13,10 @@ public class ViewTransp {
         System.out.println("|Escolha uma opção:                                                                          |");
         System.out.println("|1  -> Aceitar Entrega                                                                       |");
         System.out.println("|2  -> Ver historico de encomendas  entregues                                                |");
-        System.out.println("|3  -> Alterar dados pessoais                                                                |");
-        System.out.println("|4  -> Encomenda entregue                                                                    |");
-        System.out.println("|5  -> Ver total faturado entre 2 datas                                                      |");
+        System.out.println("|3  -> Ver encomendas por entregar                                                           |");
+        System.out.println("|a  -> Alterar dados pessoais                                                                |");
+        System.out.println("|5  -> Encomenda entregue                                                                    |");
+        System.out.println("|6  -> Ver total faturado entre 2 datas                                                      |");
         System.out.println("|0  -> Exit Program                                                                          |");
         System.out.println("|____________________________________________________________________________________________|");
     }
@@ -63,7 +64,19 @@ public class ViewTransp {
         else {
             System.out.println("Codigo:");
             for (Encomenda es : e) {
-                if (es.getAceites()) System.out.println(es.getCodenc());
+                if (es.getEntregue()) System.out.println(es.getCodenc());
+            }
+        }
+    }
+
+    public void opc3(List<Encomenda> e){
+        if (e.size() <= 0){
+            System.out.println("LISTA VAZIA!");
+        }
+        else {
+            System.out.println("Codigo:");
+            for (Encomenda es : e) {
+                if (!es.getEntregue()) System.out.println(es.getCodenc());
             }
         }
     }

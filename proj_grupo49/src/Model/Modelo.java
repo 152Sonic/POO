@@ -136,28 +136,28 @@ public class Modelo implements Serializable {
         for (String linha : linhas) {
             linhaPartida = linha.split(":", 2);
             switch (linhaPartida[0]) {
-                case "Model.Utilizador":
+                case "Utilizador":
                     Utilizador u = parseUtilizador(linhaPartida[1]); // criar um Model.Utilizador
                     utilizadores.addUtilizador(u);
                    // System.out.println(u.toString()); //enviar para o ecrÃ¡n apenas para teste
                     break;
-                case "Model.Loja":
+                case "Loja":
                     Loja l = parseLoja(linhaPartida[1]);
                     lojas.addLoja(l);
                   //  System.out.println(l.toString());
                     break;
-                case "Model.Transportadora":
+                case "Transportadora":
                     Transportadora t = parseTransportadora(linhaPartida[1]);
                     transportadoras.addTransportadora(t);
                    // System.out.println(t.toString());
                     break;
-                case "Model.Encomenda":
+                case "Encomenda":
                     Encomenda e = parseEncomenda(linhaPartida[1]);
                     encomendas.put(e.getCodenc(), e);
 
                    // System.out.println(e.toString());
                     break;
-                case "Model.Voluntario":
+                case "Voluntario":
                     Voluntario v = parseVoluntario(linhaPartida[1]);
                     voluntarios.addVoluntario(v);
                    // System.out.println(v.toString());
@@ -165,6 +165,7 @@ public class Modelo implements Serializable {
                 case "Aceite":
                     String aux = parseAceite(linhaPartida[1]);
                     if (encomendas.containsKey(aux)) encomendas.get(aux).setAceites(true);
+                    addAceiteParse(encomendas.get(aux));
                    // System.out.println("Aceites: " + aux);
                     break;
                 default:
@@ -184,6 +185,27 @@ public class Modelo implements Serializable {
         System.out.println("done!");
         System.out.println("\n\n\n\n");
         //System.out.println(encomendas.toString());
+    }
+
+    public void addAceiteParse(Encomenda e){
+        Map<String,List<String>> entregadores =  getPossiveisEntregadores(e);
+        boolean f = false;
+        if(entregadores.get("V").size()>0){
+            Iterator<String> it = entregadores.get("V").iterator();
+            while(it.hasNext() && !f){
+                String coisa = it.next();
+                if(getVoluntario(coisa).getLivre()){
+                    op1Voluntario_1(coisa,e);
+                    f=true;
+                }
+            }
+        }
+        if(entregadores.get("T").size()>0 && !f){
+            aceite(e.getCoduser(),entregadores.get("T").get(0),e.getCodenc());
+            f=true;
+        }
+
+        if(!f) encomendas.get(e.getCodenc()).setAceites(false);
     }
 
 
@@ -468,7 +490,7 @@ public class Modelo implements Serializable {
         voluntarios.getVoluntario(c).setRaio(x);
     }
 
-    public int op4Vol(String e, String cod){
+    public int op5Vol(String e, String cod){
         int r=0;
         LocalDateTime f = LocalDateTime.now();
         if(this.encomendas.containsKey(e)){
@@ -519,7 +541,7 @@ public class Modelo implements Serializable {
         transportadoras.getTransportadora(c).setTaxaPeso(x);
     }
 
-    public int op4Transp(String e, String cod){
+    public int op5Transp(String e, String cod){
         LocalDateTime f = LocalDateTime.now();
         int r=0;
         if(this.encomendas.containsKey(e)){

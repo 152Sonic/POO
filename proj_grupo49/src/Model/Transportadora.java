@@ -3,6 +3,8 @@ package Model;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.*;
+import java.lang.Math;
+
 
 /**
  * Write a description of class Model.Transportadora here.
@@ -281,20 +283,20 @@ public class Transportadora implements Serializable
     public double getTempoV(GPS loja, GPS user){
         double d1 = this.gps.distancia(loja);
         double d2 = loja.distancia(user);
-        double v = 100;
+        double v = Math.random()*((100 - 80)+1);
         return (d1+d2)/v;
     }
     public double getTempoI(GPS loja, GPS user){
         double d1 = this.gps.distancia(loja);
         double d2 = loja.distancia(user);
-        double v = 50;
+        double v = Math.random()*((60 - 40)+1);
         return (d1+d2)/v;
     }
 
     public double getTempoPO(GPS loja, GPS user){
         double d1 = this.gps.distancia(loja);
         double d2 = loja.distancia(user);
-        double v = 75;
+        double v = Math.random()*((90 - 65)+1);
         return (d1+d2)/v;
     }
     public boolean validaPass(String p){

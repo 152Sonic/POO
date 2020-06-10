@@ -12,8 +12,9 @@ public class ViewVoluntario {
         System.out.println("|Escolha uma opção:                                                                          |");
         System.out.println("|1  -> Aceitar Entrega                                                                       |");
         System.out.println("|2  -> Ver historico de encomendas  entregues                                                |");
-        System.out.println("|3  -> Alterar dados pessoais                                                                |");
-        System.out.println("|4  -> Entregar Model.Encomenda                                                                    |");
+        System.out.println("|3  -> Ver encomenda a entregar                                                              |");
+        System.out.println("|4  -> Alterar dados pessoais                                                                |");
+        System.out.println("|5  -> Entregar Encomenda                                                                    |");
         System.out.println("|0  -> Exit Program                                                                          |");
         System.out.println("|____________________________________________________________________________________________|");
     }
@@ -59,6 +60,15 @@ public class ViewVoluntario {
         }
     }
 
+    public void op3(List<Encomenda> e){
+        if(e.size()<=0) System.out.println("Lista Vazia");
+        else {
+            System.out.println("Codigo");
+            for (Encomenda es : e) {
+                if (!es.getEntregue()) System.out.println(es.getCodenc());
+            }
+        }
+    }
 
     public void op1(Encomenda e){
         System.out.println("\nEcomenda:" + e.getCodenc());

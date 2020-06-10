@@ -16,7 +16,7 @@ public class ViewUser {
         System.out.println("|2  -> Aceitar Entrega                                                                       |");
         System.out.println("|3  -> Ver historico de encomendas                                                           |");
         System.out.println("|4  -> Classificar Serviço de entrega                                                        |");
-        System.out.println("|5  -> Aletrar dados pessoais                                                                |");
+        System.out.println("|5  -> Alterar dados pessoais                                                                |");
         System.out.println("|0  -> Exit Program                                                                          |");
         System.out.println("|____________________________________________________________________________________________|");
     }
