@@ -190,7 +190,7 @@ public class ViewLoja {
         System.out.println("|1  -> Alterar Nome                                                                          |");
         System.out.println("|2  -> Alterar Password                                                                      |");
         System.out.println("|3  -> Alterar Localização                                                                   |");
-        System.out.println("|0  -> Voltar ao menu Model.Loja                                                                   |");
+        System.out.println("|0  -> Voltar ao menu Loja                                                                   |");
         System.out.println("|____________________________________________________________________________________________|");
     }
 
