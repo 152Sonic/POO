@@ -48,7 +48,7 @@ public class ControladorGeral  implements Serializable {
         }
         catch (IOException | ClassNotFoundException e ){
             try {
-                this.modelo.parse("proj_grupo49/logs2.txt");
+                this.modelo.parse("logs2.txt");
             }catch (IOException es){
                 v.readError();
             }
