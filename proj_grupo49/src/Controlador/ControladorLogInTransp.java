@@ -77,7 +77,7 @@ public class ControladorLogInTransp {
                         if (med == 1){
                             medico = true;
                         }
-                        else if (med == 0) cenas = false;
+                        else if (med == 2) cenas = false;
                         else v.printError();
                     }
                     Transportadora novo = new Transportadora(pa, c, n, gps, nif, r, taxa, taxapeso, pesol, medico);

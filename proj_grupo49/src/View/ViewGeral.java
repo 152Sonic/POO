@@ -1,9 +1,9 @@
 package View;
 
-import Model.Transportadora;
-import Model.Utilizador;
+import Model.*;
 
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Set;
 
 public class ViewGeral {
@@ -25,6 +25,10 @@ public class ViewGeral {
         System.out.println("|5  -> Utilizadores mais frequentes                                                          |");
         System.out.println("|6  -> Transportadoras mais frequentes(km)                                                   |");
         System.out.println("|7  -> Gravar estado                                                                         |");
+        System.out.println("|8  -> Ver todos os utilizadores                                                             |");
+        System.out.println("|9  -> Ver todos as lojas                                                                    |");
+        System.out.println("|10 -> Ver todos as transportadoras                                                          |");
+        System.out.println("|11 -> Ver todos os voluntarios                                                              |");
         System.out.println("|0  -> Exit Program                                                                          |");
         System.out.println("|____________________________________________________________________________________________|");
     }
@@ -119,6 +123,50 @@ public class ViewGeral {
 
     public void leitura(){
         System.out.println("Leitura bem sucedida!");
+    }
+
+    public void printUsers(Utilizadores u){
+        if(u.getUtilizadores().size()<=0){
+            System.out.println("Nao há utilizadores inscritos na aplicação!");
+        }
+        else{
+            for(Utilizador users : u.getUtilizadores().values()){
+                System.out.println("Utilizador: " + users.getCod() + " Nome: " + users.getNome());
+            }
+        }
+    }
+
+    public void printVols(Voluntarios u){
+        if(u.getVoluntarios().size()<=0){
+            System.out.println("Nao há voluntarios inscritos na aplicação!");
+        }
+        else{
+            for(Voluntario users : u.getVoluntarios().values()){
+                System.out.println("Voluntario: " + users.getCod() + " Nome: " + users.getNome());
+            }
+        }
+    }
+
+    public void printTransp(Transportadoras u){
+        if(u.getTransportadoras().size()<=0){
+            System.out.println("Nao há transportadoras inscritos na aplicação!");
+        }
+        else{
+            for(Transportadora users : u.getTransportadoras().values()){
+                System.out.println("Transportadora: " + users.getCod() + " Nome: " + users.getNome());
+            }
+        }
+    }
+
+    public void printLojas(Lojas u){
+        if(u.getLojas().size()<=0){
+            System.out.println("Nao há lojas inscritos na aplicação!");
+        }
+        else{
+            for(Loja users : u.getLojas().values()){
+                System.out.println("Loja: " + users.getCod() + " Nome: " + users.getNome());
+            }
+        }
     }
 
 

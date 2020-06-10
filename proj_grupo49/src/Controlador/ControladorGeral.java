@@ -119,6 +119,18 @@ public class ControladorGeral  implements Serializable {
                         v.printErrorMessage(e.getMessage());
                     }
                     break;
+                case 8:
+                    v.printUsers(modelo.getUtilizadores());
+                    break;
+                case 9:
+                    v.printLojas(modelo.getLojas());
+                    break;
+                case 10:
+                    v.printTransp(modelo.getTransportadoras());
+                    break;
+                case 11:
+                    v.printVols(modelo.getVoluntarios());
+                    break;
                 default:
                     System.out.println("Opção invalida");
                     break;

@@ -151,7 +151,7 @@ public class ViewTransp {
     public void altTP(){System.out.println("Insira a nova taxa de peso:");}
 
     public void altMedico(){
-        System.out.println("Tem aptidões para trasnporte de medicamentos?");
+        System.out.println("Tem aptidões para transporte de medicamentos?");
         System.out.println("1  -> SIM");
         System.out.println("2  -> NÃO");
     }
