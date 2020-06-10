@@ -18,7 +18,6 @@ public class Modelo implements Serializable {
 
 
 
-
     public Modelo(Lojas lojas, Transportadoras transportadoras, Voluntarios voluntarios, Utilizadores utilizadores, Map<String, Encomenda> encomendas) {
         this.lojas = lojas;
         this.transportadoras = transportadoras;
