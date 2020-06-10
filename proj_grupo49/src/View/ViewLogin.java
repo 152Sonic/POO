@@ -31,7 +31,12 @@ public class ViewLogin {
 
     public void printError(){
         System.out.println("\nNão escreveu nenhuma das duas opções válidas!");
-        System.out.print("Por favor tente outra vez: ");
+        System.out.print("Por favor tente outra vez: \n");
+    }
+
+    public void printInv(){
+        System.out.println("\nValor Inválido!");
+        System.out.print("Por favor tente outra vez: \n");
     }
 
 

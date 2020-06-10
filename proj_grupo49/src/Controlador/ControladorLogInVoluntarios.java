@@ -46,42 +46,45 @@ public class ControladorLogInVoluntarios {
                     }
                     break;
                 case 2:
-                    v.IDV();
-                    String c = i.lerString();
-                    if(m.existeVol(c) || c.charAt(0)!='v'){
-                        v.siginD();
-                        break;
-                    }
-                    v.pass();
-                    String pa = i.lerString();
-                    v.nome();
-                    String n = i.lerString();
-                    v.GPS();
-                    double x = i.lerDouble();
-                    double y = i.lerDouble();
-                    v.raio();
-                    double r = i.lerDouble();
-                    GPS gps = new GPS(x, y);
-                    while (!medico && cenas){
-                        v.addMedico();
-                        int med = i.lerInt();
-                        if (med == 1){
-                            medico = true;
+                    try {
+                        v.IDV();
+                        String c = i.lerString();
+                        if (m.existeVol(c) || c.charAt(0) != 'v') {
+                            v.siginD();
+                            break;
                         }
-                        else if (med == 2) cenas = false;
-                        else v.printError();
+                        v.pass();
+                        String pa = i.lerString();
+                        v.nome();
+                        String n = i.lerString();
+                        v.GPS();
+                        double x = i.lerDouble();
+                        double y = i.lerDouble();
+                        v.raio();
+                        double r = i.lerDouble();
+                        GPS gps = new GPS(x, y);
+                        while (!medico && cenas) {
+                            v.addMedico();
+                            int med = i.lerInt();
+                            if (med == 1) {
+                                medico = true;
+                            } else if (med == 2) cenas = false;
+                            else v.printError();
+                        }
+
+                        Voluntario novo = new Voluntario(pa, c, n, gps, r, medico);
+                        v.printDadosVol(novo);
+                        m.addVoluntario(novo);
+                        v.siginA();
+
+                        v.continuar();
+                        o2 = i.lerInt();
+                        continuar(c, m, o2);
+                        medico = false;
+                        cenas = true;
+                    }catch (Exception e){
+                        v.printInv();
                     }
-
-                    Voluntario novo = new Voluntario(pa,c,n,gps,r, medico);
-                    v.printDadosVol(novo);
-                    m.addVoluntario(novo);
-                    v.siginA();
-
-                    v.continuar();
-                    o2 = i.lerInt();
-                    continuar(c,m, o2);
-                    medico = false;
-                    cenas = true;
                     break;
                 default:
                     v.printError();

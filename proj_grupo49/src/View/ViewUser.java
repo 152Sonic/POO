@@ -72,6 +72,11 @@ public class ViewUser {
 
     public void prodInv(){ System.out.println("Este produto nao existe, por favor insira um produto válido!");}
 
+    public void printInv(){
+        System.out.println("\nValor Inválido!");
+        System.out.print("Por favor tente outra vez: \n");
+    }
+
     public void remProd(){System.out.println("Insira o codigo de produto que pretende remover:");}
 
     public void encVazia(){

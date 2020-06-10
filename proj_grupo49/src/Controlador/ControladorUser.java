@@ -30,24 +30,27 @@ public class ControladorUser{
                 case 0:
                     break;
                 case 1:
-                    v.codEnc();
-                    String e = i.lerString();
-                    if(!m.getEncomendas().containsKey(e)) {
-                        v.printLojas(m.getLojas());
-                        v.codloja();
-                        String l = i.lerString();
-                        List<LinhaEncomenda> linha = new ArrayList<>();
-                        int op = -1;
-                        while (op != 0 ) {
-                            v.printProdutos(m.getLoja(l).getStock());
-                            v.menuEncomenda();
-                            op = i.lerInt();
-                            op1(op, e, l, v, linha, m.getLoja(l).getStock());
-                            if (op == 4) break;
-                        }
+                    try {
+                        v.codEnc();
+                        String e = i.lerString();
+                        if (!m.getEncomendas().containsKey(e)) {
+                            v.printLojas(m.getLojas());
+                            v.codloja();
+                            String l = i.lerString();
+                            List<LinhaEncomenda> linha = new ArrayList<>();
+                            int op = -1;
+                            while (op != 0) {
+                                v.printProdutos(m.getLoja(l).getStock());
+                                v.menuEncomenda();
+                                op = i.lerInt();
+                                op1(op, e, l, v, linha, m.getLoja(l).getStock());
+                                if (op == 4) break;
+                            }
 
+                        } else v.existe();
+                    }catch(Exception e){
+                        v.printInv();
                     }
-                    else v.existe();
                     break;
                 case 2:
                     if(m.getUtilizador(user).getPedidos().size()<=0) break;

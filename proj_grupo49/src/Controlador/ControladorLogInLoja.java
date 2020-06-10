@@ -49,30 +49,35 @@ public class ControladorLogInLoja {
                     }
                     break;
                 case 2:
-                    v.pressioneEnter();
-                    v.flush();
-                    v.ID();
-                    String c = i.lerString();
-                    if(m.existeLoja(c)){
-                        v.siginD();
-                        break;
-                    }
-                    v.pass();
-                    String pi = i.lerString();
-                    v.nome();
-                    String n = i.lerString();
-                    v.GPS();
-                    double x = i.lerDouble();
-                    double y =  i.lerDouble();
-                    GPS gps = new GPS(x,y);
-                    Loja novo = new Loja(pi,c,n,gps);
-                    m.addLoja(novo);
-                    v.siginA();
+                    try {
+                        v.pressioneEnter();
+                        v.flush();
+                        v.ID();
+                        String c = i.lerString();
+                        if (m.existeLoja(c)) {
+                            v.siginD();
+                            break;
+                        }
+                        v.pass();
+                        String pi = i.lerString();
+                        v.nome();
+                        String n = i.lerString();
+                        v.GPS();
+                        double x = i.lerDouble();
+                        double y = i.lerDouble();
+                        GPS gps = new GPS(x, y);
+                        Loja novo = new Loja(pi, c, n, gps);
+                        m.addLoja(novo);
+                        v.siginA();
 
-                    v.continuar();
-                    o2 = i.lerInt();
-                    continuar(c , m, o2);
+                        v.continuar();
+                        o2 = i.lerInt();
+                        continuar(c, m, o2);
+                    }catch (Exception e){
+                        v.printError();
+                    }
                     break;
+
                 default:
                     v.printError();
                     break;

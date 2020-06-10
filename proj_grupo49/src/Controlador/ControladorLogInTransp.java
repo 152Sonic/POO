@@ -47,47 +47,50 @@ public class ControladorLogInTransp {
                     cenas = true;
                     break;
                 case 2:
-                    v.IDT();
-                    String c = i.lerString();
-                    if(m.existeTransp(c) || c.charAt(0)!='t'){
-                        v.siginD();
-                        break;
-                    }
-                    v.pass();
-                    String pa = i.lerString();
-                    v.nome();
-                    String n = i.lerString();
-                    v.GPS();
-                    double x = i.lerDouble();
-                    double y = i.lerDouble();
-                    v.raio();
-                    double r = i.lerDouble();
-                    v.nif();
-                    int nif = i.lerInt();
-                    v.taxa();
-                    double taxa = i.lerDouble();
-                    v.taxapeso();
-                    double taxapeso = i.lerDouble();
-                    v.pesol();
-                    int pesol = i.lerInt();
-                    GPS gps = new GPS(x, y);
-                    while (!medico && cenas){
-                        v.addMedico();
-                        int med = i.lerInt();
-                        if (med == 1){
-                            medico = true;
+                    try {
+                        v.IDT();
+                        String c = i.lerString();
+                        if (m.existeTransp(c) || c.charAt(0) != 't') {
+                            v.siginD();
+                            break;
                         }
-                        else if (med == 2) cenas = false;
-                        else v.printError();
-                    }
-                    Transportadora novo = new Transportadora(pa, c, n, gps, nif, r, taxa, taxapeso, pesol, medico);
-                    m.addTransportadora(novo);
-                    v.printDadosTrans(novo);
-                    v.siginA();
+                        v.pass();
+                        String pa = i.lerString();
+                        v.nome();
+                        String n = i.lerString();
+                        v.GPS();
+                        double x = i.lerDouble();
+                        double y = i.lerDouble();
+                        v.raio();
+                        double r = i.lerDouble();
+                        v.nif();
+                        int nif = i.lerInt();
+                        v.taxa();
+                        double taxa = i.lerDouble();
+                        v.taxapeso();
+                        double taxapeso = i.lerDouble();
+                        v.pesol();
+                        int pesol = i.lerInt();
+                        GPS gps = new GPS(x, y);
+                        while (!medico && cenas) {
+                            v.addMedico();
+                            int med = i.lerInt();
+                            if (med == 1) {
+                                medico = true;
+                            } else if (med == 2) cenas = false;
+                            else v.printError();
+                        }
+                        Transportadora novo = new Transportadora(pa, c, n, gps, nif, r, taxa, taxapeso, pesol, medico);
+                        m.addTransportadora(novo);
+                        v.printDadosTrans(novo);
+                        v.siginA();
 
-                    v.continuar();
-                    o2 = i.lerInt();
-                    continuar(c,m, o2);
+                        v.continuar();
+                        o2 = i.lerInt();
+                        continuar(c, m, o2);
+                    }catch(Exception e){
+                        v.printInv();
+                    }
                     break;
                 default:
                     v.printError();
