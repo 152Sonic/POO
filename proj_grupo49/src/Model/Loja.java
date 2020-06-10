@@ -7,8 +7,7 @@ import java.util.*;
 /**
  * Write a description of class Model.Loja here.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author (grupo 49)
  */
 
 /**
@@ -56,6 +55,26 @@ public class Loja implements Serializable
         this.setListaEnc(li);
         this.setProntas(prontas);
         this.stock = new TreeSet<>();
+    }
+
+        /**
+     * Construtor parametrizado
+     * @param p     String com pass
+     * @param s     String com codigo
+     * @param n     String com nome
+     * @param gps   GPS
+     * @param stock TreeSet Geral com todos os produtos do sistema
+     */
+
+    public Loja (String p, String s, String n, GPS gps, TreeSet<Produto> stock)
+    {
+        this.pass = p;
+        this.cod = s;
+        this.nome = n;
+        this.gps = gps.clone();
+        this.listaEnc = new ArrayList<>();
+        this.prontas = new ArrayList<>();
+        this.setStock(stock);
     }
 
     /**
@@ -330,7 +349,7 @@ public class Loja implements Serializable
         boolean found = false;
         while(it.hasNext() && !found){
             Encomenda en = it.next();
-            if(en.getCodenc() == e){
+            if(en.getCodenc().equals(e)){
                 found = true;
                 enc = en.clone();
             }

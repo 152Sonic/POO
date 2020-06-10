@@ -25,10 +25,6 @@ public class ViewLogin {
         System.out.println("\nPressione enter para continuar");
     }
 
-    public void printExit(){
-        System.out.println("\nObrigado por usar GestVendasApp!");
-    }
-
     public void printError(){
         System.out.println("\nNão escreveu nenhuma das duas opções válidas!");
         System.out.print("Por favor tente outra vez: \n");
@@ -49,7 +45,7 @@ public class ViewLogin {
     }
 
     public void siginD(){
-        System.out.println("O ID que escolheu já existe! Por favor escolha outra opção");
+        System.out.println("O ID que escolheu já existe ou não é válido! Por favor escolha outra opção");
     }
 
     public void siginA(){
@@ -83,6 +79,7 @@ public class ViewLogin {
         System.out.println("Tem aptidões para transporte de encomendas médicas?");
         System.out.println("1 -> Sim");
         System.out.println("2 -> Não");
+        System.out.println("Escolha a sua opção:");
     }
 
     public void printDadosVol(Voluntario v){

@@ -3,6 +3,8 @@ package Controlador;
 import Model.*;
 import View.ViewLogin;
 
+import java.util.TreeSet;
+
 public class ControladorLogInLoja {
     private Modelo m;
 
@@ -33,9 +35,6 @@ public class ControladorLogInLoja {
                     if(m.verificaLogin(u,p,0)){
                         v.loginAccep();
                         ControladorLoja loja = new ControladorLoja(u,m);
-//                        loja.setC(u);
-//                        loja.setL(m.getLojas());
-//                        loja.setU(m.getUtilizadores());
                         v.pressioneEnter();
                         i.lerString();
                         v.flush();
@@ -66,7 +65,7 @@ public class ControladorLogInLoja {
                         double x = i.lerDouble();
                         double y = i.lerDouble();
                         GPS gps = new GPS(x, y);
-                        Loja novo = new Loja(pi, c, n, gps);
+                        Loja novo = new Loja(pi, c, n, gps, (TreeSet<Produto>) m.getProdutos());
                         m.addLoja(novo);
                         v.siginA();
 
