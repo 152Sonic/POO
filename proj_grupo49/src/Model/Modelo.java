@@ -17,7 +17,14 @@ public class Modelo implements Serializable {
     private Set<Produto> produtos;
 
 
-
+    /**
+     * Construtor parametrizado
+     * @param lojas     Map com lojas a copiar
+     * @param transportadoras Map com transportadoras
+     * @param voluntarios     Map com voluntarios
+     * @param utilizadores    Map com utilizadores
+     * @param encomendas      Map com encomendas
+     */
     public Modelo(Lojas lojas, Transportadoras transportadoras, Voluntarios voluntarios, Utilizadores utilizadores, Map<String, Encomenda> encomendas) {
         this.lojas = lojas;
         this.transportadoras = transportadoras;
@@ -27,74 +34,160 @@ public class Modelo implements Serializable {
         this.produtos = new TreeSet<>();
     }
 
+    /**
+     * Get Map de Loja
+     */
     public Lojas getLojas() {
         return lojas;
     }
 
+
+    /**
+     * Set Map de Loja
+     */
     public Modelo setLojas(Lojas lojas) {
         this.lojas = lojas;
         return this;
     }
 
+    /**
+     * Get Map de Transportadoras
+     */
     public Transportadoras getTransportadoras() {
         return transportadoras;
     }
 
+    /**
+     * Set Map de Transportadoras
+     */
     public Modelo setTransportadoras(Transportadoras transportadoras) {
         this.transportadoras = transportadoras;
         return this;
     }
 
+    /**
+     * Get Map de Voluntarios
+     */
     public Voluntarios getVoluntarios() {
         return voluntarios;
     }
 
+    /**
+     * Set Map de Voluntarios
+     */
     public Modelo setVoluntarios(Voluntarios voluntarios) {
         this.voluntarios = voluntarios;
         return this;
     }
 
+    /**
+     * Get Map de Utilizadores
+     */
     public Utilizadores getUtilizadores() {
         return utilizadores;
     }
 
+    /**
+     * Set Map de Utilizadores
+     */
     public Modelo setUtilizadores(Utilizadores utilizadores) {
         this.utilizadores = utilizadores;
         return this;
     }
 
+    /**
+     * Get Map de Encomendas
+     */
     public Map<String, Encomenda> getEncomendas() {
         return encomendas;
     }
 
+    /**
+     * Get Map de Encomendas
+     */
     public Modelo setEncomendas(Map<String, Encomenda> encomendas) {
         this.encomendas = encomendas;
         return this;
     }
 
+    /**
+     * Get Map de Produtos
+     */
     public Set<Produto> getProdutos() {
         return produtos;
     }
 
+
+    /**
+     * Set Map de Produtos
+     */
     public Modelo setProdutos(Set<Produto> produtos) {
         this.produtos = produtos;
         return this;
     }
 
+    /**
+     * Adiciona Loja ao Map de Loja
+     * @param l             Loja a inserir
+     */
     public void addLoja(Loja l){
         this.lojas.addLoja(l);
     }
+
+    /**
+     * Adiciona Utilizadores ao Map de Utilizadores
+     * @param u                 Codigo Utilizador
+     */
     public void addUtilizador(Utilizador u){ this.utilizadores.addUtilizador(u);}
+
+    /**
+     * Adiciona Voluntario ao Map de Voluntarios
+     * @param v            Codigo Voluntario
+     */
     public void addVoluntario(Voluntario v) { this.voluntarios.addVoluntario(v);}
+
+    /**
+     * Adiciona Transportadora ao Map de Transportadoras
+     * @param t            Codigo Tranportadora
+     */
     public void addTransportadora(Transportadora t) { this.transportadoras.addTransportadora(t);}
+
+    /**
+     * Get Encomenda do Map de Encomendas
+     * @param e        Codigo Encomenda
+     */
     public Encomenda getEncomenda(String e) { return this.encomendas.get(e);}
 
+    /**
+     * Verifica se existe Loja no Map de Lojas
+     * @param c      Codigo da Loja
+     */
     public boolean existeLoja(String c){ return this.lojas.existeLoja(c);}
+
+    /**
+     * Verifica se existe Transportadora no Map de Transportadora
+     * @param c      Codigo da Transportadora
+     */
     public boolean existeTransp(String c){ return this.transportadoras.existeTransp(c);}
+
+        /**
+     * Verifica se existe Utilizador no Map de Utilizador
+     * @param c      Codigo da Utilizador
+     */
     public boolean existeUser(String c){ return this.utilizadores.existeUser(c);}
+
+        /**
+     * Verifica se existe Voluntario no Map deVoluntarioa
+     * @param c      Codigo da Voluntario
+     */
     public boolean existeVol(String c){ return this.voluntarios.existeVol(c);}
 
-
+    /**
+     * Verifica o Login de um determinado ...
+     * @param u      Codigo a confirmar
+     * @param p      Codigo pass
+     * @param param     inteiro respetivo a Lojas Utilizadores...
+     */
     public boolean verificaLogin(String u ,String p, int param){
         boolean ret = false;
         switch (param){
@@ -123,12 +216,22 @@ public class Modelo implements Serializable {
     }
     */
 
-
+    /**
+     * Verifica se existe Transportadora no Map de Transportadora
+     * @param e      Codigo Encomenda
+     * @param l      Codigo Loja
+     * @param u      Codigo Utilizador
+     * @param ps     Codigos de Produtos
+     * @param qts    Quantidades respetivas dos produtos string
+     */
     public void addEncomendaLoja( String e,String l,String u,String[] ps,int[] qts){
         lojas.addEncomenda(e,l,u,ps,qts);
     }
 
-
+    /**
+     * Parse de um file .txt
+     * @param filename             Ficheiro a dar parse
+     */
     public void parse(String filename) throws IOException{
         List<String> linhas = lerFicheiro(filename); //alterar nome do ficheiro
         String[] linhaPartida;
@@ -186,6 +289,10 @@ public class Modelo implements Serializable {
         //System.out.println(encomendas.toString());
     }
 
+    /**
+     * Metodo que trabalha as encomendas aceites no parse
+     * @param e             Encomenda
+     */
     public void addAceiteParse(Encomenda e){
         Map<String,List<String>> entregadores =  getPossiveisEntregadores(e);
         boolean f = false;
@@ -207,7 +314,10 @@ public class Modelo implements Serializable {
         if(!f) encomendas.get(e.getCodenc()).setAceites(false);
     }
 
-
+    /**
+     * Divide o Utilizador
+     * @param input             linha respetiva ao User
+     */
     public static Utilizador parseUtilizador(String input) {
         String[] campos = input.split(",");
         String nome = campos[1];
@@ -219,6 +329,10 @@ public class Modelo implements Serializable {
 
     }
 
+    /**
+     * Divide o Loja
+     * @param input             linha respetiva ao Loja
+     */
     public static Loja parseLoja(String input) {
         String[] campos = input.split(",");
         String codLoja = campos[0];
@@ -228,6 +342,10 @@ public class Modelo implements Serializable {
         return new Loja(codLoja, nomeLoja, new GPS(gpsx, gpsy), new ArrayList<Encomenda>(), new ArrayList<Encomenda>());
     }
 
+    /**
+     * Divide o Transportadora
+     * @param input             linha respetiva ao Transportadora
+     */
     public static Transportadora parseTransportadora(String input) {
         String[] campos = input.split(",");
         String cod = campos[0];
@@ -240,6 +358,10 @@ public class Modelo implements Serializable {
         return new Transportadora(cod, nome, new GPS(gpsx, gpsy), nif, rai, taxa, 0.1, 100, new ArrayList<Encomenda>(), false);
     }
 
+    /**
+     * Divide o Encomenda e acrescenta Produtos
+     * @param input             linha respetiva ao Encomenda e
+     */
     public Encomenda parseEncomenda(String input) {
         String[] campos = input.split(",");
         String cod = campos[0];
@@ -268,6 +390,10 @@ public class Modelo implements Serializable {
         return enc;
     }
 
+    /**
+     * Divide o Voluntario
+     * @param input             linha respetiva ao Voluntario
+     */
     public Voluntario parseVoluntario(String input) {
         String[] campos = input.split(",");
         String cod = campos[0];
@@ -278,6 +404,10 @@ public class Modelo implements Serializable {
         return new Voluntario(cod, nome, new GPS(gpsx, gpsy), raio, true, new ArrayList<>(), false);
     }
 
+    /**
+     * Divide as Aceites
+     * @param input             linha respetiva  as Aceites
+     */
     public String parseAceite(String input) {
         String[] campos = input.split(",");
         String cod = campos[0];
@@ -292,13 +422,20 @@ public class Modelo implements Serializable {
         this.lojas.getLoja(e.getCodloja()).addEncomenda(e);
     }
 
-
+    /**
+     * Le ficheiro .txt
+     * @param nomeFich             nome do ficheiro
+     * @throws IOException
+     */
     public static List<String> lerFicheiro(String nomeFich) throws IOException {
         List<String> lines = new ArrayList<>();
         lines = Files.readAllLines(Paths.get(nomeFich), StandardCharsets.UTF_8);
         return lines;
     }
-
+    /**
+     * Metodo que divide ds entregadores e acrescenta a sua lista de pedidos uma respetiva encomenda, ca estes cumpram os parametros do raio e etc
+     * @param e             Encomenda para a qual os entregadores vão ser atribuidos
+     */
     public void setPossiveisEntregadores(Encomenda e){
 
         Loja l = this.lojas.getLoja(e.getCodloja());
@@ -331,7 +468,11 @@ public class Modelo implements Serializable {
         }
 
     }
-
+    /**
+     * Metodo que divide ds entregadores e acrescenta a sua lista de pedidos uma respetiva encomenda, ca estes cumpram os parametros do raio e etc.
+     * Devolve O map.entry criado
+     * @param e             Encomenda para a qual os entregadores vão ser atribuidos
+     */
     public Map<String,List<String>> getPossiveisEntregadores(Encomenda e){
         Map<String,List<String>> aux = new HashMap<>();
         Loja l = this.lojas.getLoja(e.getCodloja());
@@ -366,7 +507,13 @@ public class Modelo implements Serializable {
         }
         return aux;
     }
-
+    /**
+     * Depois de os possiveis entregadores atribuidos  rejeita caso tenha sido aceito por um voluntario ou aceite por um user
+     *
+     * @param map           Possiveis entregadores
+     * @param codt          Codigo do entregador
+     * @param e             Encomenda ao qual vao rejeitas
+     */
     public void rejeitaOutraTransp(Map<String,List<String>> map, String codt, Encomenda e){
         for(String t : map.get("T")){
             if(!t.equals(codt)){
@@ -381,23 +528,45 @@ public class Modelo implements Serializable {
         e.setAceites(true);
         e.setTransp(codt);
     }
-
+    /**
+     * Get Voluntario  de Map Voluntarios
+     * @param cod       Codigo Voluntario
+     */
     public Voluntario getVoluntario(String cod){
         return this.getVoluntarios().getVoluntario(cod);
     }
 
+
+    /**
+     * Get Loja  de Map  Lojas
+     * @param cod       Codigo Loja
+     */
     public Loja getLoja(String cod){
         return this.getLojas().getLoja(cod);
     }
 
+    /**
+     * Get Transportadora  de Map Transportadoras
+     * @param cod       Codigo Transportadora
+     */
     public Transportadora getTransportadora(String cod){
         return this.getTransportadoras().getTransportadora(cod);
     }
 
+
+    /**
+     * Get Utilizador  de Map Utilizadors
+     * @param cod       Codigo Utilizador
+     */
     public Utilizador getUtilizador(String cod){
         return this.getUtilizadores().getUtilizador(cod);
     }
 
+    /**
+     * Existe Produto no set Produtos
+     * @param cod       Codigo Produto
+     * @param pr        Set de Produtos
+     */
     public boolean existeProd(String cod, Set<Produto> pr){
         Iterator<Produto> it = pr.iterator();
         boolean r = false;
@@ -410,13 +579,21 @@ public class Modelo implements Serializable {
         return r;
     }
     //////////////////////////////////////////// Funções básicas //////////////////////////////////////////////////////////////////
+        /** Funções Basicas **/
 
+
+    /**
+     * Get set ordenado de users em relação ao numero de encomendas feitas
+     */
     public Set<Utilizador> maisUsados(){
         Set<Utilizador> mais= new TreeSet<>(new ComparatorUtilizador());
         this.utilizadores.maisUsados(mais);
         return mais;
         }
 
+    /**
+     * Get set ordenado de transportadoras em relação ao numero de kms feitos
+     */
     public Set<Transportadora> maisUsadosT(){
         Set<Transportadora> mais= new TreeSet<>(new ComparatorTransp());
         for(Map.Entry<String,Transportadora> t: transportadoras.getTransportadoras().entrySet()){
@@ -427,6 +604,13 @@ public class Modelo implements Serializable {
 
 
     //////////////////////////////////////////// Interpretador Model.Loja ////////////////////////////////////////////////////////////////
+        /** Interpretador Lojas **/
+
+    /**
+     * Adiciona uma encomenda a lista das encomendas Sinalizadas e procura possiveis entregadores
+     * @param e             Codigo Encomenda
+     * @param l             Codigo loja
+     */
     public int op1Loja(String e, String l){
         int r = 0;
         if(this.encomendas.containsKey(e)) {
@@ -440,25 +624,52 @@ public class Modelo implements Serializable {
         return r;
     }
 
+    /**
+     * Adiciona Porduto ao Set Produts de uma loja E ao Set Produtos geral
+     * @param p                 Produto a inserir
+     * @param c                 COdigo loja
+     */
     public void op2Loja(Produto p, String c){
         lojas.getLoja(c).addProduto(p);
         produtos.add(p);
     }
 
+    /**
+     * Set novo nome para loja
+     * @param nome          String novo nome
+     * @param c             Codigo Loja
+     */
     public void op7LojaNome(String nome, String c){
         lojas.getLoja(c).setNome(nome);
     }
 
+    /**
+     * Set novo pass para loja
+     * @param pass          String novo pass
+     * @param c             Codigo Loja
+     */
     public void op7LojaPass (String pass, String c){
         lojas.getLoja(c).setPass(pass);
     }
-
+    /**
+     * Set novo nome para loja
+     * @param x          Latitude
+     * @param y          Longitude
+     * @param c          Codigo Loja
+     */
     public void op7LojaGPS(double x, double y, String c){
         lojas.getLoja(c).setGPS(x,y);
     }
 
-    //////////////////////////////////////////// Interpretador Model.Voluntario ////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////// Interpretador Voluntario ////////////////////////////////////////////////////////////////
 
+    /** Interpretador Voluntarios **/
+
+        /**
+     * Aceita uma encomenda num determinado voluntario e altera os dados referentes a essa encomenda
+     * @param cod           Codigo Voluntario
+     * @param e             Encomenda aceite
+     */
     public void op1Voluntario_1(String cod, Encomenda e){
         LocalDateTime i = LocalDateTime.now();
         this.getVoluntario(cod).aceitaPedido(e,i);
@@ -469,26 +680,59 @@ public class Modelo implements Serializable {
         rejeitaOutraTransp(getPossiveisEntregadores(e), cod, e);
     }
 
+
+    /**
+     * Rejeita uma encomenda dos VOluntario
+     * @param cod          Codigo Voluntario
+     * @param e            Encomenda
+     */
     public void op1Voluntario_2(String cod, Encomenda e){
         this.voluntarios.getVoluntario(cod).rejeitaPedido(e);
     }
 
+    /**
+     * Altera Nome VOluntario
+     * @param nome          Novo Nome
+     * @param c             Codigo Voluntario
+     */
     public void op3VolNome(String nome, String c){
         voluntarios.getVoluntario(c).setNome(nome);
     }
 
+    /**
+     * Altera pass VOluntario
+     * @param pass          Novo pass
+     * @param c             Codigo Voluntario
+     */
     public void op3VolPass (String pass, String c){
         voluntarios.getVoluntario(c).setPass(pass);
     }
 
+    /**
+     * Altera gps VOluntario
+     * @param x             Latitude
+     * @param y             Longitude
+     * @param c             Codigo Voluntario
+     */
     public void op3VolGPS(double x, double y, String c){
         voluntarios.getVoluntario(c).setGPS(x,y);
     }
 
+    /**
+     * Altera raio VOluntario
+     * @param x             Novo raio
+     * @param c             Codigo Voluntario
+     */
     public void op3VolRaio(double x, String c){
         voluntarios.getVoluntario(c).setRaio(x);
     }
 
+
+    /**
+     * Voluntario entrega encomenda
+     * @param e             Codigo Encomenda
+     * @param cod           Codigo Voluntario
+     */
     public int op5Vol(String e, String cod){
         int r=0;
         LocalDateTime f = LocalDateTime.now();
@@ -508,38 +752,88 @@ public class Modelo implements Serializable {
 
     //////////////////////////////////////////// Interpretador Transportadora ////////////////////////////////////////////////////////////////
 
+    /**Interpretador Transportadora**/
+
+
+    /**
+     * Transportadora Aceita Encomenda
+     * @param cod           Codigo Transportadora
+     * @param e             Encomenda
+     */
     public void op1Transp_1(String cod, Encomenda e){
         this.getTransportadora(cod).aceitaPedido(e);
         this.encomendas.get(e.getCodenc()).setAceites(true);
         this.getUtilizador(e.getCoduser()).addPedidos(e.getCodenc(),cod);
     }
 
+    /**
+     * Transportadora rejeita Encomenda
+     * @param cod           Codigo Transportadora
+     * @param e             Encomenda
+     */
     public void opTransp_2(String cod, Encomenda e){ this.getTransportadora(cod).rejeitaPedido(e);}
 
+    /**
+     * Altera Nome Transportadora
+     * @param nome          Novo Nome
+     * @param c             Codigo Transportadora
+     */
     public void op3TranspNome(String nome, String c){
         transportadoras.getTransportadora(c).setNome(nome);
     }
 
+
+    /**
+     * Altera pass Transportadora
+     * @param pass          Novo pass
+     * @param c             Codigo Transportadora
+     */
     public void op3TranspPass (String pass, String c){
         transportadoras.getTransportadora(c).setPass(pass);
     }
 
+    /**
+     * Altera gps Transportadora
+     * @param x             Latitude
+     * @param y             Longitude
+     * @param c             Codigo Transportadora
+     */
     public void op3TranspGPS(double x, double y, String c){
         transportadoras.getTransportadora(c).setGPS(x,y);
     }
 
+    /**
+     * Altera raio Transportadora
+     * @param x          Novo raio
+     * @param c             Codigo Transportadora
+     */
     public void op3TranspRaio(double x, String c){
         transportadoras.getTransportadora(c).setRaio(x);
     }
 
+    /**
+     * Altera taxa Transportadora
+     * @param x             Nova taxa
+     * @param c             Codigo Transportadora
+     */
     public void op3TranspTaxa(double x, String c){
         transportadoras.getTransportadora(c).setTaxa(x);
     }
 
+    /**
+     * Altera taxa Transportadora
+     * @param x             Novo raio
+     * @param c             Codigo Transportadora
+     */
     public void op3TranspTaxap(double x, String c){
         transportadoras.getTransportadora(c).setTaxaPeso(x);
     }
 
+    /**
+     * Transportadora entrega encomenda
+     * @param e             Codigo Encomenda
+     * @param cod           Codigo Transportadora
+     */
     public int op5Transp(String e, String cod){
         LocalDateTime f = LocalDateTime.now();
         int r=0;
@@ -557,7 +851,11 @@ public class Modelo implements Serializable {
         }
         return r;
     }
-
+    /**
+     * Distancia transportadora Loja Utilizador
+     * @param t             Transportadora
+     * @param e             Encomenda
+     */
     public double getDT(Transportadora t, Encomenda e){
         double d = 0;
         if(e.getEntregue()){
@@ -566,6 +864,12 @@ public class Modelo implements Serializable {
         return d;
     }
 
+    /**
+     * Total Faturado entre duas datas
+     * @param d1            Primeira data
+     * @param d2            Segunda data
+     * @param t             Transportadora
+     */
     public double faturado(LocalDateTime d1, LocalDateTime d2, Transportadora t){
         double fat = 0;
         if(t.getList().size() <=0) return 0;
@@ -580,14 +884,22 @@ public class Modelo implements Serializable {
 
     }
 
-    //////////////////////////////////////////// Interpretador Model.Utilizador ////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////// Interpretador Utilizador ////////////////////////////////////////////////////////////////
 
+    /**
+    * Utilizador faz encoenda
+     * @param e             Encomenda
+     */
     public void op1User_3(Encomenda e){
         this.encomendas.put(e.getCodenc(),e.clone());
         getUtilizador(e.getCoduser()).addEncomenda(e);
         this.getLoja(e.getCodloja()).addEncomenda(e.clone());
     }
 
+    /**
+     * Verifica se uma certa encomenda é medica
+     * @param l             List<LinhaEncomenda></LinhaEncomenda>
+     */
     public boolean isMedica(List<LinhaEncomenda> l){
         Iterator<LinhaEncomenda> it = l.iterator();
         boolean f = false;
@@ -598,6 +910,12 @@ public class Modelo implements Serializable {
         }
         return f;
     }
+
+    /**
+     * Calcula o preço para um determinado transporte
+     * @param e             Codigo Encomenda
+     * @param t             Codigo entregador
+     */
     public double getPrecoTransp(String e, String t){
         String cl = encomendas.get(e).getCodloja();
         GPS l = lojas.getLoja(cl).getGPS().clone();
@@ -605,6 +923,11 @@ public class Modelo implements Serializable {
         GPS us = utilizadores.getUtilizador(user).getGPS().clone();
         return this.getTransportadora(t).getPreço(l,us,encomendas.get(e).clone());
     }
+    /**
+     * Calcula o tempo para um determinado transporte
+     * @param e             Codigo Encomenda
+     * @param t             Codigo entregador
+     */
     public double[] getTempoEstimado(String e, String t){
         String cl = encomendas.get(e).getCodloja();
         GPS l = lojas.getLoja(cl).getGPS().clone();
@@ -636,7 +959,12 @@ public class Modelo implements Serializable {
         }
     }
 
-
+    /**
+     * Encomenda aceite pelo utilizador e transportador
+     * @param user          Codigo Utlizador
+     * @param t             Codigo Transportadora
+     * @param e             Codigo Encomenda
+     */
     public void aceite(String user, String t, String e){
         LocalDateTime i = LocalDateTime.now();
         encomendas.get(e).setAceites(true);
@@ -648,18 +976,40 @@ public class Modelo implements Serializable {
         this.getTransportadora(t).addEncT(encomendas.get(e));
     }
 
+    /**
+     * Altera Nome Utilizador
+     * @param nome          Novo Nome
+     * @param c             Codigo Utilizador
+     */
     public void opUNome(String nome, String c){
         utilizadores.getUtilizador(c).setNome(nome);
     }
 
+    /**
+     * Altera pass Utilizador
+     * @param pass          Novo pass
+     * @param c             Codigo Utilizador
+     */
     public void opUPass (String pass, String c){
         utilizadores.getUtilizador(c).setPass(pass);
     }
 
+
+    /**
+     * Altera gps Utilizador
+     * @param x             Latitude
+     * @param y             Longitude
+     * @param c             Codigo  Utilizador
+     */
     public void opUGPS(double x, double y, String c){
         utilizadores.getUtilizador(c).setGPS(x,y);
     }
 
+    /**
+     * Atribui Classificação a Transportadora
+     * @param e              Codigo Encomenda
+     * @param cl             Classificação imposta
+     */
     public void op4(String e, int cl) {
         encomendas.get(e).setClassificacao(cl);
         getUtilizador(encomendas.get(e).getCoduser()).setCl(encomendas.get(e), cl);
@@ -670,7 +1020,10 @@ public class Modelo implements Serializable {
             getTransportadora(encomendas.get(e).getTransp()).setCl(encomendas.get(e), cl);
         }
     }
-
+    /**
+     * Passa o tempo de horas para xDIAS yHORAS zMin
+     * @param horas             Tempo em horas
+     */
     public double[] getTime(double horas){
         double[] a = new double[3];
         double dias = horas/24;
@@ -685,6 +1038,10 @@ public class Modelo implements Serializable {
         return a;
     }
 
+    /**
+     * Encontra Produto
+     * @param cod             Codigo  Produto
+     */
     public Produto getProduto(String cod) {
         Iterator<Produto> it = produtos.iterator();
         boolean f = false;
@@ -701,7 +1058,9 @@ public class Modelo implements Serializable {
 
 
         // Gravar para ficheiro
-
+    /**
+     * Grava Programa em Obj .dat
+     */
     public void gravarObj() throws IOException {
         ObjectOutputStream o = new ObjectOutputStream(new FileOutputStream("Dados.dat"));
         o.writeObject(this);
@@ -711,7 +1070,9 @@ public class Modelo implements Serializable {
 
 
     //Ler de ficheiros bin
-
+    /**
+     * le .dat para sistema
+     */
     public static Modelo lerObj() throws IOException, ClassNotFoundException {
         ObjectInputStream o = new ObjectInputStream(new FileInputStream("Dados.dat"));
         Modelo c = (Modelo) o.readObject();

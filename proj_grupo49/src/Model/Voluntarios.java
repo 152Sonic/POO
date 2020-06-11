@@ -19,7 +19,7 @@ public class Voluntarios implements Serializable {
 
     /**
      * Construtor parametrizado
-     * @param voluntarios      Map a copiar
+     * @param Voluntarios      Map a copiar
      */
 
     public Voluntarios(Map<String,Voluntario> Voluntarios){
