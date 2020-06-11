@@ -22,6 +22,7 @@ public class Loja implements Serializable
     private List<Encomenda> listaEnc;
     private List<Encomenda> prontas;
     private Set<Produto> stock;
+    private int fila;
 
     /**
      * Construtor sem parametros
@@ -35,6 +36,7 @@ public class Loja implements Serializable
         this.listaEnc = new ArrayList<>();
         this.prontas = new ArrayList<>();
         this.stock = new TreeSet<>();
+        this.fila = -1;
 
     }
 
@@ -55,6 +57,7 @@ public class Loja implements Serializable
         this.setListaEnc(li);
         this.setProntas(prontas);
         this.stock = new TreeSet<>();
+        this.fila = -1;
     }
 
         /**
@@ -66,7 +69,7 @@ public class Loja implements Serializable
      * @param stock TreeSet Geral com todos os produtos do sistema
      */
 
-    public Loja (String p, String s, String n, GPS gps, TreeSet<Produto> stock)
+    public Loja (String p, String s, String n, GPS gps, TreeSet<Produto> stock, int fila)
     {
         this.pass = p;
         this.cod = s;
@@ -75,6 +78,7 @@ public class Loja implements Serializable
         this.listaEnc = new ArrayList<>();
         this.prontas = new ArrayList<>();
         this.setStock(stock);
+        this.fila = fila;
     }
 
     /**
@@ -84,7 +88,7 @@ public class Loja implements Serializable
      * @param n     String com nome
      * @param gps   GPS
      */
-    public Loja (String p, String s, String n, GPS gps)
+    public Loja (String p, String s, String n, GPS gps, int fila)
     {
         this.pass = p;
         this.cod = s;
@@ -93,6 +97,7 @@ public class Loja implements Serializable
         this.listaEnc = new ArrayList<>();
         this.prontas = new ArrayList<>();
         this.stock = new TreeSet<>();
+        this.fila = -1;
     }
 
     /**
@@ -108,6 +113,14 @@ public class Loja implements Serializable
         this.setListaEnc(u.getListaEnc());
         this.setProntas(u.getProntas());
         this.setStock(u.getStock());
+    }
+
+    public int getFila() {
+        return fila;
+    }
+
+    public void setFila(int fila) {
+        this.fila = fila;
     }
 
     /**

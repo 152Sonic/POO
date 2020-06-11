@@ -463,6 +463,22 @@ public class Transportadora implements Serializable
         return (d1+d2)/v;
     }
 
+
+        /**
+     * Método que calcula um possivel tempo de viagem no Verão
+     * @param loja      GPS loja
+     * @param user      GPS utilizador
+     * @param fila      GPS utilizador
+     * @return          double com tempo
+     */
+    public double getTempoVF(GPS loja, GPS user, int fila){
+        double d1 = this.gps.distancia(loja);
+        double d2 = loja.distancia(user);
+        double timeF = Math.random()*((5 - 30)+1);
+        double v = Math.random()*((100 - 80)+1);
+        return timeF * fila + (d1+d2)/v;
+    }
+
     /**
      * Método que calcula um possivel tempo de viagem no Inverno
      * @param loja      GPS loja
@@ -474,6 +490,21 @@ public class Transportadora implements Serializable
         double d2 = loja.distancia(user);
         double v = Math.random()*((60 - 40)+1);
         return (d1+d2)/v;
+    }
+
+        /**
+     * Método que calcula um possivel tempo de viagem no Inverno
+     * @param loja      GPS loja
+     * @param user      GPS utilizador
+     * @param fila      GPS utilizador
+     * @return          double com tempo
+     */
+    public double getTempoIF(GPS loja, GPS user, int fila){
+        double d1 = this.gps.distancia(loja);
+        double d2 = loja.distancia(user);
+        double timeF = Math.random()*((5 - 30)+1);
+        double v = Math.random()*((60 - 40)+1);
+        return timeF * fila + (d1+d2)/v;
     }
 
     /**
@@ -488,6 +519,22 @@ public class Transportadora implements Serializable
         double d2 = loja.distancia(user);
         double v = Math.random()*((90 - 65)+1);
         return (d1+d2)/v;
+    }
+
+    /**
+     * Método que calcula um possivel tempo de viagem na Primavera e Outono
+     * @param loja      GPS loja
+     * @param user      GPS utilizador
+     * @param fila      GPS utilizador
+     * @return          double com tempo
+     */
+
+    public double getTempoPOF(GPS loja, GPS user, int fila){
+        double d1 = this.gps.distancia(loja);
+        double d2 = loja.distancia(user);
+        double timeF = Math.random()*((5 - 30)+1);
+        double v = Math.random()*((90 - 65)+1);
+        return timeF * fila + (d1+d2)/v;
     }
 
     /**

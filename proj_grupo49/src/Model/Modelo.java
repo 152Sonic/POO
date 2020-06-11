@@ -506,7 +506,7 @@ public class Modelo implements Serializable {
         return r;
     }
 
-    //////////////////////////////////////////// Interpretador Model.Transportadora ////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////// Interpretador Transportadora ////////////////////////////////////////////////////////////////
 
     public void op1Transp_1(String cod, Encomenda e){
         this.getTransportadora(cod).aceitaPedido(e);
@@ -611,16 +611,31 @@ public class Modelo implements Serializable {
         String user = encomendas.get(e).getCoduser();
         GPS us = utilizadores.getUtilizador(user).getGPS().clone();
         Month mes = getEncomenda(e).getDatai().getMonth();
+        int fila = lojas.getLoja(cl).getFila();
+
+        boolean verao = mes == Month.JUNE || mes == Month.JULY || mes == Month.AUGUST || mes == Month.SEPTEMBER;
+        boolean inverno = mes == Month.DECEMBER || mes == Month.JANUARY || mes == Month.FEBRUARY || mes == Month.APRIL;
+
         double horas;
-        if (mes == Month.JUNE || mes == Month.JULY || mes == Month.AUGUST || mes == Month.SEPTEMBER ) {
-            horas = this.getTransportadora(t).getTempoV(l, us);
+
+        if (fila == -1) {
+            if (verao) {
+                horas = this.getTransportadora(t).getTempoV(l, us);
+            } else if (inverno) {
+                horas = this.getTransportadora(t).getTempoI(l, us);
+            } else horas = this.getTransportadora(t).getTempoPO(l, us);
+            return getTime(horas);
         }
-        else if(mes == Month.DECEMBER || mes == Month.JANUARY || mes == Month.FEBRUARY || mes == Month.APRIL){
-            horas = this.getTransportadora(t).getTempoI(l, us);
+        else{
+            if (verao) {
+                horas = this.getTransportadora(t).getTempoVF(l, us, fila);
+            } else if (inverno) {
+                horas = this.getTransportadora(t).getTempoIF(l, us, fila);
+            } else horas = this.getTransportadora(t).getTempoPOF(l, us, fila);
+            return getTime(horas);
         }
-        else horas = this.getTransportadora(t).getTempoPO(l, us);
-        return getTime(horas);
     }
+
 
     public void aceite(String user, String t, String e){
         LocalDateTime i = LocalDateTime.now();

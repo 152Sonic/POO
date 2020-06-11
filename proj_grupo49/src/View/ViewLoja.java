@@ -225,4 +225,36 @@ public class ViewLoja {
         System.out.println("Localização:\n    " + l.getGPS().toString() + "\n");
     }
 
+
+    //?======================================= Loja Fila ===============================================================
+
+
+        public void menuLojaFila(){
+        System.out.println("_____________________________________________________________________________________________");
+        System.out.println("|Escolha uma opção:                                                                          |");
+        System.out.println("|1  -> Sinalizar uma Encomenda pronta para Transporte                                        |");
+        System.out.println("|2  -> Adicionar produto                                                                     |");
+        System.out.println("|3  -> Ver quantas e quais encomendas estão sinalizadas                                      |");
+        System.out.println("|4  -> Ver encomendas não sinalizadas                                                        |");
+        System.out.println("|5  -> Ver lista total de encomendas                                                         |");
+        System.out.println("|6  -> Consultar stock de produtos                                                           |");
+        System.out.println("|7  -> Alterar dados pessoais                                                                |");
+        System.out.println("|8  -> Atualizar Fila de espera                                                              |");
+        System.out.println("|0  -> Exit Program                                                                          |");
+        System.out.println("|____________________________________________________________________________________________|");
+    }
+
+    public void filaEspera(Loja a){
+        System.out.println("Em Fila de Espera: " + a.getFila());
+    }
+
+    public void setFilaEspera(){
+        System.out.println("A fila atualmente tem quantas encomendas em espera ?");
+        System.out.print("->");
+    }
+
+
+
+
+
 }

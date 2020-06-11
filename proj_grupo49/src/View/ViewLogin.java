@@ -130,4 +130,8 @@ public class ViewLogin {
     public void continuar(){
         System.out.println("Deseja prosseguir (1), Caso contrário (0):");
     }
+
+    public void filaEspera(){
+        System.out.println("É uma loja com fila de espera ? Sim(1) Não(2)");
+    }
 }

@@ -8,7 +8,7 @@ import java.util.TreeSet;
 public class ControladorLogInLoja {
     private Modelo m;
 
-    public ControladorLogInLoja(Modelo m){
+    public ControladorLogInLoja(Modelo m) {
         this.m = m;
     }
 
@@ -21,7 +21,7 @@ public class ControladorLogInLoja {
             v.menuLogin();
             v.Op();
             o = i.lerInt();
-            switch (o){
+            switch (o) {
                 case 0:
                     break;
                 case 1:
@@ -32,15 +32,14 @@ public class ControladorLogInLoja {
                     String u = i.lerString();
                     v.pass();
                     String p = i.lerString();
-                    if(m.verificaLogin(u,p,0)){
+                    if (m.verificaLogin(u, p, 0)) {
                         v.loginAccep();
-                        ControladorLoja loja = new ControladorLoja(u,m);
+                        ControladorLoja loja = new ControladorLoja(u, m);
                         v.pressioneEnter();
                         i.lerString();
                         v.flush();
                         loja.run();
-                    }
-                    else {
+                    } else {
                         v.LoginDeny();
                         v.pressioneEnter();
                         i.lerString();
@@ -65,15 +64,32 @@ public class ControladorLogInLoja {
                         double x = i.lerDouble();
                         double y = i.lerDouble();
                         GPS gps = new GPS(x, y);
-                        Loja novo = new Loja(pi, c, n, gps, (TreeSet<Produto>) m.getProdutos());
-                        m.addLoja(novo);
-                        v.siginA();
 
+                        boolean respo = false;
+                        int ix = 0;
+                        while (!respo) {
+                            v.filaEspera();
+                            int res = i.lerInt();
+                            if (res == 1) {
+                                Loja nova = new Loja(pi, c, n, gps, (TreeSet<Produto>) m.getProdutos(), 0);
+                                m.addLoja(nova);
+                                ix =1;
+                                respo = true;
+
+                            } else if (res == 0) {
+                                Loja novo = new Loja(pi, c, n, gps, (TreeSet<Produto>) m.getProdutos(), -1);
+                                m.addLoja(novo);
+                                ix = 2;
+                                respo = true;
+
+                            } else v.printError();
+                        }
+                        v.siginA();
                         v.continuar();
                         o2 = i.lerInt();
-                        continuar(c, m, o2);
-                    }catch (Exception e){
-                        v.printError();
+                        continuar(c, m, o2,ix);
+                    } catch (Exception e) {
+                        System.out.println("Cona " + e.getMessage());
                     }
                     break;
 
@@ -81,22 +97,35 @@ public class ControladorLogInLoja {
                     v.printError();
                     break;
             }
-        }while (o!=0);
+        } while (o != 0);
     }
 
-    public boolean verificaLogin(String u, String p){
-        return m.verificaLogin(u,p,0);
+    public boolean verificaLogin(String u, String p) {
+        return m.verificaLogin(u, p, 0);
     }
 
 
-
-    public void continuar(String u, Modelo m, int o) {
-        ViewLogin v = new ViewLogin();
-        if (o == 1) {
-            ControladorLoja l = new ControladorLoja(u,m);
-            v.pressioneEnter();
-            v.flush();
-            l.run();
+    public void continuar(String u, Modelo m, int o, int i) {
+        if (i == 2) {
+            ViewLogin v = new ViewLogin();
+            if (o == 1) {
+                ControladorLoja l = new ControladorLoja(u, m);
+                v.pressioneEnter();
+                v.flush();
+                l.run();
+            }
+        } else if (i == 1) {
+            ViewLogin v = new ViewLogin();
+            if (o == 1) {
+                ControladorLojaFila l1 = new ControladorLojaFila(u, m);
+                v.pressioneEnter();
+                v.flush();
+                l1.runFila();
+            }
         }
     }
+
+
+
+
 }
