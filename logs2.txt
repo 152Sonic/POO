@@ -43,3 +43,36 @@ Aceite:e3233
 Aceite:e8779
 Aceite:e8476
 Aceite:e5003
+
+
+Utilizador:u11,Utilizador gps1,1000,1000
+Utilizador:u12,Utilizador2 gps1,1020,1020
+
+Voluntario:v11,voluntario gps1,1000,1000,5.0
+
+Transportadora:t1,Transportadora gps1,1000,1000,599618020,40,1
+
+Loja:l1,Loja gps1,1000,1000
+Encomenda:e11,u11,l1,70.72074,p10,Condicionador,4.7617254,36.898346
+Encomenda:e12,u12,l1,70.72074,p10,Condicionador,4.7617254,36.898346
+
+Loja:l12,Loja gps1,1020,1020
+Encomenda:e13,u11,l12,70.72074,p10,Condicionador,4.7617254,36.898346
+Encomenda:e14,u12,l12,70.72074,p10,Condicionador,4.7617254,36.898346
+
+
+
+Utilizador:u21,Utilizador gps1,-1000,-1000
+Utilizador:u22,Utilizador2 gps1,-1020,-1020
+
+Voluntario:v21,voluntario gps1,-1000,-1000,40.0
+
+Transportadora:t2,Transportadora gps1,-1000,-1000,599618020,5,1
+
+Loja:l2,Loja gps1,-1000,-1000
+Encomenda:e21,u21,l2,70.72074,p10,Condicionador,4.7617254,36.898346
+Encomenda:e22,u22,l2,70.72074,p10,Condicionador,4.7617254,36.898346
+
+Loja:l22,Loja gps1,-1020,-1020
+Encomenda:e23,u21,l22,70.72074,p10,Condicionador,4.7617254,36.898346
+Encomenda:e24,u22,l22,70.72074,p10,Condicionador,4.7617254,36.898346
