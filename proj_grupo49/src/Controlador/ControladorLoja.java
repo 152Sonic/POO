@@ -97,6 +97,18 @@ public class ControladorLoja {
                             op7(v, op);
                         }
                         break;
+                    case 8:
+                        v.pressioneEnter();
+                        v.flush();
+                        v.remCP();
+                        String remp = i.lerString();
+                        v.pressioneEnter();
+                        i.lerString();
+                        if (m.getLojas().getLoja(c).existeProd(remp)) {
+                            m.getLoja(c).remProdStock(remp);
+                        }
+                        else v.pError();
+                        break;
                     default:
                     System.out.println("Opçao invalida!");
             }

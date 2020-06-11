@@ -417,5 +417,21 @@ public class Loja implements Serializable
         return r;
     }
 
+    /**
+     * Método que remove um produto so Set Stock
+     * @param cod       String com codigo de produtos
+     */
+    public void remProdStock(String cod){
+        Iterator<Produto> it = stock.iterator();
+        boolean r = false;
+        while (it.hasNext() && !r){
+            Produto aux = it.next();
+            if (aux.getCod().equals(cod)){
+                stock.remove(aux);
+                r = true;
+            }
+        }
+    }
+
 
 }

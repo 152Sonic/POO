@@ -1,7 +1,9 @@
 package View;
 
 import Model.Encomenda;
+import Model.Loja;
 import Model.Transportadora;
+import Model.Utilizador;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -80,6 +82,19 @@ public class ViewTransp {
             }
         }
     }
+    public void empetyList(){
+       System.out.println("LISTA VAZIA!");
+    }
+    public void getEncomendas(){
+        System.out.println("Encomendas: ");
+    }
+
+    public void op3_aux(Encomenda e , Loja l, Utilizador u){
+        System.out.println("\nEncomenda :" + e. getCodenc());
+        System.out.println("Localização da loja:\n" + l.getGPS().toString());
+        System.out.println("Localização do Utilizador:\n " + u.getGPS().toString());
+    }
+
 
     public void op1(Encomenda e){
         System.out.println("\nEcomenda:" + e.getCodenc());

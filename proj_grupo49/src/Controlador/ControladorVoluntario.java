@@ -56,7 +56,16 @@ public class ControladorVoluntario  {
                     break;
                 case 3:
                     v.flush();
-                    v.op3((m.getVoluntario(cod).getList()));
+                    if (m.getVoluntario(cod).getList().size() <= 0){
+                         v.empetyList();
+                    }
+                    else {
+                        v.getEncomendas();
+                        for (Encomenda es : m.getVoluntario(cod).getList()) {
+                            if (!es.getEntregue()) v.op3_aux(es,m.getLoja(es.getCodloja()), m.getUtilizador(es.getCoduser()));
+                        }
+                    }
+//                    v.opc3(m.getTransportadora(cod).getList());
                     break;
                 case 4:
                     int op = -1;

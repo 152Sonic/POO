@@ -1,6 +1,8 @@
 package View;
 
 import Model.Encomenda;
+import Model.Loja;
+import Model.Utilizador;
 import Model.Voluntario;
 
 import java.util.List;
@@ -68,6 +70,19 @@ public class ViewVoluntario {
                 if (!es.getEntregue()) System.out.println(es.getCodenc());
             }
         }
+    }
+
+        public void empetyList(){
+       System.out.println("LISTA VAZIA!");
+    }
+    public void getEncomendas(){
+        System.out.println("Encomendas: ");
+    }
+
+    public void op3_aux(Encomenda e , Loja l, Utilizador u){
+        System.out.println("\nEncomenda :" + e. getCodenc());
+        System.out.println("Localização da loja:\n" + l.getGPS().toString());
+        System.out.println("Localização do Utilizador:\n " + u.getGPS().toString());
     }
 
     public void op1(Encomenda e){

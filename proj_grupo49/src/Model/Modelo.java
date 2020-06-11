@@ -597,7 +597,7 @@ public class Modelo implements Serializable {
     public Set<Transportadora> maisUsadosT(){
         Set<Transportadora> mais= new TreeSet<>(new ComparatorTransp());
         for(Map.Entry<String,Transportadora> t: transportadoras.getTransportadoras().entrySet()){
-            mais.add(t.getValue());
+            mais.add(t.getValue().clone());
         }
         return mais;
     }

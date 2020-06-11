@@ -20,6 +20,7 @@ public class ViewLoja {
         System.out.println("|5  -> Ver lista total de encomendas                                                         |");
         System.out.println("|6  -> Consultar stock de produtos                                                           |");
         System.out.println("|7  -> Alterar dados pessoais                                                                |");
+        System.out.println("|8  -> Remover Produto                                                                       |");
         System.out.println("|0  -> Exit Program                                                                          |");
         System.out.println("|____________________________________________________________________________________________|");
     }
@@ -107,8 +108,13 @@ public class ViewLoja {
         System.out.println("Deseja consultar o stock de produtos :");
     }
 
-    public void cunsultaError(){
-        System.out.println("O produto inserido não existe:");
+    public void pError(){
+        System.out.println("O produto inserido não existe!");
+    }
+
+    public void remCP(){
+        System.out.println("Insira o código do produto a remover:");
+        System.out.print("-> ");
     }
 
 //    public void consultaResult(int p){
@@ -170,7 +176,7 @@ public class ViewLoja {
     }
 
     public void printProduto(Produto p){
-        System.out.println("\nModel.Produto inserido:");
+        System.out.println("\nProduto inserido:");
         System.out.println("Codigo: "+ p.getCod());
         System.out.println("Descrição: "+ p.getNome());
         System.out.println("Médico: " +p.getMedico());
