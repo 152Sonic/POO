@@ -859,10 +859,11 @@ public class Modelo implements Serializable {
     public double getDT(Transportadora t, Encomenda e){
         double d = 0;
         if(e.getEntregue()){
-            d = t.getGPS().distancia(getLoja(e.getCodloja()).getGPS()) + getLoja(e.getCodloja()).getGPS().distancia(getUtilizador(e.getCoduser()).getGPS());
+            d = t.getGPS().distanciaXY(getLoja(e.getCodloja()).getGPS()) + getLoja(e.getCodloja()).getGPS().distanciaXY(getUtilizador(e.getCoduser()).getGPS());
         }
         return d;
     }
+
 
     /**
      * Total Faturado entre duas datas

@@ -138,6 +138,19 @@ public class GPS implements Serializable
                 * 6378.137;
     }
 
+
+        /**
+     * Método que calcula a distancia entre 2 pontos x e y
+     * @param gps   GPS com coordenadas do segundo ponto
+     * @return      double com distancia
+     */
+    public double distanciaXY( GPS gps){
+        return Math.sqrt(Math.pow(gps.getLat()- this.getLat(), 2) +Math.pow(gps.getLon()-this.getLon(), 2));
+    }
+
+
+
+
     /**
      * Método que verifica se uma coordenada se encontra no alcance do raio de outra
      * @param gps   GPS com segunda coordenada
@@ -146,13 +159,13 @@ public class GPS implements Serializable
      */
     public boolean isNear(GPS gps, double r)
     {
-        return (this.distancia(gps)<=r);
+        return (this.distanciaXY(gps)<=r);
     }
 
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder();
-        sb.append("Latitude = ").append(lat);
+        sb.append("      Latitude = ").append(lat);
         sb.append("\n    Longitude = ").append(lon);
         return sb.toString();
     }
