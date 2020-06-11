@@ -36,6 +36,7 @@ public class Modelo implements Serializable {
 
     /**
      * Get Map de Loja
+     * @return Map Lojas
      */
     public Lojas getLojas() {
         return lojas;
@@ -52,6 +53,7 @@ public class Modelo implements Serializable {
 
     /**
      * Get Map de Transportadoras
+     * @return Map Transportadoras
      */
     public Transportadoras getTransportadoras() {
         return transportadoras;
@@ -67,6 +69,7 @@ public class Modelo implements Serializable {
 
     /**
      * Get Map de Voluntarios
+     * @return Map Voluntarios
      */
     public Voluntarios getVoluntarios() {
         return voluntarios;
@@ -82,6 +85,7 @@ public class Modelo implements Serializable {
 
     /**
      * Get Map de Utilizadores
+     * @return Map de Utilizadores
      */
     public Utilizadores getUtilizadores() {
         return utilizadores;
@@ -97,6 +101,7 @@ public class Modelo implements Serializable {
 
     /**
      * Get Map de Encomendas
+     * @return Map de Encomendas
      */
     public Map<String, Encomenda> getEncomendas() {
         return encomendas;
@@ -112,6 +117,7 @@ public class Modelo implements Serializable {
 
     /**
      * Get Map de Produtos
+     * @return Set Produtos do modelo
      */
     public Set<Produto> getProdutos() {
         return produtos;
@@ -155,18 +161,21 @@ public class Modelo implements Serializable {
     /**
      * Get Encomenda do Map de Encomendas
      * @param e        Codigo Encomenda
+     * @return Encomenda com determinado Codigo
      */
     public Encomenda getEncomenda(String e) { return this.encomendas.get(e);}
 
     /**
      * Verifica se existe Loja no Map de Lojas
      * @param c      Codigo da Loja
+     * @return Se existe True/False
      */
     public boolean existeLoja(String c){ return this.lojas.existeLoja(c);}
 
     /**
      * Verifica se existe Transportadora no Map de Transportadora
      * @param c      Codigo da Transportadora
+     * @return Se existe True/False
      */
     public boolean existeTransp(String c){ return this.transportadoras.existeTransp(c);}
 
@@ -179,6 +188,7 @@ public class Modelo implements Serializable {
         /**
      * Verifica se existe Voluntario no Map deVoluntarioa
      * @param c      Codigo da Voluntario
+     * @return boolean true se existe / False se não
      */
     public boolean existeVol(String c){ return this.voluntarios.existeVol(c);}
 
@@ -187,6 +197,7 @@ public class Modelo implements Serializable {
      * @param u      Codigo a confirmar
      * @param p      Codigo pass
      * @param param     inteiro respetivo a Lojas Utilizadores...
+     * @return boolean se o login é válido
      */
     public boolean verificaLogin(String u ,String p, int param){
         boolean ret = false;
@@ -317,6 +328,7 @@ public class Modelo implements Serializable {
     /**
      * Divide o Utilizador
      * @param input             linha respetiva ao User
+     * @return Utilizador lido do parse
      */
     public static Utilizador parseUtilizador(String input) {
         String[] campos = input.split(",");
@@ -332,6 +344,7 @@ public class Modelo implements Serializable {
     /**
      * Divide o Loja
      * @param input             linha respetiva ao Loja
+     * @return Loja lida do parse
      */
     public static Loja parseLoja(String input) {
         String[] campos = input.split(",");
@@ -345,6 +358,7 @@ public class Modelo implements Serializable {
     /**
      * Divide o Transportadora
      * @param input             linha respetiva ao Transportadora
+     * @return Transportadora lida do parse
      */
     public static Transportadora parseTransportadora(String input) {
         String[] campos = input.split(",");
@@ -361,6 +375,7 @@ public class Modelo implements Serializable {
     /**
      * Divide o Encomenda e acrescenta Produtos
      * @param input             linha respetiva ao Encomenda e
+     * @return Encomenda lida do parse
      */
     public Encomenda parseEncomenda(String input) {
         String[] campos = input.split(",");
@@ -393,6 +408,7 @@ public class Modelo implements Serializable {
     /**
      * Divide o Voluntario
      * @param input             linha respetiva ao Voluntario
+     * @return Voluntario lido do parse
      */
     public Voluntario parseVoluntario(String input) {
         String[] campos = input.split(",");
@@ -407,6 +423,7 @@ public class Modelo implements Serializable {
     /**
      * Divide as Aceites
      * @param input             linha respetiva  as Aceites
+     * @return String Codigo encomenda
      */
     public String parseAceite(String input) {
         String[] campos = input.split(",");
@@ -426,6 +443,7 @@ public class Modelo implements Serializable {
      * Le ficheiro .txt
      * @param nomeFich             nome do ficheiro
      * @throws IOException
+     * @return List de linhas em logs
      */
     public static List<String> lerFicheiro(String nomeFich) throws IOException {
         List<String> lines = new ArrayList<>();
@@ -472,6 +490,7 @@ public class Modelo implements Serializable {
      * Metodo que divide ds entregadores e acrescenta a sua lista de pedidos uma respetiva encomenda, ca estes cumpram os parametros do raio e etc.
      * Devolve O map.entry criado
      * @param e             Encomenda para a qual os entregadores vão ser atribuidos
+     * @return Map com T caso Transportadora e V se Voluntario retorna a lista de possiveis utilizadores
      */
     public Map<String,List<String>> getPossiveisEntregadores(Encomenda e){
         Map<String,List<String>> aux = new HashMap<>();
@@ -531,6 +550,7 @@ public class Modelo implements Serializable {
     /**
      * Get Voluntario  de Map Voluntarios
      * @param cod       Codigo Voluntario
+     * @return Voluntario respetivo ao cod
      */
     public Voluntario getVoluntario(String cod){
         return this.getVoluntarios().getVoluntario(cod);
@@ -540,6 +560,7 @@ public class Modelo implements Serializable {
     /**
      * Get Loja  de Map  Lojas
      * @param cod       Codigo Loja
+     * @return Loja referente ao codigo
      */
     public Loja getLoja(String cod){
         return this.getLojas().getLoja(cod);
@@ -548,6 +569,7 @@ public class Modelo implements Serializable {
     /**
      * Get Transportadora  de Map Transportadoras
      * @param cod       Codigo Transportadora
+     * @return Transportadora referente ao codigo
      */
     public Transportadora getTransportadora(String cod){
         return this.getTransportadoras().getTransportadora(cod);
@@ -557,6 +579,7 @@ public class Modelo implements Serializable {
     /**
      * Get Utilizador  de Map Utilizadors
      * @param cod       Codigo Utilizador
+     * @return Utilizador referente ao codigo dado
      */
     public Utilizador getUtilizador(String cod){
         return this.getUtilizadores().getUtilizador(cod);
@@ -566,6 +589,7 @@ public class Modelo implements Serializable {
      * Existe Produto no set Produtos
      * @param cod       Codigo Produto
      * @param pr        Set de Produtos
+     * @return boolean para se existe ou não
      */
     public boolean existeProd(String cod, Set<Produto> pr){
         Iterator<Produto> it = pr.iterator();
@@ -584,6 +608,7 @@ public class Modelo implements Serializable {
 
     /**
      * Get set ordenado de users em relação ao numero de encomendas feitas
+     * @return Ser com os produtos mais usados
      */
     public Set<Utilizador> maisUsados(){
         Set<Utilizador> mais= new TreeSet<>(new ComparatorUtilizador());
@@ -593,6 +618,7 @@ public class Modelo implements Serializable {
 
     /**
      * Get set ordenado de transportadoras em relação ao numero de kms feitos
+     * @return Set com as transportadoras mais usadas ordenadas
      */
     public Set<Transportadora> maisUsadosT(){
         Set<Transportadora> mais= new TreeSet<>(new ComparatorTransp());
@@ -610,6 +636,7 @@ public class Modelo implements Serializable {
      * Adiciona uma encomenda a lista das encomendas Sinalizadas e procura possiveis entregadores
      * @param e             Codigo Encomenda
      * @param l             Codigo loja
+     * @return int se contem ou nao contem
      */
     public int op1Loja(String e, String l){
         int r = 0;
@@ -732,6 +759,7 @@ public class Modelo implements Serializable {
      * Voluntario entrega encomenda
      * @param e             Codigo Encomenda
      * @param cod           Codigo Voluntario
+     * @return int refente se existe o codigo ou nao
      */
     public int op5Vol(String e, String cod){
         int r=0;
@@ -855,6 +883,7 @@ public class Modelo implements Serializable {
      * Distancia transportadora Loja Utilizador
      * @param t             Transportadora
      * @param e             Encomenda
+     * @return Distancia entre Transportadora loja Utilizador
      */
     public double getDT(Transportadora t, Encomenda e){
         double d = 0;
@@ -870,6 +899,7 @@ public class Modelo implements Serializable {
      * @param d1            Primeira data
      * @param d2            Segunda data
      * @param t             Transportadora
+     * @return Total faturado por Trasnportadora no intervalo d1 d2
      */
     public double faturado(LocalDateTime d1, LocalDateTime d2, Transportadora t){
         double fat = 0;
@@ -900,6 +930,7 @@ public class Modelo implements Serializable {
     /**
      * Verifica se uma certa encomenda é medica
      * @param l             List<LinhaEncomenda></LinhaEncomenda>
+     * @return boolean se sim ou não
      */
     public boolean isMedica(List<LinhaEncomenda> l){
         Iterator<LinhaEncomenda> it = l.iterator();
@@ -916,6 +947,7 @@ public class Modelo implements Serializable {
      * Calcula o preço para um determinado transporte
      * @param e             Codigo Encomenda
      * @param t             Codigo entregador
+     * @return Preço da Transportadora
      */
     public double getPrecoTransp(String e, String t){
         String cl = encomendas.get(e).getCodloja();
@@ -928,6 +960,7 @@ public class Modelo implements Serializable {
      * Calcula o tempo para um determinado transporte
      * @param e             Codigo Encomenda
      * @param t             Codigo entregador
+     * @return Tempo estimado consoante se existe fila se nao e para as varias estaçoes do ano
      */
     public double[] getTempoEstimado(String e, String t){
         String cl = encomendas.get(e).getCodloja();
@@ -1024,6 +1057,7 @@ public class Modelo implements Serializable {
     /**
      * Passa o tempo de horas para xDIAS yHORAS zMin
      * @param horas             Tempo em horas
+     * @return double[] tempo em horas
      */
     public double[] getTime(double horas){
         double[] a = new double[3];
@@ -1042,6 +1076,7 @@ public class Modelo implements Serializable {
     /**
      * Encontra Produto
      * @param cod             Codigo  Produto
+     * @return Produto obtido pelo codigo
      */
     public Produto getProduto(String cod) {
         Iterator<Produto> it = produtos.iterator();
